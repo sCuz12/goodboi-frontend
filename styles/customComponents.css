@@ -1,0 +1,105 @@
+  /*
+Cards
+*/
+.dark .card:hover {
+    @apply bg-opacity-5;
+ }
+ 
+ .dark .card_selected {
+   @apply bg-primary bg-opacity-5;
+ 
+ }
+ .dark .card_selected:hover {
+   @apply bg-primary bg-opacity-5;
+ 
+ }
+ .card {
+   @apply shadow rounded-xl bg-foreground;
+ }
+ .card_hoverable:hover {
+   @apply bg-primary-50;
+ }
+ 
+ .card_selected {
+   @apply bg-primary-50;
+ }
+ 
+ .card_selected:hover {
+   @apply bg-primary-50;
+ }
+ .card_row {
+   @apply flex flex-row w-full;
+ }
+ 
+ .card_column {
+   @apply flex flex-col w-full;
+ }
+ .card_column.image {
+   @apply relative m-5;
+ 
+ }
+ .card_row {
+    @apply flex-shrink-0 bg-primary;
+ }
+ .card_row .image {
+    @apply relative m-5;
+    min-width: 180px;   
+ }
+ .card_row .header {
+    @apply self-center mt-3;
+ }
+ .card_row .image img{
+
+  @apply object-cover;
+    
+ }
+ .card_column .header{
+   @apply m-5 mt-0;
+ }
+ 
+ .card_column.body {
+   @apply flex flex-col p-5 mt-auto border-t whitespace-nowrap border-divider;
+ }
+
+ .card_row .actions {
+    border-left-width: 1px;
+}
+
+ 
+ .card_column.actions {
+   @apply flex p-5 border-t border-divider;
+ }
+
+ .charectiristics_labels {
+   @apply text-xl font-bold
+ }
+
+ .header_titles {
+   @apply text-4xl
+ }
+
+ .nav_link_text {
+   @apply text-lg text-black no-underline hover:text-black
+ }
+ .description_text {
+   @apply text-xl text-black 
+ }
+
+ .carousel_container {
+   @apply w-full p-10 m-auto 
+ }
+ .page_item {
+   @apply flex justify-center w-12 h-12 pt-2 border-2 border-r-0 rounded-l-lg border-basicPurple hover:bg-basicPurple hover:text-white;
+ }
+
+ .pagination {
+   @apply flex items-center justify-center ;
+ }
+
+ .page_link {
+  @apply text-center text-black font-kdam ;
+ }
+
+ .page_item.active {
+   @apply bg-basicPurple text-white
+ }
