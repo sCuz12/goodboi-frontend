@@ -1,6 +1,6 @@
 import { React, useContext, useEffect } from "react";
 import { Context } from "../../context";
-import UserRoute from "../../components/routes/UserRoutes";
+import UserRoute from "../../components/Routes/UserRoutes";
 
 export default function index() {
   const {

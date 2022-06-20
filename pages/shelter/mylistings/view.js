@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ShelterRoute from "../../../components/routes/ShelterRoutes";
+import ShelterRoute from "../../../components/Routes/ShelterRoutes";
 import axiosInstance from "../../../helpers/axios";
 import { useRouter } from "next/router";
 import RowListingCard from "../../../components/Cards/RowListingCard";
