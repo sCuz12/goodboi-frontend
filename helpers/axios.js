@@ -1,6 +1,6 @@
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: "http://164.92.128.233:8000",
+  baseURL: "http://api.www.goodboi.com.cy:8000",
   headers: { "Access-Control-Allow-Origin": "*" },
 });
 
