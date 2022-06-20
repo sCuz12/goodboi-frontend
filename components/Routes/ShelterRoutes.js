@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axiosInstance from "../../helpers/axios";
+import ShelterSideNav from "../Nav/shelter/ShelterSideNav";
 
 const ShelterRoute = ({ children }) => {
   const [ok, setOk] = useState();
