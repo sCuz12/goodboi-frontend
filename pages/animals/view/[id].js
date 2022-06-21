@@ -6,6 +6,7 @@ import ShelterInfoCard from "../../../components/Cards/ShelterInfoCard";
 import ListingImageSlider from "../../../components/Slides/ListingImageSlider";
 import { Tag } from "antd";
 import Heart from "../../../components/Icons/Heart";
+import CtaButton from "../../../components/Buttons/CtaButton";
 
 const AnimalListingView = () => {
   const [animal, setAnimal] = useState({});

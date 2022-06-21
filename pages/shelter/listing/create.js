@@ -56,7 +56,7 @@ function create() {
       message.error("Image must smaller than 2MB!");
     }
 
-    return isJpgOrPng && isLt2M;
+    return true;
   };
 
   //*Handlers Start **//
@@ -75,6 +75,16 @@ function create() {
       // Get this url from response in real world.
       setCoverImageUrl(fileList);
     }
+    if (fileList.file.status === "error") {
+      console.log("Error uploading cover photo");
+      setCoverImageUrl();
+    }
+  };
+
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
   };
 
   const sizeChangeHandler = (e) => {
@@ -89,6 +99,9 @@ function create() {
   const listingsImagesUploadHandler = async (fileList) => {
     if (fileList.file.status === "done") {
       setListingsImages(fileList);
+    }
+    if (fileList.file.status === "error") {
+      setListingsImages();
     }
   };
   const countryChangedHandler = async (event) => {
@@ -157,7 +170,7 @@ function create() {
         router.push("/shelter/mylistings/view");
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
         toast.error(err.response.data.message);
       });
   };
@@ -292,6 +305,7 @@ function create() {
             <Upload
               beforeUpload={beforeUploadHandler}
               onChange={coverImageUploadHandler}
+              customRequest={dummyRequest}
               name="listing-cover"
               listType="picture-card"
               maxCount={1}
@@ -309,6 +323,7 @@ function create() {
             </label>
             <Upload
               maxCount={3}
+              customRequest={dummyRequest}
               onChange={listingsImagesUploadHandler}
               name="listing-cover"
               listType="picture-card"

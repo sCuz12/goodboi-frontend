@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { GoLocation } from "react-icons/go";
+import CtaButton from "../Buttons/CtaButton";
+
 function ShelterInfoCard({ shelter_id, name, description, cover_image, city }) {
   return (
     <div className="flex flex-col">
