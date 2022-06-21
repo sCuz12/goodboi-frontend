@@ -1,6 +1,6 @@
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: "http://api.goodboi.com.cy",
+  baseURL: "https://api.goodboi.com.cy",
   headers: { "Access-Control-Allow-Origin": "*" },
 });
 
