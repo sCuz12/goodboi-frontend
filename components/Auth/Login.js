@@ -7,11 +7,12 @@ import axiosInstance from "../../helpers/axios";
 import SolidPaw from "../Icons/SolidPaw";
 import DogInCicle from "../CustomImages/DogInCircle";
 import Heart from "../Icons/Heart";
+import { toast } from "react-toastify";
 
 export default function Login() {
   //TODO : Remove defaults on email,password on production
-  const [email, setEmail] = useState("Sheltetest@gmail.com");
-  const [password, setPassword] = useState("test");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { state, dispatch } = useContext(Context);
 
   const { user } = state;
@@ -47,7 +48,8 @@ export default function Login() {
       //redirect
       router.push("/");
     } catch (err) {
-      console.log(err);
+      toast.error(err.response.data.error);
+      console.log(err.response.data.error);
     }
   };
 

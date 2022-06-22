@@ -15,7 +15,6 @@ export default function Register({ isShelter }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
-  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -33,29 +32,19 @@ export default function Register({ isShelter }) {
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      const { data } = await axiosInstance.post(
-        `/api/register`,
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-        },
-        {
-          first_name: firstName,
-          last_name: lastName,
-          email: email,
-          password: password,
-          password_confirm: confirmPassword,
-          ...(isShelter ? { is_shelter: true } : {}),
-        }
-      );
+      const { data } = await axiosInstance.post(`/api/register`, {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: password,
+        password_confirm: confirmPassword,
+        ...(isShelter ? { is_shelter: true } : {}),
+      });
       toast.success("Registration Succesful. Please Login");
-      setLoading(false);
       router.push("/login");
     } catch (err) {
-      setLoading(false);
-      toast.error(err.response.data);
+      console.log(err.response.data);
+      toast.error(err.response.data.message);
     }
   };
   return (
