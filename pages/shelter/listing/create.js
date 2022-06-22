@@ -29,21 +29,20 @@ function create() {
   const { user } = state;
   /*page load trigger hook (no dependencies) */
   useEffect(() => {
-    //prevent unverified shelter to list a dog
-
     const getCountryOptions = async () => {
       const { data } = await axiosInstance.get("/api/countries");
       // console.log(data);
       setCountryOptions(data);
     };
-
     getCountryOptions();
     fetchCitiesById(1); //default retrieve Cyprus countries
     fetchAvailableVacinnes();
     setSelectedCity(1); //default
   }, []);
 
+  //*User change dependency */
   useEffect(() => {
+    //prevent unverified shelter to list a dog
     if (user) {
       if (user.shelter.is_profile_complete === 0) {
         router.push("/shelter/profile/update");
