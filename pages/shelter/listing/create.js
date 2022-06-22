@@ -29,6 +29,8 @@ function create() {
   const { user } = state;
   /*page load trigger hook (no dependencies) */
   useEffect(() => {
+    //prevent unverified shelter to list a dog
+
     const getCountryOptions = async () => {
       const { data } = await axiosInstance.get("/api/countries");
       // console.log(data);
@@ -40,6 +42,14 @@ function create() {
     fetchAvailableVacinnes();
     setSelectedCity(1); //default
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      if (user.shelter.is_profile_complete === 0) {
+        router.push("/shelter/profile/update");
+      }
+    }
+  }, [user]);
 
   const beforeUploadHandler = (file) => {
     //check the type of image
@@ -171,212 +181,219 @@ function create() {
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err.response.data.message);
+        toast.error(err.response.data);
       });
   };
 
   return (
     <ShelterRoute>
-      <form onSubmit={handleFormSubmit} className="max-w-2xl mx-auto mt-44">
-        <div className="grid grid-cols-1 gap-6">
-          <div className="flex flex-wrap mb-6 -mx-3">
-            {/*Dog name */}
-            <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-first-name"
-              >
-                Dog Name
-              </label>
-              <input
-                onChange={(e) => {
-                  setDogName(e.target.value);
-                }}
-                className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
-                id="grid-dog-name"
-                type="text"
-                placeholder="Jane"
-              />
-            </div>
-            {/*Dog Title */}
-            <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-first-name"
-              >
-                Dog Title
-              </label>
-              <input
-                onChange={titleChangeHandler}
-                className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
-                id="grid-dog-title"
-                type="text"
-                placeholder="Cute dog Kid"
-              />
-            </div>
-
-            {/*Dog Description */}
-            <div className="w-full px-3">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-last-name"
-              >
-                Description
-              </label>
-              <textarea
-                onChange={(e) => {
-                  setDogDescription(e.target.value);
-                }}
-                className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none h-28 focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-description"
-                type="textarea"
-                placeholder="Doe"
-              />
-            </div>
-
-            {/* Size*/}
-            <div className="w-full px-3 pt-3 mb-6 md:w-full md:mb-0">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-first-name"
-              >
-                Dog Size
-              </label>
-              <div className="relative">
-                <Radio.Group onChange={sizeChangeHandler}>
-                  <Radio.Button value="s">Small</Radio.Button>
-                  <Radio.Button value="m">Medium</Radio.Button>
-                  <Radio.Button value="l">Large</Radio.Button>
-                </Radio.Group>
-              </div>
-            </div>
-          </div>
-          {/** Age */}
-          <div className="flex flex-wrap mb-6 -mx-3">
-            <div className="w-full px-3">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-age"
-              >
-                Date Of Birth
-              </label>
-              <DatePicker
-                dateFromat="YYYY-MM-dd"
-                onChange={(date, dateString) => {
-                  setDobDate(dateString);
-                }}
-              />
-            </div>
-          </div>
-          {/** Vaccinations */}
-          <div className="flex flex-wrap mb-6 -mx-3">
-            <div className="w-full px-3">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-age"
-              >
-                Vaccinations
-              </label>
-              <Select
-                mode="multiple"
-                style={{ width: "100%" }}
-                placeholder="Select Vaccinations"
-                onChange={vaccineSelectedHandler}
-              >
-                {availableVaccines.map((vaccine) => {
-                  return (
-                    <Option value={vaccine.id} label={vaccine.name}>
-                      {vaccine.name}
-                    </Option>
-                  );
-                })}
-              </Select>
-            </div>
-          </div>
-
-          {/** Cover Photo */}
-          <div className="w-full px-3 md:w-1/2">
-            <label
-              className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              htmlFor="grid-last-name"
-            >
-              Cover Image
-            </label>
-            <Upload
-              beforeUpload={beforeUploadHandler}
-              onChange={coverImageUploadHandler}
-              customRequest={dummyRequest}
-              name="listing-cover"
-              listType="picture-card"
-              maxCount={1}
-            >
-              <ImageUploadButton />
-            </Upload>
-          </div>
-          {/* Listing Images*/}
-          <div className="w-full px-3 md:w-1/2">
-            <label
-              className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              htmlFor="grid-last-name"
-            >
-              Listing Images
-            </label>
-            <Upload
-              maxCount={3}
-              customRequest={dummyRequest}
-              onChange={listingsImagesUploadHandler}
-              name="listing-cover"
-              listType="picture-card"
-            >
-              <ImageUploadButton />
-            </Upload>
-          </div>
-          {/*Countries flex */}
-          <div className="flex flex-wrap mb-2 -mx-3">
-            {/*Countries dropdown*/}
-            <div className="w-full px-3 mb-6 md:w-1/3 md:mb-0">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-state"
-              >
-                Country
-              </label>
-              <div className="relative">
-                <select
-                  onChange={countryChangedHandler}
-                  className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-country"
-                >
-                  {countryOptions.map((option) => {
-                    return <option id={option.id}>{option.name}</option>;
-                  })}
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-                  <svg
-                    className="w-4 h-4 fill-current"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
+      {user !== null && (
+        <div className="max-w-2xl mx-auto mt-44">
+          <h3 className="pb-4 header_titles font-cherryBomb">
+            Create Dog Listing
+          </h3>
+          <form onSubmit={handleFormSubmit}>
+            <div className="grid grid-cols-1 gap-6">
+              <div className="flex flex-wrap mb-6 -mx-3">
+                {/*Dog name */}
+                <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-first-name"
                   >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
+                    Dog Name
+                  </label>
+                  <input
+                    onChange={(e) => {
+                      setDogName(e.target.value);
+                    }}
+                    className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
+                    id="grid-dog-name"
+                    type="text"
+                  />
+                </div>
+                {/*Dog Title */}
+                <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-first-name"
+                  >
+                    Dog Title
+                  </label>
+                  <input
+                    onChange={titleChangeHandler}
+                    className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
+                    id="grid-dog-title"
+                    type="text"
+                  />
+                </div>
+
+                {/*Dog Description */}
+                <div className="w-full px-3">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-last-name"
+                  >
+                    Description
+                  </label>
+                  <textarea
+                    onChange={(e) => {
+                      setDogDescription(e.target.value);
+                    }}
+                    className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none h-28 focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-description"
+                    type="textarea"
+                  />
+                </div>
+
+                {/* Size*/}
+                <div className="w-full px-3 pt-3 mb-6 md:w-full md:mb-0">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-first-name"
+                  >
+                    Dog Size
+                  </label>
+                  <div className="relative">
+                    <Radio.Group onChange={sizeChangeHandler}>
+                      <Radio.Button value="s">Small</Radio.Button>
+                      <Radio.Button value="m">Medium</Radio.Button>
+                      <Radio.Button value="l">Large</Radio.Button>
+                    </Radio.Group>
+                  </div>
                 </div>
               </div>
-            </div>
-            {/*Cities dropwdown */}
-            <CityDropdown data={citiesOptions} handler={citySelectionHandler} />
-          </div>
+              {/** Age */}
+              <div className="flex flex-wrap mb-6 -mx-3">
+                <div className="w-full px-3">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-age"
+                  >
+                    Date Of Birth
+                  </label>
+                  <DatePicker
+                    dateFromat="YYYY-MM-dd"
+                    onChange={(date, dateString) => {
+                      setDobDate(dateString);
+                    }}
+                  />
+                </div>
+              </div>
+              {/** Vaccinations */}
+              <div className="flex flex-wrap mb-6 -mx-3">
+                <div className="w-full px-3">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-age"
+                  >
+                    Vaccinations
+                  </label>
+                  <Select
+                    mode="multiple"
+                    style={{ width: "100%" }}
+                    placeholder="Select Vaccinations"
+                    onChange={vaccineSelectedHandler}
+                  >
+                    {availableVaccines.map((vaccine) => {
+                      return (
+                        <Option value={vaccine.id} label={vaccine.name}>
+                          {vaccine.name}
+                        </Option>
+                      );
+                    })}
+                  </Select>
+                </div>
+              </div>
 
-          <div className="flex flex-wrap">
-            <button
-              className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"
-              type="submit"
-              disabled={disableButton()}
-            >
-              Submit
-            </button>
-          </div>
+              {/** Cover Photo */}
+              <div className="w-full px-3 md:w-1/2">
+                <label
+                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                  htmlFor="grid-last-name"
+                >
+                  Cover Image
+                </label>
+                <Upload
+                  beforeUpload={beforeUploadHandler}
+                  onChange={coverImageUploadHandler}
+                  customRequest={dummyRequest}
+                  name="listing-cover"
+                  listType="picture-card"
+                  maxCount={1}
+                >
+                  <ImageUploadButton />
+                </Upload>
+              </div>
+              {/* Listing Images*/}
+              <div className="w-full px-3 md:w-1/2">
+                <label
+                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                  htmlFor="grid-last-name"
+                >
+                  Listing Images
+                </label>
+                <Upload
+                  maxCount={3}
+                  customRequest={dummyRequest}
+                  onChange={listingsImagesUploadHandler}
+                  name="listing-cover"
+                  listType="picture-card"
+                >
+                  <ImageUploadButton />
+                </Upload>
+              </div>
+              {/*Countries flex */}
+              <div className="flex flex-wrap mb-2 -mx-3">
+                {/*Countries dropdown*/}
+                <div className="w-full px-3 mb-6 md:w-1/3 md:mb-0">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-state"
+                  >
+                    Country
+                  </label>
+                  <div className="relative">
+                    <select
+                      onChange={countryChangedHandler}
+                      className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-country"
+                    >
+                      {countryOptions.map((option) => {
+                        return <option id={option.id}>{option.name}</option>;
+                      })}
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                      <svg
+                        className="w-4 h-4 fill-current"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                {/*Cities dropwdown */}
+                <CityDropdown
+                  data={citiesOptions}
+                  handler={citySelectionHandler}
+                />
+              </div>
+
+              <div className="flex flex-wrap">
+                <button
+                  className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"
+                  type="submit"
+                  disabled={disableButton()}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      )}
     </ShelterRoute>
   );
 }

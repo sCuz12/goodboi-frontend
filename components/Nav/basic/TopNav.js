@@ -8,7 +8,6 @@ import axiosInstance from "../../../helpers/axios";
 import NavButton from "../../Buttons/NavButton";
 
 function TopNav() {
-  console.log(process.env.NEXT_PUBLIC_API);
   const { state, dispatch } = useContext(Context);
   const [isOpen, setOpen] = useState(false);
   const { user } = state;
