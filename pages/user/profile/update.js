@@ -63,6 +63,12 @@ function update() {
     }
   };
 
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess("ok");
+    }, 0);
+  };
+
   const beforeUploadHandler = (file) => {
     //check the type of image
     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
@@ -169,6 +175,7 @@ function update() {
             Cover Image
           </label>
           <Upload
+            customRequest={dummyRequest}
             beforeUpload={beforeUploadHandler}
             onChange={coverImageUploadHandler}
             name="listing-cover"
