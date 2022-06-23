@@ -14,6 +14,21 @@ function MobileMenuItems({ user, logout }) {
           Find Shelter
         </a>
       </Link>
+      <Link href="/register">
+        <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
+          Become Hero
+        </a>
+      </Link>
+      <Link href="/shelter/register">
+        <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
+          Become Shelter
+        </a>
+      </Link>
+      <Link href="/login">
+        <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
+          Login
+        </a>
+      </Link>
       {user && user.user_type === "shelter" && (
         <>
           <Link href="/shelter/">
