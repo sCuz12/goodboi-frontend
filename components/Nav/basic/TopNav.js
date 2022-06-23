@@ -6,17 +6,21 @@ import { Transition } from "@tailwindui/react";
 import Link from "next/link";
 import axiosInstance from "../../../helpers/axios";
 import NavButton from "../../Buttons/NavButton";
+import MenuItems from "./MenuItems";
+import { GiHamburgerMenu } from "react-icons/gi";
+import MobileMenuItems from "./MobileMenuItems";
 
 function TopNav() {
   const { state, dispatch } = useContext(Context);
   const [isOpen, setOpen] = useState(false);
+  const [mobMenuOpen, setMobMenuOpen] = useState(false);
+
   const { user } = state;
   const router = useRouter();
 
   const container = useRef(null);
 
   const dropDownOpenHandler = () => {
-    console.log("asda11");
     setOpen(true);
   };
 
@@ -51,105 +55,156 @@ function TopNav() {
   }, [isOpen, container]);
 
   return (
-    <div className="h-1">
-      <header className="fixed top-0 z-50 flex items-center justify-between w-screen transition duration-300 ease-out bg-white md:px-10">
-        {/* left */}
-        <div
-          onClick={() => router.push("/")}
-          className="relative flex items-center my-auto cursor-pointer h-28 w-28"
-        >
-          <Image
-            key={1}
-            src="https://links.papareact.com/qd3"
-            layout="fill"
-            alt="Header Logo"
-            objectFit="contain"
-            objectPosition="left"
-          />
-        </div>
+    <div className="w-full ">
+      <nav>
+        <div className="max-w-full px-4 mx-auto sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center w-2/4">
+              {/*Logo section */}
+              <div className="flex-shrink-0 w-1/2">
+                <Image
+                  key={1}
+                  src="https://links.papareact.com/qd3"
+                  alt="Header Logo"
+                  objectFit="contain"
+                  height={80}
+                  width={80}
+                />
+              </div>
+              <div className="hidden md:block">
+                <div className="flex items-baseline ml-10 space-x-4">
+                  <MenuItems />
+                </div>
+              </div>
+            </div>
+            <div className="flex items-end">
+              <div className="hidden md:flex">
+                {/* Right of footer*/}
 
-        {/* middle of footer*/}
-        <div className=" rounded-full mx-4 lg:ml-24 p-2 w-[400px] bg-white">
-          <div className="flex space-x-10">
-            <Link href="/listings/animals">
-              <a className="nav_link_text"> Find your Dog</a>
-            </Link>
-            <Link href="/listings/shelters">
-              <a className="nav_link_text">Find Shelter</a>
-            </Link>
+                <div className="flex items-center justify-end w-2/4 space-x-4 text-black">
+                  {user === null ? (
+                    <>
+                      <NavButton
+                        title="Become Shelter"
+                        link="/shelter/register"
+                      />
+                      <NavButton title="Become Hero" link="/register" />
+                      <NavButton
+                        title="Sign In"
+                        withBackground={true}
+                        link="/login"
+                      />
+                    </>
+                  ) : (
+                    <div ref={container} className="hidden w-12 h-12 md:flex">
+                      <button
+                        onClick={dropDownOpenHandler}
+                        className="flex block w-8 h-8 overflow-hidden border-gray-500 rounded-full focus:outline-none focus:border-black"
+                      >
+                        <img
+                          className="object-cover w-full h-full"
+                          src={user.cover_photo}
+                        />
+                      </button>
+
+                      <Transition
+                        show={isOpen}
+                        enter=" ease-out duration-100 "
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="transition ease-in duration-75 "
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <div className="absolute right-0 w-48 py-2 mt-1 origin-top-right rounded shadow-md">
+                          {/* if user is normal*/}
+                          {user.user_type.includes("user") && (
+                            <Link href="/user/profile/update">
+                              <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
+                                Update Details
+                              </a>
+                            </Link>
+                          )}
+
+                          {/* If user is shelter */}
+                          {user.user_type.includes("shelter") && (
+                            <>
+                              <Link href="/shelter/listing/create">
+                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
+                                  List a Dog
+                                </a>
+                              </Link>
+                              <Link href="/shelter/">
+                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
+                                  Dashboard
+                                </a>
+                              </Link>
+                            </>
+                          )}
+                          <Link href="">
+                            <a
+                              onClick={logout}
+                              className="block px-4 py-2 hover:bg-green-500 hover:text-green-100"
+                            >
+                              Logout
+                            </a>
+                          </Link>
+                        </div>
+                      </Transition>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            {/* mob*/}
+            <div className="flex -mr-2 md:hidden">
+              <GiHamburgerMenu
+                className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-900 rounded-md hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+                onClick={() => setMobMenuOpen(!mobMenuOpen)}
+              />
+              {!mobMenuOpen ? (
+                <GiHamburgerMenu />
+              ) : (
+                <svg
+                  className="block w-6 h-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              )}
+            </div>
           </div>
         </div>
+      </nav>
 
-        {/* Right of footer*/}
-
-        <div className="flex items-center justify-end space-x-4 text-black">
-          {user === null && (
-            <>
-              <NavButton title="Become Shelter" link="/shelter/register" />
-              <NavButton title="Become Hero" link="/register" />
-              <NavButton title="Sign In" withBackground={true} link="/login" />
-            </>
-          )}
-        </div>
-        {user !== null && (
-          <div ref={container} className="w-12 h-12">
-            <button
-              onClick={dropDownOpenHandler}
-              className="flex block w-8 h-8 overflow-hidden border-gray-500 rounded-full focus:outline-none focus:border-black"
-            >
-              <img
-                className="object-cover w-full h-full"
-                src={user.cover_photo}
-              />
-            </button>
-
-            <Transition
-              show={isOpen}
-              enter=" ease-out duration-100 "
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="transition ease-in duration-75 "
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="absolute right-0 w-48 py-2 mt-1 origin-top-right rounded shadow-md">
-                {/* if user is normal*/}
-                {user.user_type.includes("user") && (
-                  <Link href="/user/profile/update">
-                    <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                      Update Details
-                    </a>
-                  </Link>
-                )}
-
-                {/* If user is shelter */}
-                {user.user_type.includes("shelter") && (
-                  <>
-                    <Link href="/shelter/listing/create">
-                      <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                        List a Dog
-                      </a>
-                    </Link>
-                    <Link href="/shelter/">
-                      <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                        Dashboard
-                      </a>
-                    </Link>
-                  </>
-                )}
-                <Link href="">
-                  <a
-                    onClick={logout}
-                    className="block px-4 py-2 hover:bg-green-500 hover:text-green-100"
-                  >
-                    Logout
-                  </a>
-                </Link>
-              </div>
-            </Transition>
+      <Transition
+        show={mobMenuOpen}
+        enter="transition ease-out duration-100 transform"
+        enterFrom="opacity-0 scale-95"
+        enterTo="opacity-100 scale-100"
+        leave="transition ease-in duration-75 transform"
+        leaveFrom="opacity-100 scale-100"
+        leaveTo="opacity-0 scale-95"
+      >
+        {(ref) => (
+          <div className="md:hidden" id="mobile-menu">
+            <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <MobileMenuItems user={user} logout={logout} />
+            </div>
           </div>
         )}
-      </header>
+      </Transition>
     </div>
   );
 }

@@ -164,7 +164,7 @@ export default function Register({ isShelter }) {
                   type="submit"
                   className="inline-block px-12 py-2 mt-5 mb-2 font-semibold text-white border-2 rounded-full bg-basicPurple border-green"
                 >
-                  Sign In
+                  Sign up
                 </button>
               </div>
               <div className="flex justify-start w-3/4">
