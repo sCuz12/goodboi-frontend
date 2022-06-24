@@ -10,7 +10,7 @@ function IndexBanner() {
         <div className="w-1/2">
           <div className="flex w-full">
             <SolidPaw height={60} width={60} />
-            <h1 className="text-7xl font-cherryBomb text-darkPurple">
+            <h1 className="lg:text-7xl font-cherryBomb text-darkPurple sm:text-3xl">
               Find your new <p>best friend!</p>{" "}
             </h1>
 

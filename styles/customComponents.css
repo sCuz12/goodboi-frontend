@@ -75,7 +75,7 @@ Cards
  }
 
  .header_titles {
-   @apply text-4xl
+   @apply font-semibold lg:text-4xl md:text-3xl sm:text-2xl
  }
 
  .nav_link_text {

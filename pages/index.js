@@ -46,7 +46,7 @@ export default function Home() {
       {/* Listings */}
       <main className="px-8 mx-auto max-w-7xl sm:px-16">
         <section className="pt-6">
-          <h3 className="pb-5 text-4xl font-semibold">Adopt Me</h3>
+          <h3 className="pb-5 header_titles">Adopt Me</h3>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {listings.map((item) => (
               <div className="mb-10 overflow-hidden rounded-2xl">
@@ -68,7 +68,7 @@ export default function Home() {
         </section>
         {/* Shelter section*/}
         <section className="pt-6">
-          <h3 className="pb-5 text-4xl font-semibold">Find Shelter</h3>
+          <h3 className="pb-5 header_titles">Find Shelter</h3>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {shelters.map((item) => (
               <div className="mb-10 overflow-hidden rounded-2xl">
