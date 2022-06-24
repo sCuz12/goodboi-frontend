@@ -75,7 +75,7 @@ Cards
  }
 
  .header_titles {
-   @apply font-semibold lg:text-4xl md:text-3xl sm:text-2xl
+   @apply lg:font-semibold sm:text-5xl lg:text-6xl font-cherryBomb
  }
 
  .nav_link_text {
@@ -102,4 +102,12 @@ Cards
 
  .page_item.active {
    @apply bg-basicPurple text-white
+ }
+
+ .no_found_message {
+   @apply text-2xl text-lightGray ;
+ }
+
+ .textfield_input {
+   @apply flex-1 text-sm outline-none ;
  }
