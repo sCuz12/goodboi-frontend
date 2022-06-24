@@ -81,6 +81,7 @@ module.exports = {
         darkPurple: "#251B2F",
         lightPink: "#dc4b87",
         lightBlue: "#67B3D8",
+        lightGray: "#E0E0E0",
       },
       height: {
         120: "36rem",

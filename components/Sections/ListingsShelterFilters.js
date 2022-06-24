@@ -2,7 +2,7 @@ import React from "react";
 import { MdSort } from "react-icons/md";
 export default function ({ cities, handleToggle }) {
   return (
-    <div className="flex w-1/5">
+    <div className="flex lg:w-1/5 sm:w-2/5">
       <div className="flex flex-col w-full pl-3 border rounded-xl">
         <div className="flex w-full ">
           <h2 className="w-4/5 text-xl font-bold">Filters</h2>

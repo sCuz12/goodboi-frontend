@@ -73,25 +73,29 @@ export default function Shelters() {
           image={<PinkCircle />}
         />
       </section>
-      <div className="flex w-full h-auto">
+      <section className="w-full h-auto lg:flex">
+        {/* Filters */}
         <ListingsShelterFilters
           cities={citiesFilter}
           handleToggle={handleToggle}
         />
-        <div className="w-full max-w-7xl sm:px-16">
+        {/* Shelter Listings */}
+        <div className="lg:w-4/5 sm:w-3/5 max-w-7xl sm:px-16">
           <h1 className="header_titles font-cherryBomb">All Shelters</h1>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {shelterListings.map((item) => (
-              <ShelterCard
-                name={item.shelter_name}
-                image={item.cover_image}
-                city={item.city}
-                id={item.id}
-              />
+              <div className="overflow-hidden rounded-2xl lg:p-0 sm:p-40">
+                <ShelterCard
+                  name={item.shelter_name}
+                  image={item.cover_image}
+                  city={item.city}
+                  id={item.id}
+                />
+              </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

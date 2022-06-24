@@ -6,6 +6,7 @@ import axiosInstance from "../helpers/axios";
 import ShelterCard from "../components/Cards/ShelterCard";
 import IndexBanner from "../components/Banners/IndexBanner";
 import NavButton from "../components/Buttons/NavButton";
+import NoResults from "../components/CustomImages/Illustrations/NoResults";
 
 export default function Home() {
   const [listings, setListings] = useState([]);
@@ -47,21 +48,28 @@ export default function Home() {
       <main className="px-8 mx-auto max-w-7xl sm:px-16">
         <section className="pt-6">
           <h3 className="pb-5 header_titles">Adopt Me</h3>
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {listings.map((item) => (
-              <div className="mb-10 overflow-hidden rounded-2xl">
-                <ListingCard
-                  key={item.id}
-                  name={item.name}
-                  image={item.cover_image}
-                  title={item.title}
-                  age={item.age}
-                  city={item.city}
-                  id={item.id}
-                />
-              </div>
-            ))}
-          </div>
+          {listings.length === 0 ? (
+            <div className="flex justify-center w-full pt-20">
+              <NoResults />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {listings.map((item) => (
+                <div className="mb-10 overflow-hidden rounded-2xl">
+                  <ListingCard
+                    key={item.id}
+                    name={item.name}
+                    image={item.cover_image}
+                    title={item.title}
+                    age={item.age}
+                    city={item.city}
+                    id={item.id}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
           <div className="flex justify-center mx-auto">
             <NavButton title="See more" link="/listings/animals" />
           </div>
