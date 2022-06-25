@@ -50,7 +50,7 @@ export default function Register({ isShelter }) {
   return (
     <main className="pt-40">
       <section className="flex w-full">
-        <div className="w-3/5 ">
+        <div className="w-2/3 ">
           <div className="flex w-full">
             <h1 className="text-7xl font-cherryBomb text-darkPurple">
               {feMessages.title}
@@ -68,11 +68,9 @@ export default function Register({ isShelter }) {
             />
           </div>
         </div>
-        <div className="flex justify-end w-2/5">
-          <div className="pl-10 ">
-            <DogsWithCircle />
-            <SolidPaw />
-          </div>
+        <div className="flex justify-end w-1/3">
+          <DogsWithCircle />
+          <SolidPaw />
 
           <div className="flex justify-center w-full">
             <Heart />
@@ -80,7 +78,7 @@ export default function Register({ isShelter }) {
         </div>
       </section>
       <section className="flex flex-col items-center justify-center flex-1 w-full px-20 pt-10">
-        <div className="flex justify-center w-1/2 max-w-4xl shadow-2xl h-98 rounded-2xl bg-navyPink">
+        <div className="flex justify-center max-w-4xl shadow-2xl lg:w-1/2 sm:w-2/2 h-98 rounded-2xl bg-navyPink">
           <div className="w-2/4">
             <h2 className="justify-center pt-10 pb-10 text-2xl font-bold text-center text-basicFont font-kdam">
               Register

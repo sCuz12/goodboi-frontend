@@ -49,7 +49,7 @@ export default function Home() {
         <section className="pt-6">
           <h3 className="pb-5 header_titles">Adopt Me</h3>
           {listings.length === 0 ? (
-            <div className="flex justify-center w-full pt-20">
+            <div className="flex justify-center w-full pt-20 pb-20">
               <NoResults />
             </div>
           ) : (

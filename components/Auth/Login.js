@@ -58,7 +58,7 @@ export default function Login() {
       <section className="flex w-full">
         <div className="w-3/5">
           <div className="flex w-full">
-            <h1 className="text-7xl font-cherryBomb text-darkPurple">
+            <h1 className="header_titles text-darkPurple">
               Find your new <p>best friend!</p>{" "}
             </h1>
           </div>
@@ -69,9 +69,11 @@ export default function Login() {
           </p>
           <SolidPaw />
         </div>
-        <div className="flex justify-end w-3/5 pl-48">
-          <div className="pl-10 ">
-            <DogInCicle image="dog-2.png" />
+        <div className="lg:w-3/5 lg:justify-end lg:flex lg:pl-48 sm:flex-col">
+          <div className="pl-10">
+            <div className="flex">
+              <DogInCicle image="dog-2.png" />
+            </div>
           </div>
 
           <div className="flex justify-center w-full">
@@ -79,15 +81,15 @@ export default function Login() {
           </div>
         </div>
       </section>
-      <section className="flex flex-col items-center justify-center flex-1 w-full px-20 pt-20 text-center">
-        <div className="flex justify-center w-1/2 max-w-4xl shadow-2xl h-98 rounded-2xl bg-navyPink">
+      <section className="flex flex-col items-center justify-center flex-1 w-full px-20 pt-20 text-center ">
+        <div className="flex justify-center max-w-4xl shadow-2xl sm:w-2/2 lg:w-1/2 h-98 rounded-2xl bg-navyPink sm:w-full">
           <div className="w-2/4">
             <h2 className="pt-10 pb-10 text-2xl font-bold text-basicFont font-kdam">
               Welcome Back
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col items-center">
-                <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
+                <div className="textfield_input_container">
                   <FaRegEnvelope className="m-2 text-gray-400" />
                   <input
                     type="email"
@@ -97,7 +99,7 @@ export default function Login() {
                     className="flex-1 text-sm outline-none"
                   />
                 </div>
-                <div className="flex items-center p-2 bg-white border rounded-lg shadow-2xl w-80">
+                <div className="textfield_input_container">
                   <MdLockOutline className="m-2 text-gray-400" />
                   <input
                     type="password"
