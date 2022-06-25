@@ -42,7 +42,7 @@ export default function Home() {
         ></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="pt-40"></div>
+      <div className="pt-20"></div>
       <IndexBanner />
       {/* Listings */}
       <main className="px-8 mx-auto max-w-7xl sm:px-16">
