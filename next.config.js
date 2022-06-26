@@ -6,6 +6,7 @@ const nextConfig = {
       "placedog.net",
       "localhost",
       "api.goodboi.com.cy",
+      "backend.goodboi.com.cy",
     ],
   },
 };
