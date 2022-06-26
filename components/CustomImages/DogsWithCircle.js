@@ -28,8 +28,8 @@ function DogsWithCircle() {
         <Heart />
       </div>
 
-      <div className="rounded-full w-96 h-96 bg-roz">
-        <div className="flex m-5 h-80 w-100">
+      <div className="rounded-full lg:w-96 lg:h-96 md:w-40 md:h-40 bg-roz">
+        <div className="flex m-5 lg:h-80 lg:w-100 sm:h-40 sm:60">
           <div className="grid grid-cols-4 gap-4 ">
             {dogsPictures.map((imageName) => {
               return (

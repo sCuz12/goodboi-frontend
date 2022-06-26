@@ -20,7 +20,7 @@ function RectGuides({ text_one, text_two, text_three }) {
   ];
 
   return (
-    <div className="flex">
+    <div className="lg:flex sm:flex sm:w-full">
       {elements_show.map((element, i) => (
         <>
           <div className={`h-40  w-60 rounded-2xl ${element.color}`}>

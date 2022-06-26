@@ -10,7 +10,7 @@ function IndexBanner() {
         <div className="w-1/2">
           <div className="flex w-full">
             <SolidPaw height={60} width={60} />
-            <h1 className="text-7xl font-cherryBomb text-darkPurple">
+            <h1 className="lg:text-7xl font-cherryBomb text-darkPurple sm:text-3xl">
               Find your new <p>best friend!</p>{" "}
             </h1>
 
@@ -22,12 +22,12 @@ function IndexBanner() {
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
           <div className="flex w-full">
-            <button className=" w-80 h-2/3 px-3 py-1.5 bg-basicPurple border rounded-3xl border-1">
+            <button className="w-full h-10 lg:mt-5 lg:w-80 x-3 lg:py-1.5 bg-basicPurple border rounded-3xl border-1 ">
               <a
                 href="/"
-                className="hidden text-white cursor-pointer md:inline-flex w-max"
+                className="flex justify-center text-white cursor-pointer "
               >
-                Get Started
+                <span className="item-center">Get Started</span>
               </a>
             </button>
             <SolidPaw height={120} width={90} />

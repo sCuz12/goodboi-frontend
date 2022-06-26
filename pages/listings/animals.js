@@ -7,6 +7,7 @@ import { MdSort } from "react-icons/md";
 
 import AbovePageSection from "../../components/Sections/AbovePageSection";
 import Pagination from "react-js-pagination";
+import NoResults from "../../components/CustomImages/Illustrations/NoResults";
 
 function animals() {
   const [citiesFilter, setCitiesFilter] = useState([]);
@@ -87,9 +88,9 @@ function animals() {
         />
       </section>
       <section>
-        <div className="flex w-full h-auto">
+        <div className="w-full h-auto lg:flex">
           {/* Filters*/}
-          <div className="flex w-1/5">
+          <div className="flex lg:w-1/5 sm:w-2/5">
             <div className="flex flex-col w-full pl-3 border rounded-xl">
               <div className="flex w-full ">
                 <h2 className="w-4/5 text-xl font-bold">Filters</h2>
@@ -122,23 +123,31 @@ function animals() {
             </div>
           </div>
           {/* Listings */}
-          <div className="w-full max-w-7xl sm:px-16">
+          <div className="lg:w-4/5 sm:w-3/5 max-w-7xl sm:px-16">
             <h1 className="header_titles font-cherryBomb">All Dogs</h1>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {animalListings.map((item) => (
-                <div className="overflow-hidden rounded-2xl">
-                  <ListingCard
-                    key={item.id}
-                    name={item.name}
-                    image={item.cover_image}
-                    title={item.title}
-                    age={item.age}
-                    city={item.city}
-                    id={item.id}
-                  />
-                </div>
-              ))}
-            </div>
+
+            {animalListings.length == 0 ? (
+              <div className="flex justify-center w-full pt-20">
+                <NoResults />
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {animalListings.map((item) => (
+                  <div className="overflow-hidden rounded-2xl lg:p-0 sm:p-40">
+                    <ListingCard
+                      key={item.id}
+                      name={item.name}
+                      image={item.cover_image}
+                      title={item.title}
+                      age={item.age}
+                      city={item.city}
+                      id={item.id}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Pagination */}
             {totalListings > 10 && (
               <div className="flex flex-row justify-center w-full pt-10">
