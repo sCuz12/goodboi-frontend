@@ -1,6 +1,13 @@
 import React from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-function RowListingCard({ title, id, description, image, handleDelete }) {
+function RowListingCard({
+  title,
+  id,
+  description,
+  image,
+  index,
+  handleDelete,
+}) {
   return (
     <div className="card card_row card_hoverable" key={id}>
       <div>
@@ -23,7 +30,7 @@ function RowListingCard({ title, id, description, image, handleDelete }) {
           <AiFillEdit size={30} />
         </a>
         <button
-          onClick={handleDelete}
+          onClick={() => handleDelete(index, id)}
           className="text-black btn btn-icon btn_outlined btn_danger lg:mt-2 ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
         >
           <AiFillDelete size={30} />

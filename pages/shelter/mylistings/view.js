@@ -24,9 +24,9 @@ function view() {
   const deleteHandler = async (index) => {
     const answer = confirm("Are you sure you want to delete?");
     if (!answer) return;
-    let allLessons = CurrentShelterListings;
-    const removed = allLessons.splice(index, 1);
-    setCurrentShelterListings(allLessons);
+    let allListings = CurrentShelterListings;
+    const removed = allListings.splice(index, 1);
+    setCurrentShelterListings(allListings);
     //send request to BE
     try {
       const { data } = await axiosInstance.put(
@@ -44,7 +44,7 @@ function view() {
         <h1 className="flex justify-center text-2xl">My Listings</h1>
         {/*Card*/}
         <div className="flex flex-col gap-y-5 ">
-          {CurrentShelterListings.map((listing) => {
+          {CurrentShelterListings.map((listing, index) => {
             return (
               <RowListingCard
                 title={listing.title}
@@ -52,6 +52,7 @@ function view() {
                 image={listing.cover_image}
                 handleDelete={deleteHandler}
                 id={listing.id}
+                index={index}
               />
             );
           })}
