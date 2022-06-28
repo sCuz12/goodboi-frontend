@@ -1,48 +1,115 @@
 import React from "react";
 import Link from "next/link";
 
-function MobileMenuItems({ user, logout }) {
+function MobileMenuItems({ user, logout, closeHamburger }) {
+  {
+    /* Mutual Urls for all type of users*/
+  }
+  const BASIC_URLS = [
+    {
+      text: "Find Your Dog",
+      url: "/listings/animals",
+    },
+    {
+      text: "Find Shelter",
+      url: "/listings/shelters",
+    },
+  ];
+
+  {
+    /* Navs for Logout users*/
+  }
+  const LOGOUT_USERS_URLS = [
+    ...BASIC_URLS,
+    {
+      text: "Become Hero",
+      url: "/register",
+    },
+    {
+      text: "Become Shelter",
+      url: "/shelter/register",
+    },
+    {
+      text: "Login",
+      url: "/login",
+    },
+  ];
+
+  {
+    /* Navs for Shelters*/
+  }
+  const SHELTER_URLS = [
+    ...BASIC_URLS,
+    {
+      text: "Dashboard",
+      url: "/shelter/",
+    },
+    {
+      text: "List a Dog",
+      url: "/shelter/",
+    },
+  ];
+
+  {
+    /* Navs for Normal users*/
+  }
+  const NORMAL_USER_URLS = [
+    ...BASIC_URLS,
+    {
+      text: "Update Profile",
+      url: "/user/profile/update",
+    },
+  ];
+
   return (
     <div>
-      <Link href="/listings/animals">
-        <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
-          Find your Dog
-        </a>
-      </Link>
-      <Link href="/listings/shelters">
-        <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
-          Find Shelter
-        </a>
-      </Link>
-      <Link href="/register">
-        <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
-          Become Hero
-        </a>
-      </Link>
-      <Link href="/shelter/register">
-        <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
-          Become Shelter
-        </a>
-      </Link>
-      <Link href="/login">
-        <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
-          Login
-        </a>
-      </Link>
-      {user && user.user_type === "shelter" && (
-        <>
-          <Link href="/shelter/">
-            <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
-              Dashboard
+      {/* Logout Users */}
+      {!user &&
+        user === null &&
+        LOGOUT_USERS_URLS.map((item) => (
+          <Link href={item.url}>
+            <a
+              onClick={() => {
+                closeHamburger(false);
+              }}
+              className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700"
+            >
+              {item.text}
             </a>
           </Link>
-          <Link href="/shelter/listing/create">
-            <a className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700">
-              List a Dog
+        ))}
+      {/* Shelters */}
+      {user &&
+        user.user_type === "shelter" &&
+        SHELTER_URLS.map((item) => (
+          <Link href={item.url}>
+            <a
+              onClick={() => {
+                closeHamburger(false);
+              }}
+              className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700"
+            >
+              {item.text}
             </a>
           </Link>
-        </>
-      )}
+        ))}
+
+      {/* Normal users */}
+      {user &&
+        user.user_type === "user" &&
+        NORMAL_USER_URLS.map((item) => (
+          <Link href={item.url}>
+            <a
+              onClick={() => {
+                closeHamburger(false);
+              }}
+              className="block px-3 py-2 text-base font-medium text-black rounded-md nav_link_text hover:bg-gray-700"
+            >
+              {item.text}
+            </a>
+          </Link>
+        ))}
+      {/* Logout for the logged in users*/}
       {user && (
         <Link href="">
           <a

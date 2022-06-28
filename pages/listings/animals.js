@@ -88,7 +88,7 @@ function animals() {
         />
       </section>
       <section>
-        <div className="w-full h-auto lg:flex">
+        <div className="w-full h-auto md:flex lg:flex">
           {/* Filters*/}
           <div className="flex lg:w-1/5 sm:w-2/5">
             <div className="flex flex-col w-full pl-3 border rounded-xl">
@@ -133,7 +133,7 @@ function animals() {
             ) : (
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {animalListings.map((item) => (
-                  <div className="overflow-hidden rounded-2xl lg:p-0 sm:p-40">
+                  <div className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30">
                     <ListingCard
                       key={item.id}
                       name={item.name}

@@ -54,11 +54,11 @@ const AnimalListingView = () => {
       {animal.name && listingImages && (
         <div className="min-h-screen pt-10 pl-10">
           <div className="w-full">
-            <section className="flex pt-24">
+            <section className="flex pt-10">
               {/* Image Div*/}
               <div className="grid w-2/5 place-items-center">
                 {/* Photo container */}
-                <div className="flex-shrink-0 pt-3 pb-2 pl-2 pr-2 m-12 rounded-full bg-roz">
+                <div className="flex-shrink-0 pt-3 pb-2 pl-2 pr-2 rounded-full lg:m-12 bg-roz">
                   {console.log(animal)}
                   <Image
                     src={
@@ -83,7 +83,7 @@ const AnimalListingView = () => {
                       </div>
                     </h1>
                     <p className="flex-grow h-44">{animal.description}</p>
-                    <div className="w-2/5 pt-4">
+                    <div className="pt-4 lg:w-2/5 md:w-4/5 sm:w-5/5">
                       <CtaButton
                         title="Call Shelter"
                         bgColor="bg-basicPurple"
@@ -95,7 +95,7 @@ const AnimalListingView = () => {
               {/* TODO : Paws icons*/}
             </section>
           </div>
-          <section className="flex pt-10">
+          <section className="pt-10 lg:flex md:flex">
             <div className="grid w-3/5">
               {/*Characterestic skills*/}
               <div className="flex ">
@@ -124,7 +124,7 @@ const AnimalListingView = () => {
               </div>
             </div>
             {/* Shelter info section right*/}
-            <div className="grid w-2/5 pl-16 mr-10 w-26 h-96">
+            <div className="grid lg:mr-10 lg:w-2/5 lg:pl-16 lg:w-26 lg:h-96 sm:h-80">
               <ShelterInfoCard
                 name={shelterInfo.shelter_name}
                 city={shelterInfo.city}
@@ -136,7 +136,7 @@ const AnimalListingView = () => {
             {/*Next column*/}
           </section>
           {/** All pictures section */}
-          <div className="flex items-center justify-center w-3/5 h-96 bg-blue rounded-3xl 6">
+          <div className="flex items-center justify-center bg-center lg:w-3/5 md:w-3/5 sm:w-4/5 h-120 bg-blue rounded-3xl">
             <ListingImageSlider listingImages={listingImages} />
           </div>
         </div>
