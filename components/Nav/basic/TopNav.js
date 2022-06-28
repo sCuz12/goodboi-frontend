@@ -121,7 +121,7 @@ function TopNav() {
                           {user.user_type.includes("user") && (
                             <Link href="/user/profile/update">
                               <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                                Update Details
+                                Update Profile
                               </a>
                             </Link>
                           )}
@@ -157,7 +157,7 @@ function TopNav() {
               </div>
             </div>
             {/* mob*/}
-            <div className="flex -mr-2 md:hidden">
+            <div className="flex md:hidden">
               <GiHamburgerMenu
                 className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-900 rounded-md hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 aria-controls="mobile-menu"
@@ -165,7 +165,7 @@ function TopNav() {
                 onClick={() => setMobMenuOpen(!mobMenuOpen)}
               />
               {!mobMenuOpen ? (
-                <GiHamburgerMenu />
+                <GiHamburgerMenu className="w-5 h-5" />
               ) : (
                 <svg
                   className="block w-6 h-6"
@@ -200,7 +200,11 @@ function TopNav() {
         {(ref) => (
           <div className="md:hidden" id="mobile-menu">
             <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <MobileMenuItems user={user} logout={logout} />
+              <MobileMenuItems
+                user={user}
+                logout={logout}
+                closeHamburger={setMobMenuOpen}
+              />
             </div>
           </div>
         )}
