@@ -187,7 +187,7 @@ function create() {
   return (
     <ShelterRoute>
       {user !== null && (
-        <div className="max-w-2xl mx-auto mt-44">
+        <div className="max-w-2xl mx-auto mt-24">
           <h3 className="pb-4 header_titles font-cherryBomb">
             Create Dog Listing
           </h3>
