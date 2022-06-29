@@ -5,7 +5,7 @@ import SideBarItem from "./Items/SideBarItem";
 import { SiDatadog } from "react-icons/si";
 function ShelterSideNav() {
   return (
-    <div className="flex-initial h-screen p-5 pt-20 bg-white shadow-md pt-50 w-60 mt-28">
+    <div className="flex-initial h-screen bg-white shadow-md lg:p-5 w-60 mt-28">
       <ul className="relative">
         <SideBarItem
           icon={

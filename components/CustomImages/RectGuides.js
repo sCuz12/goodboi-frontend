@@ -22,7 +22,7 @@ function RectGuides({ text_one, text_two, text_three }) {
   return (
     <div className="lg:flex sm:flex sm:w-full">
       {elements_show.map((element, i) => (
-        <>
+        <React.Fragment key={i}>
           <div className={`h-40  w-60 rounded-2xl ${element.color}`}>
             <div className="h-1/2">
               <h1 className="text-7xl font-cherryBomb text-darkPurple">
@@ -35,10 +35,12 @@ function RectGuides({ text_one, text_two, text_three }) {
           </div>
           {i != 2 && (
             <div className="flex">
-              <span class=" h-1 w-full bg-green-600 lg:w-1/3 pt-14">____</span>
+              <span className="w-full h-1 bg-green-600  lg:w-1/3 pt-14">
+                ____
+              </span>
             </div>
           )}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

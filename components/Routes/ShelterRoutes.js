@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axiosInstance from "../../helpers/axios";
 import ShelterSideNav from "../Nav/shelter/ShelterSideNav";
+import { SyncOutlined } from "@ant-design/icons";
 
 const ShelterRoute = ({ children }) => {
   const [ok, setOk] = useState();
@@ -30,7 +31,9 @@ const ShelterRoute = ({ children }) => {
   return (
     <>
       {!ok ? (
-        <h1>loading</h1>
+        <div className="flex justify-center pt-40">
+          <SyncOutlined spin className="text-2xl" />
+        </div>
       ) : (
         <div className="flex min-h-screen ">
           <ShelterSideNav />

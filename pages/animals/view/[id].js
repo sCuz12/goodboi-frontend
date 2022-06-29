@@ -40,8 +40,6 @@ const AnimalListingView = () => {
       obj["url"] = image;
       slides.push(obj);
     });
-    console.log(slides);
-
     setListingImages(slides);
   };
 
@@ -59,7 +57,6 @@ const AnimalListingView = () => {
               <div className="grid w-2/5 place-items-center">
                 {/* Photo container */}
                 <div className="flex-shrink-0 pt-3 pb-2 pl-2 pr-2 rounded-full lg:m-12 bg-roz">
-                  {console.log(animal)}
                   <Image
                     src={
                       animal.cover_image ? animal.cover_image : "/default2.png"
@@ -77,9 +74,9 @@ const AnimalListingView = () => {
                     <h1 className="text-4xl font-semibold font-cherryBomb ">
                       <div className="flex items-center text-center">
                         This is {animal.name}{" "}
-                        <p className="">
+                        <div className="">
                           <Heart />
-                        </p>{" "}
+                        </div>{" "}
                       </div>
                     </h1>
                     <p className="flex-grow h-44">{animal.description}</p>
@@ -113,7 +110,7 @@ const AnimalListingView = () => {
                     Vaccinations :
                     <span className="ml-3">
                       {dogVaccinations.map((vaccination) => (
-                        <Tag>{vaccination}</Tag>
+                        <Tag key={vaccination}>{vaccination}</Tag>
                       ))}
                     </span>
                   </p>

@@ -11,7 +11,9 @@ export default function index() {
 
   return (
     <ShelterRoute>
-      <h1>Shelter Main page</h1>
+      <div className="max-w-2xl mx-auto mt-24">
+        <h3 className="pb-4 header_titles font-cherryBomb">Dashboard</h3>
+      </div>
     </ShelterRoute>
   );
 }

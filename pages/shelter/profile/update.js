@@ -88,7 +88,7 @@ function updateProfile() {
 
   return (
     <ShelterRoute>
-      <div className="max-w-2xl pb-4 mx-auto mt-44">
+      <div className="max-w-2xl pb-4 mx-auto mt-24">
         <h3 className="header_titles font-cherryBomb">
           Update Shelter Profile
         </h3>

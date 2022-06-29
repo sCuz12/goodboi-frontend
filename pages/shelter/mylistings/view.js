@@ -40,8 +40,10 @@ function view() {
   };
   return (
     <ShelterRoute>
-      <div className="mx-auto mt-40 w-4/4">
-        <h1 className="flex justify-center text-2xl">My Listings</h1>
+      <div className="mx-auto mt-24 w-4/4">
+        <h1 className="flex justify-center header_titles font-cherryBomb">
+          My Listings
+        </h1>
         {/*Card*/}
         <div className="flex flex-col gap-y-5 ">
           {CurrentShelterListings.map((listing, index) => {

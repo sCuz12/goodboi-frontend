@@ -14,7 +14,7 @@ export default function ({ cities, handleToggle }) {
         <div className="flex-col pt-2">
           <h2 className="w-4/5 text-xl">Cities</h2>
           {cities.map((city) => (
-            <div className="flex ">
+            <div key={city.name} className="flex ">
               <label
                 className="w-1/2 form-check-label"
                 htmlFor="flexCheckDefault"

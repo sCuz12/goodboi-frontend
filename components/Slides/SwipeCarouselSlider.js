@@ -2,7 +2,6 @@ import Image from "next/image";
 import React, { Component } from "react";
 import { GoLocation } from "react-icons/go";
 import Slider from "react-slick";
-import ListingCard from "../Cards/ListingCard";
 import { GrPrevious, GrNext } from "react-icons/gr";
 import Link from "next/link";
 
@@ -32,15 +31,22 @@ export default class SwipeCarouselSlider extends Component {
       );
     }
 
+    // Set preferred slidesToShow
+    const totalListings = listings.length;
+    var slidesToShow = 4;
+    if (totalListings < 4) {
+      var slidesToShow = totalListings;
+    }
+
     const settings = {
       className: "center pl-8",
       infinite: true,
       centerPadding: "40px",
-      slidesToShow: 4,
+      slidesToShow: slidesToShow,
       dots: true,
       prevArrow: <CustomPrevArrow />,
       nextArrow: <CustomNextArrow />,
-
+      width: 1204,
       responsive: [
         {
           breakpoint: 1024,
@@ -74,7 +80,6 @@ export default class SwipeCarouselSlider extends Component {
       },
     };
     {
-      console.log(listings);
     }
     return (
       <div className="carousel_container">

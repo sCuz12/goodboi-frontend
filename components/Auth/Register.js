@@ -7,14 +7,15 @@ import RectGuides from "../CustomImages/RectGuides";
 import DogsWithCircle from "../CustomImages/DogsWithCircle";
 import Heart from "../Icons/Heart";
 import Image from "next/image";
-import { headers } from "../../next.config";
+import { SyncOutlined } from "@ant-design/icons";
 
 export default function Register({ isShelter }) {
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -32,6 +33,7 @@ export default function Register({ isShelter }) {
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const { data } = await axiosInstance.post(`/api/register`, {
         first_name: firstName,
         last_name: lastName,
@@ -41,8 +43,10 @@ export default function Register({ isShelter }) {
         ...(isShelter ? { is_shelter: true } : {}),
       });
       toast.success("Registration Succesful. Please Login");
+      setLoading(false);
       router.push("/login");
     } catch (err) {
+      setLoading(false);
       console.log(err.response.data);
       toast.error(err.response.data.message);
     }
@@ -151,7 +155,7 @@ export default function Register({ isShelter }) {
               <div className="flex flex-col items-center">
                 <p>
                   Already have an account?
-                  <a className="text-black underline" href>
+                  <a className="text-black underline" href="/login">
                     Login
                   </a>
                 </p>
@@ -160,9 +164,17 @@ export default function Register({ isShelter }) {
               <div className="text-center ">
                 <button
                   type="submit"
-                  className="inline-block px-12 py-2 mt-5 mb-2 font-semibold text-white border-2 rounded-full bg-basicPurple border-green"
+                  className="inline-block px-12 py-2 mt-5 mb-2 font-semibold text-white border-2 rounded-full bg-basicPurple border-green disabled:opacity-50"
+                  disabled={
+                    !firstName ||
+                    !lastName ||
+                    !password ||
+                    !email ||
+                    !confirmPassword ||
+                    loading
+                  }
                 >
-                  Sign up
+                  {loading ? <SyncOutlined spin /> : "Sign up"}
                 </button>
               </div>
               <div className="flex justify-start w-3/4">

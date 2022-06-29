@@ -18,7 +18,7 @@ const rootReducer = (state, action) => {
     case "UPDATE":
       return { ...state, user: action.payload };
     case "UPDATE_SHELTER":
-      return { ...state, shelter: action.payload };
+      return { ...state, user: action.payload };
     default:
       return state;
   }
