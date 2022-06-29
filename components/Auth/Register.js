@@ -155,7 +155,7 @@ export default function Register({ isShelter }) {
               <div className="flex flex-col items-center">
                 <p>
                   Already have an account?
-                  <a className="text-black underline" href>
+                  <a className="text-black underline" href="/login">
                     Login
                   </a>
                 </p>

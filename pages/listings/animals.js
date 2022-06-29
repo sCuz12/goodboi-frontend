@@ -102,7 +102,7 @@ function animals() {
               <div className="flex-col pt-2">
                 <h2 className="w-4/5 text-xl">Cities</h2>
                 {citiesFilter.map((city) => (
-                  <div className="flex ">
+                  <div key={city.name} className="flex ">
                     <label
                       className="w-1/2 form-check-label"
                       htmlFor="flexCheckDefault"
@@ -133,7 +133,10 @@ function animals() {
             ) : (
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {animalListings.map((item) => (
-                  <div className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30">
+                  <div
+                    key={item.id}
+                    className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30"
+                  >
                     <ListingCard
                       key={item.id}
                       name={item.name}

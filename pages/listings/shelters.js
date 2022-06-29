@@ -84,7 +84,10 @@ export default function Shelters() {
           <h1 className="header_titles font-cherryBomb">All Shelters</h1>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {shelterListings.map((item) => (
-              <div className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30">
+              <div
+                key={item.id}
+                className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30"
+              >
                 <ShelterCard
                   name={item.shelter_name}
                   image={item.cover_image}

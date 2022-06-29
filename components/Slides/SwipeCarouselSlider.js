@@ -46,7 +46,7 @@ export default class SwipeCarouselSlider extends Component {
       dots: true,
       prevArrow: <CustomPrevArrow />,
       nextArrow: <CustomNextArrow />,
-
+      width: 1204,
       responsive: [
         {
           breakpoint: 1024,

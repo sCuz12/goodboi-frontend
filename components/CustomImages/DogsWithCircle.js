@@ -34,6 +34,7 @@ function DogsWithCircle() {
             {dogsPictures.map((imageName) => {
               return (
                 <Image
+                  key={imageName}
                   src={`/assets/dogsSmall/${imageName}.png`}
                   height={60}
                   width={100}

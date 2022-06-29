@@ -55,9 +55,9 @@ function ListingImageSlider({ listingImages }) {
         <div className="flex justify-center pt-2">
           {listingImages.map((slide, slideIndex) => {
             return slideIndex === currentIndex ? (
-              <p>&#9670;</p>
+              <p key={currentIndex}>&#9670;</p>
             ) : (
-              <p>&#9671;</p>
+              <p key={currentIndex}>&#9671;</p>
             );
           })}
         </div>

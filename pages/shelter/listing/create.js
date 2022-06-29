@@ -296,7 +296,11 @@ function create() {
                   >
                     {availableVaccines.map((vaccine) => {
                       return (
-                        <Option value={vaccine.id} label={vaccine.name}>
+                        <Option
+                          key={vaccine.id}
+                          value={vaccine.id}
+                          label={vaccine.name}
+                        >
                           {vaccine.name}
                         </Option>
                       );
@@ -359,7 +363,11 @@ function create() {
                       id="grid-country"
                     >
                       {countryOptions.map((option) => {
-                        return <option id={option.id}>{option.name}</option>;
+                        return (
+                          <option key={option.id} id={option.id}>
+                            {option.name}
+                          </option>
+                        );
                       })}
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
