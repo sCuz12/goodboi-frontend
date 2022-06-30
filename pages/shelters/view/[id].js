@@ -43,13 +43,13 @@ function ShelterProfileView() {
   return (
     <>
       {shelterInfo.shelter_name && (
-        <div className="min-h-screen pt-10 pl-10">
+        <div className="min-h-screen pt-10 lg:pl-10">
           <div className="w-full">
-            <section className="flex pt-24">
-              <div className="grid w-2/5 place-items-center ">
+            <section className="flex flex-col pt-10 lg:flex-row">
+              <div className="grid lg:w-2/5 sm:w-1/5 place-items-center ">
                 {" "}
                 {/* Photo container */}
-                <div className="flex-shrink-0 pt-5 pb-5 pl-5 pr-5 rounded-full m-15 bg-roz">
+                <div className="flex-shrink-0 pt-3 pb-2 pl-2 pr-2 rounded-full lg:m-12 bg-roz">
                   {console.log(shelterInfo.cover_image)}
                   <Image
                     src={
@@ -64,7 +64,7 @@ function ShelterProfileView() {
                 </div>
               </div>
               {/*Right Section of top  */}
-              <div className="grid w-3/5 pt-12 pl-6">
+              <div className="grid pt-12 lg:w-3/5 sm:w-4/5 lg:pl-6">
                 <div className="">
                   {/* column of name,description , info */}
                   <div className="flex flex-col">
@@ -77,11 +77,11 @@ function ShelterProfileView() {
                         </div>{" "}
                       </div>
                     </h1>
-                    <p className="flex-grow h-44 description_text">
+                    <p className="flex-grow break-all lg:h-44 sm:h-44 description_text">
                       {shelterInfo.description}
                     </p>
                     {/* Information of shelter*/}
-                    <div className="flex-col w-2/5 pt-4 space-y-4">
+                    <div className="flex-col pt-4 space-y-4 lg:w-2/5 ">
                       <div className="flex w-full description_text">
                         <div className="flex w-1/5">
                           <AiOutlineMail size={30} />
