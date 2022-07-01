@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
     <Provider>
       <TopNav />
       <ToastContainer position="top-center" />
-      <Component key={1} {...pageProps} />;
+      <Component key={1} {...pageProps} />
     </Provider>
   );
 }
