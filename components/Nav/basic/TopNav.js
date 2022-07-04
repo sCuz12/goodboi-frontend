@@ -62,14 +62,16 @@ function TopNav() {
             <div className="flex items-center w-2/4">
               {/*Logo section */}
               <div className="flex-shrink-0 w-1/2">
-                <Image
-                  key={1}
-                  src="https://links.papareact.com/qd3"
-                  alt="Header Logo"
-                  objectFit="contain"
-                  height={80}
-                  width={80}
-                />
+                <a href="/">
+                  <Image
+                    key={1}
+                    src="https://links.papareact.com/qd3"
+                    alt="Header Logo"
+                    objectFit="contain"
+                    height={80}
+                    width={80}
+                  />
+                </a>
               </div>
               <div className="hidden md:block">
                 <div className="flex items-baseline ml-10 space-x-4">
