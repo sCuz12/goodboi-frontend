@@ -111,3 +111,7 @@ Cards
  .textfield_input_container {
    @apply flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80;
  }
+
+ .required {
+  @apply after:content-['*'] text-red; 
+ }

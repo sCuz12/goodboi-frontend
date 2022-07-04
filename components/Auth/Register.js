@@ -87,69 +87,111 @@ export default function Register({ isShelter }) {
             <h2 className="justify-center pt-10 pb-10 text-2xl font-bold text-center text-basicFont font-kdam">
               Register
             </h2>
+
             <form onSubmit={handleRegisterSubmit}>
               <div className="flex flex-col items-center">
-                <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
-                  <div className="m-2 text-gray-400" />
-                  <input
-                    type="text"
-                    name="firstName"
-                    onChange={(e) => setFirstName(e.target.value)}
-                    placeholder="First Name"
-                    className="text-sm outline-none"
-                  />
+                <div className="flex flex-col">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-state"
+                  >
+                    First Name <span className="required"></span>
+                  </label>
+                  <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
+                    <div className="m-2 text-gray-400" />
+
+                    <input
+                      type="text"
+                      name="firstName"
+                      onChange={(e) => setFirstName(e.target.value)}
+                      className="text-sm outline-none"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
               {/*Last name */}
               <div className="flex flex-col items-center">
-                <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
-                  <div className="m-2 text-gray-400" />
-                  <input
-                    type="text"
-                    name="lastName"
-                    onChange={(e) => setLastName(e.target.value)}
-                    placeholder="Last Name"
-                    className="text-sm outline-none"
-                  />
+                <div className="flex flex-col">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-state"
+                  >
+                    Last Name <span className="required"></span>
+                  </label>
+                  <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
+                    <div className="m-2 text-gray-400" />
+                    <input
+                      type="text"
+                      name="lastName"
+                      onChange={(e) => setLastName(e.target.value)}
+                      className="text-sm outline-none"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
               {/*Email */}
               <div className="flex flex-col items-center">
-                <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
-                  <div className="m-2 text-gray-400" />
-                  <input
-                    type="email"
-                    name="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email"
-                    className="text-sm outline-none"
-                  />
+                <div className="flex flex-col">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-state"
+                  >
+                    Email <span className="required"></span>
+                  </label>
+                  <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
+                    <div className="m-2 text-gray-400" />
+                    <input
+                      type="email"
+                      name="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="text-sm outline-none"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
               {/*Password */}
               <div className="flex flex-col items-center">
-                <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
-                  <div className="m-2 text-gray-400" />
-                  <input
-                    type="password"
-                    name="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Password"
-                    className="text-sm outline-none"
-                  />
+                <div className="flex flex-col">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-state"
+                  >
+                    Password <span className="required"></span>
+                  </label>
+                  <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
+                    <div className="m-2 text-gray-400" />
+                    <input
+                      type="password"
+                      name="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="text-sm outline-none"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
               {/*Confirm Password */}
               <div className="flex flex-col items-center">
-                <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
-                  <div className="m-2 text-gray-400" />
-                  <input
-                    type="password"
-                    name="confirm_password"
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="Confirm Password"
-                    className="text-sm outline-none"
-                  />
+                <div className="flex flex-col">
+                  <label
+                    className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+                    htmlFor="grid-state"
+                  >
+                    Confirm Password <span className="required"></span>
+                  </label>
+                  <div className="flex items-center p-2 mb-3 bg-white border rounded-lg shadow-2xl w-80">
+                    <div className="m-2 text-gray-400" />
+                    <input
+                      type="password"
+                      name="confirm_password"
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className="text-sm outline-none"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col items-center">
@@ -165,14 +207,6 @@ export default function Register({ isShelter }) {
                 <button
                   type="submit"
                   className="inline-block px-12 py-2 mt-5 mb-2 font-semibold text-white border-2 rounded-full bg-basicPurple border-green disabled:opacity-50"
-                  disabled={
-                    !firstName ||
-                    !lastName ||
-                    !password ||
-                    !email ||
-                    !confirmPassword ||
-                    loading
-                  }
                 >
                   {loading ? <SyncOutlined spin /> : "Sign up"}
                 </button>
