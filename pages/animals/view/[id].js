@@ -7,12 +7,15 @@ import ListingImageSlider from "../../../components/Slides/ListingImageSlider";
 import { Tag } from "antd";
 import Heart from "../../../components/Icons/Heart";
 import CtaButton from "../../../components/Buttons/CtaButton";
+import Telephone from "../../../components/Modals/Telephone";
+import CallShelter from "../../../components/Buttons/CallShelter";
 
 const AnimalListingView = () => {
   const [animal, setAnimal] = useState({});
   const [listingImages, setListingImages] = useState([]);
   const [shelterInfo, setShelterInfo] = useState({});
   const [dogVaccinations, setDogVaccination] = useState([]);
+  const [showTelModal, setShowTelModal] = useState(false);
 
   const router = useRouter();
 
@@ -81,10 +84,7 @@ const AnimalListingView = () => {
                     </h1>
                     <p className="flex-grow h-44">{animal.description}</p>
                     <div className="pt-4 lg:w-2/5 md:w-4/5 sm:w-5/5">
-                      <CtaButton
-                        title="Call Shelter"
-                        bgColor="bg-basicPurple"
-                      />
+                      <CallShelter onclick={() => setShowTelModal(true)} />
                     </div>
                   </div>
                 </div>
@@ -137,6 +137,14 @@ const AnimalListingView = () => {
             <ListingImageSlider listingImages={listingImages} />
           </div>
         </div>
+      )}
+      {showTelModal && (
+        <Telephone
+          phone={shelterInfo.phone}
+          email={shelterInfo.email}
+          address={shelterInfo.address}
+          onclose={() => setShowTelModal(false)}
+        />
       )}
     </>
   );
