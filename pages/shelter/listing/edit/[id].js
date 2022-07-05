@@ -7,6 +7,7 @@ import axiosInstance from "../../../../helpers/axios";
 import ShelterRoute from "../../../../components/Routes/ShelterRoutes";
 import moment from "moment";
 import { toast } from "react-toastify";
+import { SyncOutlined } from "@ant-design/icons";
 
 function editListing() {
   const [dogName, setDogName] = useState("");
@@ -22,6 +23,7 @@ function editListing() {
   const [citiesOptions, setCitiesOptions] = useState([]);
   const [currentValues, setCurrentValues] = useState([]);
   const [selectedVaccinations, setSelectedVaccinations] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const { id } = router.query;
@@ -146,6 +148,7 @@ function editListing() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     let formData = new FormData();
     if (selectedCity != "") {
       formData.append("city_id", selectedCity);
@@ -430,7 +433,7 @@ function editListing() {
                     type="submit"
                     disabled={disableButton()}
                   >
-                    Update
+                    {loading ? <SyncOutlined spin /> : "Update"}
                   </button>
                 </div>
               </div>

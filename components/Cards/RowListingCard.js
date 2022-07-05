@@ -1,5 +1,6 @@
 import React from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { MdPreview } from "react-icons/md";
 function RowListingCard({
   title,
   id,
@@ -35,6 +36,15 @@ function RowListingCard({
         >
           <AiFillDelete size={30} />
         </button>
+
+        <p>
+          <a
+            href={"/animals/view/" + id}
+            className="pb-8 mt-auto text-black btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
+          >
+            <MdPreview size={30} />
+          </a>
+        </p>
       </div>
     </div>
   );
