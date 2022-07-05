@@ -82,6 +82,7 @@ module.exports = {
         lightPink: "#dc4b87",
         lightBlue: "#67B3D8",
         lightGray: "#E0E0E0",
+        red: "#ff0000",
       },
       height: {
         120: "36rem",
@@ -111,6 +112,7 @@ module.exports = {
     extend: {
       opacity: ["disabled"],
     },
+
     fontFamily: {
       monospace: ["Monospace", "ui-monospace"],
     },
