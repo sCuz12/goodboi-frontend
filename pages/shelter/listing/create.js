@@ -201,6 +201,7 @@ function create() {
                     htmlFor="grid-first-name"
                   >
                     Dog Name
+                    <span className="required"></span>
                   </label>
                   <input
                     onChange={(e) => {
@@ -209,6 +210,7 @@ function create() {
                     className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                     id="grid-dog-name"
                     type="text"
+                    required
                   />
                 </div>
                 {/*Dog Title */}
@@ -218,12 +220,14 @@ function create() {
                     htmlFor="grid-first-name"
                   >
                     Dog Title
+                    <span className="required"></span>
                   </label>
                   <input
                     onChange={titleChangeHandler}
                     className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                     id="grid-dog-title"
                     type="text"
+                    required
                   />
                 </div>
 
@@ -234,6 +238,7 @@ function create() {
                     htmlFor="grid-last-name"
                   >
                     Description
+                    <span className="required"></span>
                   </label>
                   <textarea
                     onChange={(e) => {
@@ -242,6 +247,7 @@ function create() {
                     className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none h-28 focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-description"
                     type="textarea"
+                    required
                   />
                 </div>
 
@@ -252,9 +258,10 @@ function create() {
                     htmlFor="grid-first-name"
                   >
                     Dog Size
+                    <span className="required"></span>
                   </label>
                   <div className="relative">
-                    <Radio.Group onChange={sizeChangeHandler}>
+                    <Radio.Group onChange={sizeChangeHandler} required>
                       <Radio.Button value="s">Small</Radio.Button>
                       <Radio.Button value="m">Medium</Radio.Button>
                       <Radio.Button value="l">Large</Radio.Button>
@@ -270,12 +277,14 @@ function create() {
                     htmlFor="grid-age"
                   >
                     Date Of Birth
+                    <span className="required"></span>
                   </label>
                   <DatePicker
                     dateFromat="YYYY-MM-dd"
                     onChange={(date, dateString) => {
                       setDobDate(dateString);
                     }}
+                    required
                   />
                 </div>
               </div>
@@ -316,6 +325,7 @@ function create() {
                   htmlFor="grid-last-name"
                 >
                   Cover Image
+                  <span className="required"></span>
                 </label>
                 <Upload
                   beforeUpload={beforeUploadHandler}
@@ -324,6 +334,7 @@ function create() {
                   name="listing-cover"
                   listType="picture-card"
                   maxCount={1}
+                  required
                 >
                   <ImageUploadButton />
                 </Upload>
@@ -335,6 +346,7 @@ function create() {
                   htmlFor="grid-last-name"
                 >
                   Listing Images
+                  <span className="required"></span>
                 </label>
                 <Upload
                   maxCount={3}
@@ -355,7 +367,9 @@ function create() {
                     htmlFor="grid-state"
                   >
                     Country
+                    <span className="required"></span>
                   </label>
+
                   <div className="relative">
                     <select
                       onChange={countryChangedHandler}

@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "next lint",
-    "export" : "npm run build && next export && mv out _static"
+    "export": "npm run build && next export && mv out _static"
   },
   "dependencies": {
     "@tailwindui/react": "^0.1.1",
     "antd": "^4.20.6",
     "axios": "^0.27.2",
+    "moment": "^2.29.3",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",

@@ -2,8 +2,10 @@ import React from "react";
 import DogsWithCircle from "../CustomImages/DogsWithCircle";
 import SolidPaw from "../Icons/SolidPaw";
 import Heart from "../Icons/Heart";
+import CtaButton from "../Buttons/CtaButton";
+import GetStarted from "../Buttons/GetStarted";
 
-function IndexBanner() {
+function IndexBanner({ user }) {
   return (
     <section className="py-16 bg-red-100">
       <div className="container flex px-2 mx-auto">
@@ -21,15 +23,9 @@ function IndexBanner() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
+
           <div className="flex w-full">
-            <button className="w-full h-10 lg:mt-5 lg:w-80 x-3 lg:py-1.5 bg-basicPurple border rounded-3xl border-1 ">
-              <a
-                href="/"
-                className="flex justify-center text-white cursor-pointer "
-              >
-                <span className="item-center">Get Started</span>
-              </a>
-            </button>
+            {!user && <GetStarted />}
             <SolidPaw height={120} width={90} />
           </div>
         </div>
