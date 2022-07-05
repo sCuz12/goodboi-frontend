@@ -1,16 +1,19 @@
 import Head from "next/head";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ListingCard from "../components/Cards/ListingCard";
 import axiosInstance from "../helpers/axios";
 import ShelterCard from "../components/Cards/ShelterCard";
 import IndexBanner from "../components/Banners/IndexBanner";
 import NavButton from "../components/Buttons/NavButton";
 import NoResults from "../components/CustomImages/Illustrations/NoResults";
+import { Context } from "../context";
 
 export default function Home() {
   const [listings, setListings] = useState([]);
   const [shelters, setShelters] = useState([]);
+  const { state, dispatch } = useContext(Context);
+  const { user } = state;
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
@@ -43,7 +46,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="pt-20"></div>
-      <IndexBanner />
+      <IndexBanner user={user} />
       {/* Listings */}
       <main className="px-8 mx-auto max-w-7xl sm:px-16">
         <section className="pt-6">

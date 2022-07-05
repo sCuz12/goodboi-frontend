@@ -38,6 +38,7 @@ function view() {
       toast.error("Error Deleting listing");
     }
   };
+
   return (
     <ShelterRoute>
       <div className="mx-auto mt-24 w-4/4">

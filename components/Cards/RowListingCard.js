@@ -24,7 +24,7 @@ function RowListingCard({
 
       <div className="p-4 actions">
         <a
-          href="#"
+          href={"/shelter/listing/edit/" + id}
           className="pb-8 mt-auto text-black btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
         >
           <AiFillEdit size={30} />
