@@ -9,7 +9,7 @@ export default function ({ image = "dog-1.png" }) {
         <Heart />
       </div>
 
-      <div className="relative w-40 h-40 rounded-full lg:w-80 lg:h-80 bg-roz">
+      <div className="relative w-40 h-40 rounded-full lg:w-64 lg:h-64 bg-roz">
         <Image src={`/assets/banners/${image}`} layout="fill" />
       </div>
       <Image src="/assets/icons/solid_paw.png" height={50} width={50} />

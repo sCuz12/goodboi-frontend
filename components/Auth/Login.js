@@ -75,14 +75,10 @@ export default function Login() {
               <DogInCicle image="dog-2.png" />
             </div>
           </div>
-
-          <div className="flex justify-center w-full">
-            <Heart />
-          </div>
         </div>
       </section>
       <section className="flex flex-col items-center justify-center flex-1 w-full px-20 pt-10 text-center ">
-        <div className="flex justify-center max-w-4xl shadow-2xl sm:w-2/2 lg:w-1/2 h-98 rounded-2xl bg-navyPink sm:w-full">
+        <div className="flex justify-center max-w-4xl mb-10 shadow-2xl sm:w-2/2 lg:w-1/2 h-98 rounded-2xl bg-navyPink sm:w-full">
           <div className="w-2/4">
             <h2 className="pt-10 pb-10 text-2xl font-bold text-basicFont font-kdam">
               Welcome Back
