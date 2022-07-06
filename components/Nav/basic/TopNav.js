@@ -131,14 +131,19 @@ function TopNav() {
                           {/* If user is shelter */}
                           {user.user_type.includes("shelter") && (
                             <>
-                              <Link href="/shelter/listing/create">
-                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                                  List a Dog
-                                </a>
-                              </Link>
                               <Link href="/shelter/">
                                 <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
                                   Dashboard
+                                </a>
+                              </Link>
+                              <Link href="/shelter/listing/create">
+                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
+                                  List Dog
+                                </a>
+                              </Link>
+                              <Link href="/shelter/mylistings/view">
+                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
+                                  My Listings
                                 </a>
                               </Link>
                             </>

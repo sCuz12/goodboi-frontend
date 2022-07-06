@@ -19,7 +19,7 @@ function ShelterSideNav() {
           icon={
             <IoCreateOutline className="block float-left mr-2 text-xl text-black cursor-pointer" />
           }
-          name="Create Dog"
+          name="List Dog"
           url="/shelter/listing/create"
         />
 

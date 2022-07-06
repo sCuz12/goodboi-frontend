@@ -9,6 +9,7 @@ import Heart from "../../../components/Icons/Heart";
 import CtaButton from "../../../components/Buttons/CtaButton";
 import Telephone from "../../../components/Modals/Telephone";
 import CallShelter from "../../../components/Buttons/CallShelter";
+import UserRoute from "../../../components/Routes/UserRoutes";
 
 const AnimalListingView = () => {
   const [animal, setAnimal] = useState({});
@@ -51,102 +52,106 @@ const AnimalListingView = () => {
     setShelterInfo(shelterInfo);
   };
   return (
-    <>
-      {animal.name && listingImages && (
-        <div className="min-h-screen pt-10 pl-10">
-          <div className="w-full">
-            <section className="flex pt-10">
-              {/* Image Div*/}
-              <div className="grid w-2/5 place-items-center">
-                {/* Photo container */}
-                <div className="flex-shrink-0 pt-3 pb-2 pl-2 pr-2 rounded-full lg:m-12 bg-roz">
-                  <Image
-                    src={
-                      animal.cover_image ? animal.cover_image : "/default2.png"
-                    }
-                    className="border rounded-full "
-                    height={350}
-                    width={350}
-                  />
+    <UserRoute>
+      <>
+        {animal.name && listingImages && (
+          <div className="min-h-screen pt-10 pl-10">
+            <div className="w-full">
+              <section className="flex pt-10">
+                {/* Image Div*/}
+                <div className="grid w-2/5 place-items-center">
+                  {/* Photo container */}
+                  <div className="flex-shrink-0 pt-3 pb-2 pl-2 pr-2 rounded-full lg:m-12 bg-roz">
+                    <Image
+                      src={
+                        animal.cover_image
+                          ? animal.cover_image
+                          : "/default2.png"
+                      }
+                      className="border rounded-full "
+                      height={350}
+                      width={350}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="grid w-2/5 pt-12">
-                <div className="">
-                  <div className="flex flex-col">
-                    {/*Upper info */}
-                    <h1 className="text-4xl font-semibold font-cherryBomb ">
-                      <div className="flex items-center text-center">
-                        This is {animal.name}{" "}
-                        <div className="">
-                          <Heart />
-                        </div>{" "}
+                <div className="grid w-2/5 pt-12">
+                  <div className="">
+                    <div className="flex flex-col">
+                      {/*Upper info */}
+                      <h1 className="text-4xl font-semibold font-cherryBomb ">
+                        <div className="flex items-center text-center">
+                          This is {animal.name}{" "}
+                          <div className="">
+                            <Heart />
+                          </div>{" "}
+                        </div>
+                      </h1>
+                      <p className="flex-grow h-44">{animal.description}</p>
+                      <div className="pt-4 lg:w-2/5 md:w-4/5 sm:w-5/5">
+                        <CallShelter onclick={() => setShowTelModal(true)} />
                       </div>
-                    </h1>
-                    <p className="flex-grow h-44">{animal.description}</p>
-                    <div className="pt-4 lg:w-2/5 md:w-4/5 sm:w-5/5">
-                      <CallShelter onclick={() => setShowTelModal(true)} />
                     </div>
                   </div>
                 </div>
+                {/* TODO : Paws icons*/}
+              </section>
+            </div>
+            <section className="pt-10 lg:flex md:flex">
+              <div className="grid w-3/5">
+                {/*Characterestic skills*/}
+                <div className="flex ">
+                  <div className="w-2/4">
+                    <p className="charectiristics_labels">
+                      Dog Name : <span>{animal.name}</span>
+                    </p>
+                    <p className="charectiristics_labels">
+                      Age : <span>{animal.age}</span>
+                    </p>
+                  </div>
+                  <p className="mr-5 text-roz h-5/5 border-x-2"></p>
+                  <div className="w-2/4">
+                    <p className="charectiristics_labels">
+                      Vaccinations :
+                      <span className="ml-3">
+                        {dogVaccinations.map((vaccination) => (
+                          <Tag key={vaccination}>{vaccination}</Tag>
+                        ))}
+                      </span>
+                    </p>
+                    <p className="charectiristics_labels">
+                      Size : <span>{animal.size}</span>
+                    </p>
+                  </div>
+                </div>
               </div>
-              {/* TODO : Paws icons*/}
+              {/* Shelter info section right*/}
+              <div className="grid lg:mr-10 lg:w-2/5 lg:pl-16 lg:w-26 lg:h-96 sm:h-80">
+                <ShelterInfoCard
+                  name={shelterInfo.shelter_name}
+                  city={shelterInfo.city}
+                  description={shelterInfo.description}
+                  cover_image={shelterInfo.cover_image}
+                  shelter_id={shelterInfo.id}
+                />
+              </div>
+              {/*Next column*/}
             </section>
-          </div>
-          <section className="pt-10 lg:flex md:flex">
-            <div className="grid w-3/5">
-              {/*Characterestic skills*/}
-              <div className="flex ">
-                <div className="w-2/4">
-                  <p className="charectiristics_labels">
-                    Dog Name : <span>{animal.name}</span>
-                  </p>
-                  <p className="charectiristics_labels">
-                    Age : <span>{animal.age}</span>
-                  </p>
-                </div>
-                <p className="mr-5 text-roz h-5/5 border-x-2"></p>
-                <div className="w-2/4">
-                  <p className="charectiristics_labels">
-                    Vaccinations :
-                    <span className="ml-3">
-                      {dogVaccinations.map((vaccination) => (
-                        <Tag key={vaccination}>{vaccination}</Tag>
-                      ))}
-                    </span>
-                  </p>
-                  <p className="charectiristics_labels">
-                    Size : <span>{animal.size}</span>
-                  </p>
-                </div>
-              </div>
+            {/** All pictures section */}
+            <div className="flex items-center justify-center bg-center lg:w-3/5 md:w-3/5 sm:w-4/5 h-120 bg-blue rounded-3xl">
+              <ListingImageSlider listingImages={listingImages} />
             </div>
-            {/* Shelter info section right*/}
-            <div className="grid lg:mr-10 lg:w-2/5 lg:pl-16 lg:w-26 lg:h-96 sm:h-80">
-              <ShelterInfoCard
-                name={shelterInfo.shelter_name}
-                city={shelterInfo.city}
-                description={shelterInfo.description}
-                cover_image={shelterInfo.cover_image}
-                shelter_id={shelterInfo.id}
-              />
-            </div>
-            {/*Next column*/}
-          </section>
-          {/** All pictures section */}
-          <div className="flex items-center justify-center bg-center lg:w-3/5 md:w-3/5 sm:w-4/5 h-120 bg-blue rounded-3xl">
-            <ListingImageSlider listingImages={listingImages} />
           </div>
-        </div>
-      )}
-      {showTelModal && (
-        <Telephone
-          phone={shelterInfo.phone}
-          email={shelterInfo.email}
-          address={shelterInfo.address}
-          onclose={() => setShowTelModal(false)}
-        />
-      )}
-    </>
+        )}
+        {showTelModal && (
+          <Telephone
+            phone={shelterInfo.phone}
+            email={shelterInfo.email}
+            address={shelterInfo.address}
+            onclose={() => setShowTelModal(false)}
+          />
+        )}
+      </>
+    </UserRoute>
   );
 };
 

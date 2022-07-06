@@ -45,7 +45,7 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       url: "/shelter/",
     },
     {
-      text: "List a Dog",
+      text: "List Dog",
       url: "/shelter/",
     },
   ];
