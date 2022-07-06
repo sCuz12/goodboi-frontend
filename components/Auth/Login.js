@@ -8,18 +8,20 @@ import SolidPaw from "../Icons/SolidPaw";
 import DogInCicle from "../CustomImages/DogInCircle";
 import Heart from "../Icons/Heart";
 import { toast } from "react-toastify";
+import ForgotPassword from "../Modals/ForgotPassword";
 
 export default function Login() {
   //TODO : Remove defaults on email,password on production
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [resetEmail, setResetEmail] = useState("");
   const { state, dispatch } = useContext(Context);
+  const [openforgotPasswordModal, setOpenForgotPasswordModal] = useState(false);
 
   const { user } = state;
   const router = useRouter();
 
   useEffect(() => {
-    console.log(state);
     if (user !== null) router.push("/");
   }, [user]);
 
@@ -50,6 +52,19 @@ export default function Login() {
     } catch (err) {
       toast.error(err.response.data.error);
       console.log(err.response.data.error);
+    }
+  };
+
+  const onSubmitResetPassword = async () => {
+    try {
+      const { data } = await axiosInstance.post("/api/forgot-password?", {
+        email: resetEmail,
+      });
+      toast.success("Email succesfully sent .Please check your Email");
+      router.push("/login");
+    } catch (err) {
+      console.log(err.response.data.message);
+      toast.error(err.response.data.message);
     }
   };
 
@@ -105,9 +120,11 @@ export default function Login() {
                     className="flex-1 text-sm outline-none"
                   />
                 </div>
-                <p className="items-start pt-5 text-darkPink">
-                  Forgot Password?
-                </p>
+                <a onClick={() => setOpenForgotPasswordModal(true)}>
+                  <p className="items-start pt-5 text-darkPink">
+                    Forgot Password?
+                  </p>
+                </a>
                 <div className="pt-5 mt-5">
                   <button
                     type="submit"
@@ -128,6 +145,16 @@ export default function Login() {
           {/*login*/}
         </div>
       </section>
+      {openforgotPasswordModal && (
+        <ForgotPassword
+          onclose={() => {
+            setOpenForgotPasswordModal(false);
+          }}
+          onsubmit={onSubmitResetPassword}
+          resetemail={resetEmail}
+          setresetemail={setResetEmail}
+        />
+      )}
     </main>
   );
 }
