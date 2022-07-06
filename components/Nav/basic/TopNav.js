@@ -65,16 +65,16 @@ function TopNav() {
                 <a href="/">
                   <Image
                     key={1}
-                    src="https://links.papareact.com/qd3"
+                    src="/assets/logo/GOODBOILOGO.png"
                     alt="Header Logo"
                     objectFit="contain"
-                    height={80}
-                    width={80}
+                    height={150}
+                    width={150}
                   />
                 </a>
               </div>
               <div className="hidden md:block">
-                <div className="flex items-baseline ml-10 space-x-4">
+                <div className="flex items-baseline space-x-4">
                   <MenuItems />
                 </div>
               </div>
@@ -83,7 +83,7 @@ function TopNav() {
               <div className="hidden md:flex">
                 {/* Right of footer*/}
 
-                <div className="flex items-center justify-end w-2/4 space-x-4 text-black">
+                <div className="flex items-center justify-end w-3/4 space-x-4 text-black">
                   {user === null ? (
                     <>
                       <NavButton
