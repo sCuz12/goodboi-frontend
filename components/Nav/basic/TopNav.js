@@ -65,16 +65,16 @@ function TopNav() {
                 <a href="/">
                   <Image
                     key={1}
-                    src="https://links.papareact.com/qd3"
+                    src="/assets/logo/GOODBOILOGO.png"
                     alt="Header Logo"
                     objectFit="contain"
-                    height={80}
-                    width={80}
+                    height={150}
+                    width={150}
                   />
                 </a>
               </div>
               <div className="hidden md:block">
-                <div className="flex items-baseline ml-10 space-x-4">
+                <div className="flex items-baseline space-x-4">
                   <MenuItems />
                 </div>
               </div>
@@ -83,7 +83,7 @@ function TopNav() {
               <div className="hidden md:flex">
                 {/* Right of footer*/}
 
-                <div className="flex items-center justify-end w-2/4 space-x-4 text-black">
+                <div className="flex items-center justify-end w-3/4 space-x-4 text-black">
                   {user === null ? (
                     <>
                       <NavButton
@@ -131,14 +131,19 @@ function TopNav() {
                           {/* If user is shelter */}
                           {user.user_type.includes("shelter") && (
                             <>
-                              <Link href="/shelter/listing/create">
-                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                                  List a Dog
-                                </a>
-                              </Link>
                               <Link href="/shelter/">
                                 <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
                                   Dashboard
+                                </a>
+                              </Link>
+                              <Link href="/shelter/listing/create">
+                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
+                                  List Dog
+                                </a>
+                              </Link>
+                              <Link href="/shelter/mylistings/view">
+                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
+                                  My Listings
                                 </a>
                               </Link>
                             </>

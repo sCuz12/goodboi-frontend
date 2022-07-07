@@ -8,18 +8,20 @@ import SolidPaw from "../Icons/SolidPaw";
 import DogInCicle from "../CustomImages/DogInCircle";
 import Heart from "../Icons/Heart";
 import { toast } from "react-toastify";
+import ForgotPassword from "../Modals/ForgotPassword";
 
 export default function Login() {
   //TODO : Remove defaults on email,password on production
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [resetEmail, setResetEmail] = useState("");
   const { state, dispatch } = useContext(Context);
+  const [openforgotPasswordModal, setOpenForgotPasswordModal] = useState(false);
 
   const { user } = state;
   const router = useRouter();
 
   useEffect(() => {
-    console.log(state);
     if (user !== null) router.push("/");
   }, [user]);
 
@@ -41,21 +43,44 @@ export default function Login() {
       //save token into local storage
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      if (res.data.user.shelter.is_profile_complete === 0) {
-        router.push("/shelter/profile/update");
+      //if user is shelter
+      if (res.data.user.shelter) {
+        //profile not complete redirect to update profile for shelter
+        if (res.data.user.shelter.is_profile_complete === 0) {
+          router.push("/shelter/profile/update");
+        }
       }
 
       //redirect
       router.push("/");
     } catch (err) {
-      toast.error(err.response.data.error);
-      console.log(err.response.data.error);
+      console.log(err);
+      if (err.response) {
+        toast.error(err.response.data.error);
+      }
+      toast("Error on login");
     }
   };
 
+  const onSubmitResetPassword = async () => {
+    try {
+      const { data } = await axiosInstance.post("/api/forgot-password?", {
+        email: resetEmail,
+      });
+      toast.success("Email succesfully sent .Please check your Email");
+    } catch (err) {
+      if (err.response.data) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error("Error while Sending the reset email");
+      }
+    }
+    setOpenForgotPasswordModal(false);
+  };
+
   return (
-    <main className="pt-40">
-      <section className="flex w-full">
+    <main className="pt-20">
+      <section className="flex w-full h-82">
         <div className="w-3/5">
           <div className="flex w-full">
             <h1 className="header_titles text-darkPurple">
@@ -75,14 +100,10 @@ export default function Login() {
               <DogInCicle image="dog-2.png" />
             </div>
           </div>
-
-          <div className="flex justify-center w-full">
-            <Heart />
-          </div>
         </div>
       </section>
-      <section className="flex flex-col items-center justify-center flex-1 w-full px-20 pt-20 text-center ">
-        <div className="flex justify-center max-w-4xl shadow-2xl sm:w-2/2 lg:w-1/2 h-98 rounded-2xl bg-navyPink sm:w-full">
+      <section className="flex flex-col items-center justify-center flex-1 w-full px-20 pt-10 text-center ">
+        <div className="flex justify-center max-w-4xl mb-10 shadow-2xl sm:w-2/2 lg:w-1/2 h-98 rounded-2xl bg-navyPink sm:w-full">
           <div className="w-2/4">
             <h2 className="pt-10 pb-10 text-2xl font-bold text-basicFont font-kdam">
               Welcome Back
@@ -109,9 +130,11 @@ export default function Login() {
                     className="flex-1 text-sm outline-none"
                   />
                 </div>
-                <p className="items-start pt-5 text-darkPink">
-                  Forgot Password?
-                </p>
+                <a onClick={() => setOpenForgotPasswordModal(true)}>
+                  <p className="items-start pt-5 text-darkPink">
+                    Forgot Password?
+                  </p>
+                </a>
                 <div className="pt-5 mt-5">
                   <button
                     type="submit"
@@ -132,6 +155,16 @@ export default function Login() {
           {/*login*/}
         </div>
       </section>
+      {openforgotPasswordModal && (
+        <ForgotPassword
+          onclose={() => {
+            setOpenForgotPasswordModal(false);
+          }}
+          onsubmit={onSubmitResetPassword}
+          resetemail={resetEmail}
+          setresetemail={setResetEmail}
+        />
+      )}
     </main>
   );
 }

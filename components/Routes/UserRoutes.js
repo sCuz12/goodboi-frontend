@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axiosInstance from "../../helpers/axios";
+import { IoSyncOutline } from "react-icons/io5";
 
 const UserRoute = ({ children }) => {
   const [ok, setOk] = useState();
@@ -26,7 +27,17 @@ const UserRoute = ({ children }) => {
     }
   };
 
-  return <>{!ok ? <h1>loading</h1> : <div>{children}</div>}</>;
+  return (
+    <>
+      {!ok ? (
+        <div className="flex justify-center pt-40">
+          <IoSyncOutline spin className="text-2xl" />
+        </div>
+      ) : (
+        <div>{children}</div>
+      )}
+    </>
+  );
 };
 
 export default UserRoute;
