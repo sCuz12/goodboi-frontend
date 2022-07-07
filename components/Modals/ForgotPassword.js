@@ -20,8 +20,8 @@ function ForgotPassword({ onclose, onsubmit, resetemail, setresetemail }) {
                 </p>
                 <div className="flex items-center p-2 mb-3 border rounded-lg shadow-2xl bg-roz w-80 ">
                   <input
-                    type="text"
-                    name="resetPassword"
+                    type="email"
+                    name="email"
                     className="text-sm outline-none bg-roz"
                     placeholder="Enter your Email"
                     onChange={(e) => {
@@ -35,15 +35,16 @@ function ForgotPassword({ onclose, onsubmit, resetemail, setresetemail }) {
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 space-x-4 rounded-b border-slate-200">
                   <button
-                    className="text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
+                    className="inline-block px-12 py-2 mt-5 mb-2 font-semibold text-white border-2 rounded-full bg-red border-green"
                     type="button"
                     onClick={onclose}
                   >
                     Close
                   </button>
                   <button
+                    disabled={!resetemail}
                     onClick={onsubmit}
-                    className="text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
+                    className="inline-block px-12 py-2 mt-5 mb-2 font-semibold text-white border-2 rounded-full disabled:opacity-50 bg-basicPurple border-green"
                   >
                     Send
                   </button>
@@ -53,7 +54,7 @@ function ForgotPassword({ onclose, onsubmit, resetemail, setresetemail }) {
           </div>
         </div>
       </div>
-      <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
+      <div className="fixed inset-0 z-40 bg-black opacity-70"></div>
     </>
   );
 }

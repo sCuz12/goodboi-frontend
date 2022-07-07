@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axiosInstance from "../helpers/axios";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 function reset_password() {
   const [newPassword, setNewPassword] = useState("");
@@ -20,9 +21,10 @@ function reset_password() {
       });
       toast.success("Password reset succesfully ");
       router.push("/login");
-    } catch (e) {}
-
-    console.log(data);
+    } catch (e) {
+      toast.error();
+      console.log(e);
+    }
   };
   return (
     <main className="pt-20">

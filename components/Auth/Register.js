@@ -47,8 +47,11 @@ export default function Register({ isShelter }) {
       router.push("/login");
     } catch (err) {
       setLoading(false);
-      console.log(err.response.data);
-      toast.error(err.response.data.message);
+      if (err.response.data) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error("Error while Register");
+      }
     }
   };
   return (

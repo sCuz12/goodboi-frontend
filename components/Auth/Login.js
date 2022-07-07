@@ -43,15 +43,22 @@ export default function Login() {
       //save token into local storage
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      if (res.data.user.shelter.is_profile_complete === 0) {
-        router.push("/shelter/profile/update");
+      //if user is shelter
+      if (res.data.user.shelter) {
+        //profile not complete redirect to update profile for shelter
+        if (res.data.user.shelter.is_profile_complete === 0) {
+          router.push("/shelter/profile/update");
+        }
       }
 
       //redirect
       router.push("/");
     } catch (err) {
-      toast.error(err.response.data.error);
-      console.log(err.response.data.error);
+      console.log(err);
+      if (err.response) {
+        toast.error(err.response.data.error);
+      }
+      toast("Error on login");
     }
   };
 
@@ -61,11 +68,14 @@ export default function Login() {
         email: resetEmail,
       });
       toast.success("Email succesfully sent .Please check your Email");
-      router.push("/login");
     } catch (err) {
-      console.log(err.response.data.message);
-      toast.error(err.response.data.message);
+      if (err.response.data) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error("Error while Sending the reset email");
+      }
     }
+    setOpenForgotPasswordModal(false);
   };
 
   return (
