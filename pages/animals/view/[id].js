@@ -10,6 +10,7 @@ import CtaButton from "../../../components/Buttons/CtaButton";
 import Telephone from "../../../components/Modals/Telephone";
 import CallShelter from "../../../components/Buttons/CallShelter";
 import UserRoute from "../../../components/Routes/UserRoutes";
+import CopyLink from "../../../components/Buttons/CopyLink";
 
 const AnimalListingView = () => {
   const [animal, setAnimal] = useState({});
@@ -17,6 +18,7 @@ const AnimalListingView = () => {
   const [shelterInfo, setShelterInfo] = useState({});
   const [dogVaccinations, setDogVaccination] = useState([]);
   const [showTelModal, setShowTelModal] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const router = useRouter();
 
@@ -26,6 +28,16 @@ const AnimalListingView = () => {
     if (!router.isReady) return;
     loadListingInfo();
   }, [id]);
+
+  function copyUrlToClipboard() {
+    const el = document.createElement("input");
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    setCopied(true);
+  }
 
   /*This method loads into state the single animal and listing_images */
   const loadListingInfo = async () => {
@@ -87,8 +99,15 @@ const AnimalListingView = () => {
                         </div>
                       </h1>
                       <p className="flex-grow h-44">{animal.description}</p>
+
                       <div className="pt-4 lg:w-2/5 md:w-4/5 sm:w-5/5">
                         <CallShelter onclick={() => setShowTelModal(true)} />
+                      </div>
+                      <div className="pt-4 lg:w-2/5 md:w-4/5 sm:w-5/5">
+                        <CopyLink
+                          onclick={copyUrlToClipboard}
+                          copiedText={copied}
+                        />
                       </div>
                     </div>
                   </div>
