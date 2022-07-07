@@ -16,8 +16,11 @@ function animals() {
   const [totalListings, setTotalListings] = useState();
   const [activePage, setActivePage] = useState();
   const [perPage, setPerPage] = useState();
-
+  const [token, setToken] = useState("");
   useEffect(() => {
+    const token = window.localStorage.getItem("token");
+    setToken(token);
+
     getInitialListings();
     getCities();
   }, []);
@@ -145,6 +148,7 @@ function animals() {
                       age={item.age}
                       city={item.city}
                       id={item.id}
+                      token={token}
                     />
                   </div>
                 ))}
