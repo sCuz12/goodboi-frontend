@@ -13,11 +13,17 @@ export default function Home() {
   const [listings, setListings] = useState([]);
   const [shelters, setShelters] = useState([]);
   const { state, dispatch } = useContext(Context);
+  const [token, setToken] = useState("");
   const { user } = state;
 
   useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    axiosInstance.defaults.headers.Authorization = `Bearer ${token}`;
+    const localItemToken = window.localStorage.getItem("token");
+    if (localItemToken) {
+      setToken(localItemToken);
+      axiosInstance.defaults.headers.Authorization = `Bearer ${window.localStorage.getItem(
+        "token"
+      )}`;
+    }
 
     const fetchListings = async () => {
       const { data } = await axiosInstance.get("/api/animals/dogs");
@@ -69,6 +75,8 @@ export default function Home() {
                     age={item.age}
                     city={item.city}
                     id={item.id}
+                    token={token}
+                    isfavourite={item.is_favourited}
                   />
                 </div>
               ))}
