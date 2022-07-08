@@ -19,6 +19,10 @@ function animals() {
   const [token, setToken] = useState("");
   useEffect(() => {
     const token = window.localStorage.getItem("token");
+    if (token) {
+      axiosInstance.defaults.headers.Authorization = `Bearer ${token}`;
+    }
+
     setToken(token);
 
     getInitialListings();
@@ -149,6 +153,7 @@ function animals() {
                       city={item.city}
                       id={item.id}
                       token={token}
+                      isfavourite={item.is_favourited}
                     />
                   </div>
                 ))}
