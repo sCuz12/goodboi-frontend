@@ -11,7 +11,6 @@ import { toast } from "react-toastify";
 import ForgotPassword from "../Modals/ForgotPassword";
 
 export default function Login() {
-  //TODO : Remove defaults on email,password on production
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [resetEmail, setResetEmail] = useState("");
@@ -57,8 +56,9 @@ export default function Login() {
       console.log(err);
       if (err.response) {
         toast.error(err.response.data.error);
+      } else {
+        toast("Error on login");
       }
-      toast("Error on login");
     }
   };
 

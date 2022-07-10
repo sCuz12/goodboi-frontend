@@ -3,6 +3,7 @@ import { AiOutlineDashboard, AiOutlineProfile } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
 import SideBarItem from "./Items/SideBarItem";
 import { SiDatadog } from "react-icons/si";
+import Logout from "./Items/Logout";
 function ShelterSideNav() {
   return (
     <div className="flex-initial h-screen bg-white shadow-md lg:p-5 w-60 mt-28">
@@ -44,6 +45,7 @@ function ShelterSideNav() {
           name="Account Profile"
           url="/user/profile/update"
         />
+        <Logout />
       </ul>
     </div>
   );

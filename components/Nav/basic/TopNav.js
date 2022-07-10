@@ -122,9 +122,7 @@ function TopNav() {
                           {/* if user is normal*/}
                           {user.user_type.includes("user") && (
                             <Link href="/user/profile/update">
-                              <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                                Update Profile
-                              </a>
+                              <a className="top_nav_a">Update Profile</a>
                             </Link>
                           )}
 
@@ -132,27 +130,21 @@ function TopNav() {
                           {user.user_type.includes("shelter") && (
                             <>
                               <Link href="/shelter/">
-                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                                  Dashboard
-                                </a>
+                                <a className="top_nav_a">Dashboard</a>
                               </Link>
                               <Link href="/shelter/listing/create">
-                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                                  List Dog
-                                </a>
+                                <a className="top_nav_a">List Dog</a>
                               </Link>
                               <Link href="/shelter/mylistings/view">
-                                <a className="block px-4 py-2 hover:bg-green-500 hover:text-green-100">
-                                  My Listings
-                                </a>
+                                <a className="top_nav_a">My Listings</a>
                               </Link>
                             </>
                           )}
+                          <Link href="/user/favourites/">
+                            <a className="top_nav_a">My Favourites</a>
+                          </Link>
                           <Link href="">
-                            <a
-                              onClick={logout}
-                              className="block px-4 py-2 hover:bg-green-500 hover:text-green-100"
-                            >
+                            <a onClick={logout} className="top_nav_a">
                               Logout
                             </a>
                           </Link>
