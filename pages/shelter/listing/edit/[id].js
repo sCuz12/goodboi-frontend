@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import ImageUploadButton from "../../../../components/Buttons/ImageUploadButton";
 import CityDropdown from "../../../../components/FormsComponents/CityDropdown";
-import { DatePicker, Upload, Radio, Select, Empty } from "antd";
+import { DatePicker, Upload, Radio, Select, Empty, Spin } from "antd";
 import axiosInstance from "../../../../helpers/axios";
 import ShelterRoute from "../../../../components/Routes/ShelterRoutes";
 import moment from "moment";
 import { toast } from "react-toastify";
-import { SyncOutlined } from "@ant-design/icons";
 
 function editListing() {
   const [dogName, setDogName] = useState("");
@@ -433,7 +432,7 @@ function editListing() {
                     type="submit"
                     disabled={disableButton()}
                   >
-                    {loading ? <SyncOutlined spin /> : "Update"}
+                    {loading ? <Spin /> : "Update"}
                   </button>
                 </div>
               </div>

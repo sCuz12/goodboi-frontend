@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import axiosInstance from "../../helpers/axios";
 import { IoSyncOutline } from "react-icons/io5";
 import UserSideNav from "../Nav/user/UserSideNav";
+import Spin from "../Decos/Spin";
 
 const UserRoute = ({ children }) => {
   const [ok, setOk] = useState();
@@ -32,7 +33,7 @@ const UserRoute = ({ children }) => {
     <>
       {!ok ? (
         <div className="flex justify-center pt-40">
-          <IoSyncOutline spin className="text-2xl" />
+          <Spin />
         </div>
       ) : (
         <div className="flex min-h-screen ">

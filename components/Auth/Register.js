@@ -7,7 +7,7 @@ import RectGuides from "../CustomImages/RectGuides";
 import DogsWithCircle from "../CustomImages/DogsWithCircle";
 import Heart from "../Icons/Heart";
 import Image from "next/image";
-import { SyncOutlined } from "@ant-design/icons";
+import Spin from "../Decos/Spin";
 
 export default function Register({ isShelter }) {
   const [firstName, setFirstName] = useState("");
@@ -211,7 +211,7 @@ export default function Register({ isShelter }) {
                   type="submit"
                   className="inline-block px-12 py-2 mt-5 mb-2 font-semibold text-white border-2 rounded-full bg-basicPurple border-green disabled:opacity-50"
                 >
-                  {loading ? <SyncOutlined spin /> : "Sign up"}
+                  {loading ? <Spin /> : "Sign up"}
                 </button>
               </div>
               <div className="flex justify-start w-3/4">

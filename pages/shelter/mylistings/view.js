@@ -50,6 +50,7 @@ function view() {
           {CurrentShelterListings.map((listing, index) => {
             return (
               <RowListingCard
+                key={index}
                 title={listing.title}
                 description={listing.description}
                 image={listing.cover_image}

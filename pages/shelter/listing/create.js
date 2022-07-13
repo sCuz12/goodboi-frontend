@@ -85,7 +85,7 @@ function create() {
       setCoverImageUrl(fileList);
     }
     if (fileList.file.status === "error") {
-      console.log("Error uploading cover photo");
+      toast.error("try again,upload cover photo");
       setCoverImageUrl();
     }
   };
@@ -349,7 +349,7 @@ function create() {
                   <span className="required"></span>
                 </label>
                 <Upload
-                  maxCount={3}
+                  maxCount={4}
                   customRequest={dummyRequest}
                   onChange={listingsImagesUploadHandler}
                   name="listing-cover"
