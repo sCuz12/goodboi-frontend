@@ -14,10 +14,10 @@ function NavButton({ title, link, withBackground = false }) {
     );
   } else {
     return (
-      <button className="px-3 py-1.5 border border-basicPurple rounded-3xl border-1 m-1 hover:bg-basicPurple ">
+      <button className="lg:w-1/4 px-3 py-1.5 border border-basicPurple rounded-3xl border-1 m-1 hover:bg-basicPurple sm:w-full">
         <a
           href={link}
-          className="hidden text-black cursor-pointer hover:text-white md:inline-flex w-max"
+          className="text-black cursor-pointer hover:text-white md:inline-flex w-max"
         >
           {title}
         </a>
