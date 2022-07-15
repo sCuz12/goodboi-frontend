@@ -9,6 +9,7 @@ import NavButton from "../../Buttons/NavButton";
 import MenuItems from "./MenuItems";
 import { GiHamburgerMenu } from "react-icons/gi";
 import MobileMenuItems from "./MobileMenuItems";
+import TopNavButton from "../../Buttons/TopNavButton";
 
 function TopNav() {
   const { state, dispatch } = useContext(Context);
@@ -86,12 +87,12 @@ function TopNav() {
                 <div className="flex items-center justify-end w-3/4 space-x-4 text-black">
                   {user === null ? (
                     <>
-                      <NavButton
+                      <TopNavButton
                         title="Become Shelter"
                         link="/shelter/register"
                       />
-                      <NavButton title="Become Hero" link="/register" />
-                      <NavButton
+                      <TopNavButton title="Become Hero" link="/register" />
+                      <TopNavButton
                         title="Sign In"
                         withBackground={true}
                         link="/login"
