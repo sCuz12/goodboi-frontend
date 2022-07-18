@@ -5,7 +5,7 @@ import { IoSyncOutline } from "react-icons/io5";
 import UserSideNav from "../Nav/user/UserSideNav";
 import Spin from "../Decos/Spin";
 
-const UserRoute = ({ children }) => {
+const UserRoute = ({ children, showSide = false }) => {
   const [ok, setOk] = useState();
 
   const router = useRouter();
@@ -37,7 +37,8 @@ const UserRoute = ({ children }) => {
         </div>
       ) : (
         <div className="flex min-h-screen ">
-          <UserSideNav />
+          {showSide && <UserSideNav />}
+
           <div className="w-full m-25">{children}</div>
         </div>
       )}

@@ -64,7 +64,7 @@ const AnimalListingView = () => {
     setShelterInfo(shelterInfo);
   };
   return (
-    <UserRoute>
+    <UserRoute showSide={false}>
       <>
         {animal.name && listingImages && (
           <div className="min-h-screen pt-10 pl-10">
@@ -121,24 +121,33 @@ const AnimalListingView = () => {
                 <div className="flex ">
                   <div className="w-2/4">
                     <p className="charectiristics_labels">
-                      Dog Name : <span>{animal.name}</span>
+                      Dog Name :{" "}
+                      <span className="charectiristics_values">
+                        {animal.name}
+                      </span>
                     </p>
                     <p className="charectiristics_labels">
-                      Age : <span>{animal.age}</span>
+                      Age :{" "}
+                      <span className="charectiristics_values">
+                        {animal.age}
+                      </span>
                     </p>
                   </div>
                   <p className="mr-5 text-roz h-5/5 border-x-2"></p>
                   <div className="w-2/4">
                     <p className="charectiristics_labels">
                       Vaccinations :
-                      <span className="ml-3">
+                      <span className="ml-3 ">
                         {dogVaccinations.map((vaccination) => (
                           <Tag key={vaccination}>{vaccination}</Tag>
                         ))}
                       </span>
                     </p>
                     <p className="charectiristics_labels">
-                      Size : <span>{animal.size}</span>
+                      Size :{" "}
+                      <span className="charectiristics_values">
+                        {animal.size.toUpperCase()}
+                      </span>
                     </p>
                   </div>
                 </div>

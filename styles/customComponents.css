@@ -119,3 +119,7 @@ Cards
  .top_nav_a {
   @apply block px-4 py-2 text-black hover:text-roz
  }
+
+ .charectiristics_values { 
+  @apply font-light 
+ }
