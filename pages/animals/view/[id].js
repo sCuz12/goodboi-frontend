@@ -100,7 +100,7 @@ const AnimalListingView = () => {
                     <p className="flex-grow lg:w-full h-44">
                       {animal.description}
                     </p>
-                    <div className="justify-center sm:w-4/5 lg:w-full">
+                    <div className="justify-center w-3/5 lg:w-full">
                       {" "}
                       <div className="pt-4 lg:w-2/5 ">
                         <CallShelter onclick={() => setShowTelModal(true)} />
