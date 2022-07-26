@@ -7,6 +7,7 @@ import { Context } from "../../../context";
 import { toast } from "react-toastify";
 import CityDropdown from "../../../components/FormsComponents/CityDropdown";
 import { useRouter } from "next/router";
+import Spin from "../../../components/Decos/Spin";
 
 function create() {
   const [countryOptions, setCountryOptions] = useState([]);
@@ -21,6 +22,7 @@ function create() {
   const [postTitle, setPostTitle] = useState("");
   const [dogName, setDogName] = useState("");
   const [dogDescription, setDogDescription] = useState("");
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const { state, dispatch } = useContext(Context);
   const router = useRouter();
@@ -148,6 +150,7 @@ function create() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setButtonLoading(true);
     let formData = new FormData();
     formData.append("cover_photo", coverImageUrl.fileList[0].originFileObj);
     for (let i = 0; i < listingsImages.fileList.length; i++) {
@@ -175,10 +178,12 @@ function create() {
       })
 
       .then(() => {
+        setButtonLoading(false);
         toast.success("Dog listing succesfully uploaded");
         router.push("/shelter/mylistings/view");
       })
       .catch((err) => {
+        setButtonLoading(false);
         console.log(err);
         toast.error(err.response.data);
       });
@@ -408,7 +413,7 @@ function create() {
                   type="submit"
                   disabled={disableButton()}
                 >
-                  Submit
+                  {buttonLoading ? <Spin /> : "Submit"}
                 </button>
               </div>
             </div>
