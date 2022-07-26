@@ -5,8 +5,8 @@ import CtaButton from "../Buttons/CtaButton";
 
 function ShelterInfoCard({ shelter_id, name, description, cover_image, city }) {
   return (
-    <div className="flex flex-col">
-      <div className="justify-center w-3/4 h-full bg-roz rounded-xl lg:h-120">
+    <div className="flex flex-col sm:align-center">
+      <div className="justify-center h-full sm:w-full lg:w-3/4 bg-roz rounded-xl lg:h-120">
         <div className="flex flex-col justify-center h-full">
           <h1 className="flex justify-center text-2xl text-center">
             Shelter Info

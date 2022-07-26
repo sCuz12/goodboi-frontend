@@ -67,11 +67,11 @@ const AnimalListingView = () => {
     <UserRoute showSide={false}>
       <>
         {animal.name && listingImages && (
-          <div className="min-h-screen pt-10 pl-10">
+          <div className="min-h-screen pt-10 lg:pl-10">
             <div className="w-full">
-              <section className="flex pt-10">
+              <section className="flex flex-col lg:pt-10 lg:flex-row ">
                 {/* Image Div*/}
-                <div className="grid w-2/5 place-items-center">
+                <div className="grid lg:w-2/5 place-items-center">
                   {/* Photo container */}
                   <div className="flex-shrink-0 pt-3 pb-2 pl-2 pr-2 rounded-full lg:m-12 bg-roz">
                     <Image
@@ -86,24 +86,26 @@ const AnimalListingView = () => {
                     />
                   </div>
                 </div>
-                <div className="grid w-2/5 pt-12">
-                  <div className="">
-                    <div className="flex flex-col">
-                      {/*Upper info */}
-                      <h1 className="text-4xl font-semibold font-cherryBomb ">
-                        <div className="flex items-center text-center">
-                          This is {animal.name}{" "}
-                          <div className="">
-                            <Heart />
-                          </div>{" "}
-                        </div>
-                      </h1>
-                      <p className="flex-grow h-44">{animal.description}</p>
-
-                      <div className="pt-4 lg:w-2/5 md:w-4/5 sm:w-5/5">
+                <div className="grid w-full pt-12 lg:w-2/5">
+                  <div className="flex flex-col items-center">
+                    {/*Upper info */}
+                    <h1 className="text-4xl font-semibold font-cherryBomb lg:w-full">
+                      <div className="flex items-center text-center">
+                        This is {animal.name}{" "}
+                        <div className="">
+                          <Heart />
+                        </div>{" "}
+                      </div>
+                    </h1>
+                    <p className="flex-grow lg:w-full h-44">
+                      {animal.description}
+                    </p>
+                    <div className="justify-center sm:w-4/5 lg:w-full">
+                      {" "}
+                      <div className="pt-4 lg:w-2/5 ">
                         <CallShelter onclick={() => setShowTelModal(true)} />
                       </div>
-                      <div className="pt-4 lg:w-2/5 md:w-4/5 sm:w-5/5">
+                      <div className="pt-4 lg:w-2/5">
                         <CopyLink
                           onclick={copyUrlToClipboard}
                           copiedText={copied}
@@ -115,8 +117,8 @@ const AnimalListingView = () => {
                 {/* TODO : Paws icons*/}
               </section>
             </div>
-            <section className="pt-10 lg:flex md:flex">
-              <div className="grid w-3/5">
+            <section className="flex flex-col pt-10 lg:flex-row">
+              <div className="grid w-full lg:w-3/5">
                 {/*Characterestic skills*/}
                 <div className="flex ">
                   <div className="w-2/4">

@@ -7,7 +7,7 @@ function Telephone({ phone, email, onclose, address }) {
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-        <div className="relative w-1/4 mx-auto my-6 max-w-7xl">
+        <div className="relative mx-auto my-6 sm:w-full lg:w-1/4 max-w-7xl">
           {/*content*/}
           <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
             {/*header*/}
