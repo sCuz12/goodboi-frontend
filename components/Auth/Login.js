@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import axiosInstance from "../../helpers/axios";
 import SolidPaw from "../Icons/SolidPaw";
 import DogInCicle from "../CustomImages/DogInCircle";
-import Heart from "../Icons/Heart";
 import { toast } from "react-toastify";
 import ForgotPassword from "../Modals/ForgotPassword";
 
