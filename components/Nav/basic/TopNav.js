@@ -201,7 +201,7 @@ function TopNav() {
           <div className="md:hidden" id="mobile-menu">
             <div
               ref={ref}
-              className="flex w-full px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-roz "
+              className="flex w-full pt-2 pb-3 space-y-1 text-center bg-roz"
             >
               <MobileMenuItems
                 user={user}
