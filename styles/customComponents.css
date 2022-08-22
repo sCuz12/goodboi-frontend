@@ -75,7 +75,7 @@ Cards
  }
 
  .header_titles {
-   @apply lg:font-semibold sm:text-7xl lg:text-6xl font-cherryBomb sm:font-semibold
+   @apply lg:font-semibold  text-6xl lg:text-6xl font-cherryBomb sm:font-semibold
  }
 
  .nav_link_text {

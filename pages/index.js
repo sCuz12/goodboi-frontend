@@ -62,7 +62,7 @@ export default function Home() {
               <NoResults />
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {listings.map((item) => (
                 <div
                   key={item.id}
@@ -90,7 +90,7 @@ export default function Home() {
         {/* Shelter section*/}
         <section className="pt-6">
           <h3 className="pb-5 header_titles">Find Shelter</h3>
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {shelters.map((item) => (
               <div key={item.id} className="mb-10 overflow-hidden rounded-2xl">
                 <ShelterCard
