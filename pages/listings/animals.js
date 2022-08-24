@@ -8,6 +8,7 @@ import { MdSort } from "react-icons/md";
 import AbovePageSection from "../../components/Sections/AbovePageSection";
 import Pagination from "react-js-pagination";
 import NoResults from "../../components/CustomImages/Illustrations/NoResults";
+import ListingsFilters from "../../components/Filters/ListingsFilters";
 
 function animals() {
   const [citiesFilter, setCitiesFilter] = useState([]);
@@ -17,6 +18,8 @@ function animals() {
   const [activePage, setActivePage] = useState();
   const [perPage, setPerPage] = useState();
   const [token, setToken] = useState("");
+  const [filtersCollapse, setFiltersCollapse] = useState(false);
+
   useEffect(() => {
     const token = window.localStorage.getItem("token");
     if (token) {
@@ -51,7 +54,6 @@ function animals() {
   };
 
   const filterListingsFromCities = async () => {
-    console.log(checkedCity);
     /* If user removes all filters*/
     if (checkedCity.length === 0) {
       getInitialListings();
@@ -83,6 +85,11 @@ function animals() {
     setCheckedCity(newChecked);
   };
 
+  const openFiltersHandler = () => {
+    filtersCollapse ? setFiltersCollapse(false) : setFiltersCollapse(true);
+    console.log(filtersCollapse);
+  };
+
   return (
     <div className="pt-40">
       {/* Header section */}
@@ -97,40 +104,21 @@ function animals() {
       <section>
         <div className="w-full h-auto md:flex lg:flex">
           {/* Filters*/}
-          <div className="flex lg:w-1/5 sm:w-2/5">
-            <div className="flex flex-col w-full pl-3 border rounded-xl">
-              <div className="flex w-full ">
-                <h2 className="w-4/5 text-xl font-bold">Filters</h2>
-                <div className="items-end justify-end w-1/5">
-                  <MdSort size={40} />
-                </div>
-              </div>
-              {/*Location */}
-              <div className="flex-col pt-2">
-                <h2 className="w-4/5 text-xl">Cities</h2>
-                {citiesFilter.map((city) => (
-                  <div key={city.name} className="flex ">
-                    <label
-                      className="w-1/2 form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      {city.name}
-                    </label>
-                    <input
-                      onChange={() => handleToggle(city.id)}
-                      className="w-1/2"
-                      type="checkbox"
-                      id={city.id}
-                      name={city.name}
-                      value={city.id}
-                    />
-                  </div>
-                ))}
-              </div>
+          {filtersCollapse ? (
+            <div className="pl-4 pr-32">
+              <MdSort onClick={openFiltersHandler} size={30} />
             </div>
-          </div>
+          ) : (
+            <ListingsFilters
+              cities={citiesFilter}
+              isCollapse={filtersCollapse}
+              openFiltersHandler={openFiltersHandler}
+              handleSelect={handleToggle}
+            />
+          )}
+
           {/* Listings */}
-          <div className="lg:w-4/5 sm:w-3/5 max-w-7xl sm:px-16">
+          <div className="p-4 lg:w-4/5 max-w-7xl sm:px-16 lg:p-0">
             <h1 className="header_titles font-cherryBomb">All Dogs</h1>
 
             {animalListings.length == 0 ? (
@@ -138,7 +126,7 @@ function animals() {
                 <NoResults />
               </div>
             ) : (
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {animalListings.map((item) => (
                   <div
                     key={item.id}

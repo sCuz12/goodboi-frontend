@@ -40,9 +40,7 @@ function ListingCard({
       console.log(err);
     }
   };
-  {
-    console.log(isfavourite);
-  }
+
   return (
     <div className="bg-roz hover:bg-basicPurple hover:text-white">
       <div className="items-center text-center">
