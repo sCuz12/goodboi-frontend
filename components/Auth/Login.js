@@ -79,11 +79,11 @@ export default function Login() {
 
   return (
     <main className="pt-20">
-      <section className="flex w-full h-82">
-        <div className="w-3/5">
-          <div className="flex w-full">
-            <h1 className="header_titles text-darkPurple">
-              Find your new <p>best friend!</p>{" "}
+      <section className="flex w-full text-center h-82 lg:px-40">
+        <div className="w-full lg:w-3/5">
+          <div className="items-center w-full lg:text-left">
+            <h1 className="text-4xl lg:text-6xl font-cherryBomb text-darkPurple">
+              Login and go<p>woof</p>{" "}
             </h1>
           </div>
 
@@ -93,7 +93,7 @@ export default function Login() {
           </p>
           <SolidPaw />
         </div>
-        <div className="lg:w-3/5 lg:justify-end lg:flex lg:pl-48 sm:flex-col">
+        <div className="hidden lg:w-3/5 lg:justify-end lg:flex lg:pl-48 sm:flex-col lg:block">
           <div className="pl-10">
             <div className="flex">
               <DogInCicle image="dog-2.png" />
@@ -104,7 +104,7 @@ export default function Login() {
       <section className="flex flex-col items-center justify-center flex-1 w-full px-20 pt-10 text-center ">
         <div className="flex justify-center max-w-4xl mb-10 shadow-2xl sm:w-2/2 lg:w-1/2 h-98 rounded-2xl bg-navyPink sm:w-full">
           <div className="w-2/4">
-            <h2 className="pt-10 pb-10 text-2xl font-bold text-basicFont font-kdam">
+            <h2 className="pt-10 pb-10 text-2xl font-bold lg:text-4xl text-basicFont font-cherryBomb">
               Welcome Back
             </h2>
             <form onSubmit={handleSubmit}>
@@ -134,6 +134,7 @@ export default function Login() {
                     Forgot Password?
                   </p>
                 </a>
+                <div className="items-start pt-3 pt-5 text-left"></div>
                 <div className="pt-5 mt-5">
                   <button
                     type="submit"
