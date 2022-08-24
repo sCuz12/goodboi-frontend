@@ -118,7 +118,7 @@ function animals() {
           )}
 
           {/* Listings */}
-          <div className="p-4 lg:w-4/5 max-w-7xl sm:px-16 lg:p-0">
+          <div className="p-4 lg:pr-8 lg:w-4/5 max-w-7xl sm:px-16 ">
             <h1 className="header_titles font-cherryBomb">All Dogs</h1>
 
             {animalListings.length == 0 ? (

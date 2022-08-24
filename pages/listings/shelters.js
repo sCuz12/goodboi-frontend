@@ -94,7 +94,7 @@ export default function Shelters() {
           />
         )}
         {/* Shelter Listings */}
-        <div className="lg:w-4/5 sm:w-3/5 max-w-7xl sm:px-16">
+        <div className="lg:w-4/5 sm:w-3/5 max-w-7xl sm:px-16 lg:pr-8">
           <h1 className="header_titles font-cherryBomb">All Shelters</h1>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {shelterListings.map((item) => (
