@@ -6,11 +6,15 @@ import ShelterInfoCard from "../../../components/Cards/ShelterInfoCard";
 import ListingImageSlider from "../../../components/Slides/ListingImageSlider";
 import { Tag } from "antd";
 import Heart from "../../../components/Icons/Heart";
-import CtaButton from "../../../components/Buttons/CtaButton";
 import Telephone from "../../../components/Modals/Telephone";
 import CallShelter from "../../../components/Buttons/CallShelter";
 import UserRoute from "../../../components/Routes/UserRoutes";
 import CopyLink from "../../../components/Buttons/CopyLink";
+import { Tabs } from "antd";
+import { useMediaQuery } from "../../../utils/hooks";
+import DogInfo from "../../../components/Mobile/dogInfo";
+
+const { TabPane } = Tabs;
 
 const AnimalListingView = () => {
   const [animal, setAnimal] = useState({});
@@ -19,6 +23,9 @@ const AnimalListingView = () => {
   const [dogVaccinations, setDogVaccination] = useState([]);
   const [showTelModal, setShowTelModal] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  // You can use any @media property
+  const isMobile = useMediaQuery("(max-width: 960px)");
 
   const router = useRouter();
 
@@ -91,17 +98,16 @@ const AnimalListingView = () => {
                     {/*Upper info */}
                     <h1 className="text-4xl font-semibold font-cherryBomb lg:w-full">
                       <div className="flex items-center text-center">
-                        This is {animal.name}{" "}
+                        This is {animal.name}
                         <div className="">
                           <Heart />
-                        </div>{" "}
+                        </div>
                       </div>
                     </h1>
                     <p className="flex-grow lg:w-full h-44">
                       {animal.description}
                     </p>
                     <div className="justify-center w-3/5 lg:w-full">
-                      {" "}
                       <div className="pt-4 lg:w-2/5 ">
                         <CallShelter onclick={() => setShowTelModal(true)} />
                       </div>
@@ -112,12 +118,46 @@ const AnimalListingView = () => {
                         />
                       </div>
                     </div>
+                    {isMobile ? (
+                      <div className="w-3/4 pt-20 round">
+                        <Tabs defaultActiveKey="1" centered>
+                          <TabPane tab="Dog Info" key="1">
+                            {/*Characterestic skills*/}
+                            <DogInfo
+                              dog={animal}
+                              vaccinations={dogVaccinations}
+                            />
+                          </TabPane>
+                          <TabPane
+                            tabBarStyle={"color:black"}
+                            tab="Shelter"
+                            key="2"
+                          >
+                            <ShelterInfoCard
+                              name={shelterInfo.shelter_name}
+                              city={shelterInfo.city}
+                              description={shelterInfo.description}
+                              cover_image={shelterInfo.cover_image}
+                              shelter_id={shelterInfo.id}
+                            />
+                          </TabPane>
+                          <TabPane tab="Photos" key="3">
+                            {/** All pictures section */}
+                            <div className="items-center justify-center w-full bg-center h-120 bg-blue rounded-3xl">
+                              <ListingImageSlider
+                                listingImages={listingImages}
+                              />
+                            </div>
+                          </TabPane>
+                        </Tabs>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
                 {/* TODO : Paws icons*/}
               </section>
             </div>
-            <section className="flex flex-col pt-10 lg:flex-row">
+            <section className="hidden pt-10 lg:flex lg:flex-row">
               <div className="grid w-full lg:w-3/5">
                 {/*Characterestic skills*/}
                 <div className="flex ">
@@ -167,7 +207,7 @@ const AnimalListingView = () => {
               {/*Next column*/}
             </section>
             {/** All pictures section */}
-            <div className="flex items-center justify-center bg-center lg:w-3/5 md:w-3/5 sm:w-4/5 h-120 bg-blue rounded-3xl">
+            <div className="items-center justify-center hidden bg-center lg:flex lg:w-3/5 md:w-3/5 sm:w-4/5 h-120 bg-blue rounded-3xl">
               <ListingImageSlider listingImages={listingImages} />
             </div>
           </div>
