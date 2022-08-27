@@ -55,11 +55,11 @@ export default function Register({ isShelter }) {
     }
   };
   return (
-    <main className="pt-40">
-      <section className="flex w-full">
-        <div className="w-2/3 ">
+    <main className="pt-40 ">
+      <section className="flex w-full ">
+        <div className="w-full text-center lg:px-40 lg:w-2/3">
           <div className="flex w-full">
-            <h1 className="text-7xl font-cherryBomb text-darkPurple">
+            <h1 className="text-6xl lg:text-7xl font-cherryBomb text-darkPurple">
               {feMessages.title}
             </h1>
           </div>
@@ -67,7 +67,7 @@ export default function Register({ isShelter }) {
           <p>{feMessages.description}</p>
           <SolidPaw />
           {/* Section for the banner that shows the steps*/}
-          <div className="flex w-full pt-20 pb-20">
+          <div className="flex w-full pt-20 pb-20 ml-20 lg:ml-0">
             <RectGuides
               text_one={feMessages.text1}
               text_two={feMessages.text2}
@@ -75,7 +75,7 @@ export default function Register({ isShelter }) {
             />
           </div>
         </div>
-        <div className="flex justify-end w-1/3">
+        <div className="flex justify-end hidden w-1/3 lg:block ">
           <DogsWithCircle />
           <SolidPaw />
 
@@ -87,7 +87,7 @@ export default function Register({ isShelter }) {
       <section className="flex flex-col items-center justify-center flex-1 w-full px-20 pt-10">
         <div className="flex justify-center max-w-4xl shadow-2xl lg:w-1/2 sm:w-2/2 h-98 rounded-2xl bg-navyPink">
           <div className="w-2/4">
-            <h2 className="justify-center pt-10 pb-10 text-2xl font-bold text-center text-basicFont font-kdam">
+            <h2 className="justify-center pt-10 pb-10 text-2xl font-bold text-center lg:text-4xl text-basicFont font-cherryBomb">
               Register
             </h2>
 

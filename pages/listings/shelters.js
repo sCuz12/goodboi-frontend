@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import AbovePageSection from "../../components/Sections/AbovePageSection";
 import PinkCircle from "../../components/CustomImages/DogInCircle";
-
 import axiosInstance from "../../helpers/axios";
-import ListingsShelterFilters from "../../components/Sections/ListingsShelterFilters";
 import ShelterCard from "../../components/Cards/ShelterCard";
+import ListingsFilters from "../../components/Filters/ListingsFilters";
+import { MdSort } from "react-icons/md";
 
 export default function Shelters() {
   const [shelterListings, setShelterListings] = useState([]);
   const [citiesFilter, setCitiesFilter] = useState([]);
   const [checkedCity, setCheckedCity] = useState([]);
+  const [filtersCollapse, setFiltersCollapse] = useState(false);
 
   const BANNER_TITLE = "Explore Shelters";
   const BANNER_DESCRIPTION =
@@ -64,6 +65,11 @@ export default function Shelters() {
     }
   };
 
+  const openFiltersHandler = () => {
+    filtersCollapse ? setFiltersCollapse(false) : setFiltersCollapse(true);
+    console.log(filtersCollapse);
+  };
+
   return (
     <div className="pt-40">
       <section>
@@ -75,14 +81,22 @@ export default function Shelters() {
       </section>
       <section className="w-full h-auto lg:flex md:flex ">
         {/* Filters */}
-        <ListingsShelterFilters
-          cities={citiesFilter}
-          handleToggle={handleToggle}
-        />
+        {filtersCollapse ? (
+          <div className="pl-4 pr-32">
+            <MdSort onClick={openFiltersHandler} size={30} />
+          </div>
+        ) : (
+          <ListingsFilters
+            cities={citiesFilter}
+            isCollapse={filtersCollapse}
+            openFiltersHandler={openFiltersHandler}
+            handleSelect={handleToggle}
+          />
+        )}
         {/* Shelter Listings */}
-        <div className="lg:w-4/5 sm:w-3/5 max-w-7xl sm:px-16">
+        <div className="lg:w-4/5 sm:w-3/5 max-w-7xl sm:px-16 lg:pr-8">
           <h1 className="header_titles font-cherryBomb">All Shelters</h1>
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {shelterListings.map((item) => (
               <div
                 key={item.id}

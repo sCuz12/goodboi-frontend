@@ -8,10 +8,19 @@ import { GoLocation } from "react-icons/go";
 import { BsTelephone } from "react-icons/bs";
 import SolidPaw from "../../../components/Icons/SolidPaw";
 import SwipeCarouselSlider from "../../../components/Slides/SwipeCarouselSlider";
+import { useMediaQuery } from "../../../utils/hooks";
+import { Tabs } from "antd";
+import SingleShlterInfo from "../../../components/Mobile/singleShelterInfo";
+import ShelterCard from "../../../components/Cards/ListingCard";
+import ListingCard from "../../../components/Cards/ListingCard";
+const { TabPane } = Tabs;
 
 function ShelterProfileView() {
   const [shelterInfo, setShelterInfo] = useState({});
   const [shelterListings, setShelterListings] = useState([]);
+
+  // Check wether is on mobileview
+  const isMobile = useMediaQuery("(max-width: 960px)");
 
   const router = useRouter();
   const { id } = router.query;
@@ -46,7 +55,7 @@ function ShelterProfileView() {
         <div className="min-h-screen pt-10 lg:pl-10">
           <div className="w-full">
             <section className="flex flex-col pt-10 lg:flex-row">
-              <div className="grid lg:w-2/5 sm:w-1/5 place-items-center ">
+              <div className="grid p-6 lg:w-2/5 sm:w-1/5 place-items-center">
                 {" "}
                 {/* Photo container */}
                 <div className="flex-shrink-0 pt-3 pb-2 pl-2 pr-2 rounded-full lg:m-12 bg-roz">
@@ -69,19 +78,56 @@ function ShelterProfileView() {
                   {/* column of name,description , info */}
                   <div className="flex flex-col">
                     {/*Upper info */}
-                    <h1 className="font-semibold text-7xl font-cherryBomb text-darkPurple">
-                      <div className="flex items-center text-center">
-                        {shelterInfo.shelter_name}{" "}
-                        <div>
-                          <Heart />
-                        </div>{" "}
-                      </div>
-                    </h1>
-                    <p className="flex-grow break-all lg:h-44 sm:h-44 description_text">
-                      {shelterInfo.description}
-                    </p>
+                    <div className="p-6">
+                      <h1 className="header_titles">
+                        <div className="flex items-center text-center">
+                          {shelterInfo.shelter_name}{" "}
+                          <div>
+                            <Heart />
+                          </div>{" "}
+                        </div>
+                      </h1>
+                      <p className="items-start flex-grow break-all lg:h-44 sm:h-44 description_text">
+                        {shelterInfo.description}
+                      </p>
+                    </div>
                     {/* Information of shelter*/}
-                    <div className="flex-col pt-4 space-y-4 lg:w-2/5 ">
+                    {isMobile ? (
+                      <div className="pt-20">
+                        <Tabs defaultActiveKey="1" centered>
+                          <TabPane tab="Contact details" key="1">
+                            <div className="p-8">
+                              <SingleShlterInfo shelter={shelterInfo} />
+                            </div>
+                          </TabPane>
+                          <TabPane tab="Shelter Listings" key="2">
+                            <div className="lg:w-4/5 sm:w-3/5 max-w-7xl sm:px-16 lg:pr-8">
+                              <h1 className="header_titles font-cherryBomb">
+                                My Dogs
+                              </h1>
+                              <div className="grid grid-cols-2 gap-2">
+                                {shelterListings.map((item) => (
+                                  <div
+                                    key={item.id}
+                                    className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30"
+                                  >
+                                    <ListingCard
+                                      name={item.name}
+                                      image={item.cover_image}
+                                      city={item.city}
+                                      id={item.id}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </TabPane>
+                        </Tabs>
+                      </div>
+                    ) : null}
+
+                    {/**Displayed only on desktop */}
+                    <div className="hidden lg:block lg:pt-4 lg:space-y-4 lg:flex-col lg:w-2/5 ">
                       <div className="flex w-full description_text">
                         <div className="flex w-1/5">
                           <AiOutlineMail size={30} />
@@ -101,14 +147,15 @@ function ShelterProfileView() {
                         <div className="w-4/5">{shelterInfo.phone}</div>
                       </div>
                     </div>
-                    <div className="flex justify-end w-4/5">
+                    {/**Displayed only on desktop */}
+                    <div className="justify-end hidden w-4/5 lg:flex ">
                       <SolidPaw width={200} height={200} />
                     </div>
                   </div>
                 </div>
               </div>
             </section>
-            <section>
+            <section className="hidden lg:block">
               <h3 className="pb-5 header_titles">My Dogs</h3>
               <SwipeCarouselSlider listings={shelterListings} />
             </section>
