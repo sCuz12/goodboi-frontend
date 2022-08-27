@@ -24,7 +24,7 @@ const AnimalListingView = () => {
   const [showTelModal, setShowTelModal] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  // You can use any @media property
+  // Check wether is on mobileview
   const isMobile = useMediaQuery("(max-width: 960px)");
 
   const router = useRouter();
@@ -78,7 +78,7 @@ const AnimalListingView = () => {
             <div className="w-full">
               <section className="flex flex-col lg:pt-10 lg:flex-row ">
                 {/* Image Div*/}
-                <div className="grid lg:w-2/5 place-items-center">
+                <div className="grid p-6 lg:w-2/5 place-items-center">
                   {/* Photo container */}
                   <div className="flex-shrink-0 pt-3 pb-2 pl-2 pr-2 rounded-full lg:m-12 bg-roz">
                     <Image
