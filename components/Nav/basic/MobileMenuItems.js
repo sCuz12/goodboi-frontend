@@ -125,7 +125,6 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
                 {item.text}
               </a>
             </Link>
-            <PawIcon />
           </>
         ))}
       {/* Logout for the logged in users*/}

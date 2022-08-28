@@ -1,6 +1,7 @@
 import React from "react";
 import SideBarItem from "../shelter/Items/SideBarItem";
-import { AiOutlineDashboard, AiOutlineLogout } from "react-icons/ai";
+import { AiOutlineDashboard } from "react-icons/ai";
+import { GiLoveHowl } from "react-icons/gi";
 import Logout from "../shelter/Items/Logout";
 
 function UserSideNav() {
@@ -9,7 +10,7 @@ function UserSideNav() {
       <ul className="relative">
         <SideBarItem
           icon={
-            <AiOutlineDashboard className="block float-left mr-2 text-xl text-black cursor-pointer" />
+            <GiLoveHowl className="block float-left mr-2 text-xl text-black cursor-pointer" />
           }
           name="My Favourites"
           url="/user/favourites"
