@@ -1,5 +1,6 @@
 import axios from "axios";
 //https://api.goodboi.com.cy
+//http://localhost:8000
 const axiosInstance = axios.create({
   baseURL: "https://api.goodboi.com.cy",
   headers: {

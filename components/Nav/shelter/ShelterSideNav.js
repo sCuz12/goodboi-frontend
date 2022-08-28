@@ -1,5 +1,6 @@
 import React from "react";
 import { AiOutlineDashboard, AiOutlineProfile } from "react-icons/ai";
+import { GiLoveHowl } from "react-icons/gi";
 import { IoCreateOutline } from "react-icons/io5";
 import SideBarItem from "./Items/SideBarItem";
 import { SiDatadog } from "react-icons/si";
@@ -14,6 +15,13 @@ function ShelterSideNav() {
           }
           name="Dashboard"
           url="/shelter/"
+        />
+        <SideBarItem
+          icon={
+            <GiLoveHowl className="block float-left mr-2 text-xl text-black cursor-pointer" />
+          }
+          name="My Favourites"
+          url="/user/favourites"
         />
 
         <SideBarItem

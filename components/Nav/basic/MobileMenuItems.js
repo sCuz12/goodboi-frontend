@@ -19,6 +19,10 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       text: "Find Shelter",
       url: "/listings/shelters",
     },
+    {
+      text: "My Favourites",
+      url: "/user/favourites/",
+    },
   ];
 
   {
@@ -125,7 +129,6 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
                 {item.text}
               </a>
             </Link>
-            <PawIcon />
           </>
         ))}
       {/* Logout for the logged in users*/}
