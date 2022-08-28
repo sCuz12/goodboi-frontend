@@ -14,6 +14,11 @@ function favourites() {
       "token"
     )}`;
     getFavouritesOfUser();
+  }, []);
+
+  //dependency that runs when the favourites listing change to retrieve the new one
+  useEffect(() => {
+    getFavouritesOfUser();
   }, [favListings]);
 
   const getFavouritesOfUser = async () => {
@@ -31,7 +36,7 @@ function favourites() {
                 <NoResults />
               </div>
             ) : (
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-2 lg:grid-cols-3 xl:grid-cols-4">
                 {favListings.map((item) => (
                   <div
                     key={item.id}
