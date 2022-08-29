@@ -123,3 +123,6 @@ Cards
  .charectiristics_values { 
   @apply font-light 
  }
+ .error_messages{
+  @apply text-red 
+ }

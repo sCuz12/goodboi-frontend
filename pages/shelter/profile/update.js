@@ -15,6 +15,7 @@ function updateProfile() {
   const [citiesOptions, setCitiesOptions] = useState([]);
   const [currentValues, setCurrentValues] = useState([]);
   const { state, dispatch } = useContext(Context);
+  const [nameError, setNameError] = useState("");
 
   const router = useRouter();
 
@@ -86,6 +87,23 @@ function updateProfile() {
       });
   };
 
+  const shelterNameChangeHandler = (e) => {
+    const isValid = validateShelterName(e.target.value);
+    if (isValid) {
+      setShelterName(e.target.value);
+    }
+  };
+
+  const validateShelterName = (name) => {
+    if (name.length > 30) {
+      setNameError("Name should be less than 30 characters");
+      return false;
+    }
+    setNameError("");
+
+    return true;
+  };
+
   return (
     <ShelterRoute>
       <div className="max-w-2xl pb-4 mx-auto mt-24">
@@ -105,14 +123,15 @@ function updateProfile() {
                 </label>
                 <input
                   name="sheter_name"
-                  onChange={(e) => {
-                    setShelterName(e.target.value);
-                  }}
+                  onChange={shelterNameChangeHandler}
                   defaultValue={currentValues.shelter_name}
                   className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                   id="grid-shelter-name"
                   type="text"
                 />
+                {nameError ? (
+                  <div className="error_messages">{nameError}</div>
+                ) : null}
               </div>
               {/* Shelter Address*/}
               <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">

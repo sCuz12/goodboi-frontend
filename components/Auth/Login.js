@@ -145,7 +145,7 @@ export default function Login() {
                 </div>
                 <p className="text-bold">
                   Don't have an account?{" "}
-                  <a className="text-black underline" href="">
+                  <a className="text-black underline" href="/register">
                     Sign up now
                   </a>
                 </p>
