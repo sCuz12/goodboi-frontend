@@ -91,7 +91,7 @@ function animals() {
   };
 
   return (
-    <div className="pt-40">
+    <div className="pt-0 lg:pt-20">
       {/* Header section */}
       <section className="">
         <AbovePageSection
