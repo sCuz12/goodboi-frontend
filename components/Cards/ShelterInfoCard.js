@@ -14,7 +14,7 @@ function ShelterInfoCard({ shelter_id, name, description, cover_image, city }) {
           <div className="flex justify-center w-full text-center rounded-3xlr">
             <Image
               src={cover_image ? cover_image : "/default2.png"}
-              className="text-center rounded-3xl"
+              className="object-cover text-center rounded-3xl"
               height={200}
               width={400}
             />

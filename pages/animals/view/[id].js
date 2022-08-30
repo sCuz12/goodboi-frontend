@@ -143,7 +143,7 @@ const AnimalListingView = () => {
                           </TabPane>
                           <TabPane tab="Photos" key="3">
                             {/** All pictures section */}
-                            <div className="items-center justify-center w-full bg-center h-120 bg-blue rounded-3xl">
+                            <div className="items-center justify-center w-full p-3 bg-center h-80 bg-blue rounded-3xl">
                               <ListingImageSlider
                                 listingImages={listingImages}
                               />
@@ -207,7 +207,7 @@ const AnimalListingView = () => {
               {/*Next column*/}
             </section>
             {/** All pictures section */}
-            <div className="items-center justify-center hidden bg-center lg:flex lg:w-3/5 md:w-3/5 sm:w-4/5 h-120 bg-blue rounded-3xl">
+            <div className="items-center justify-center hidden p-8 bg-center lg:flex lg:w-3/5 md:w-3/5 sm:w-5/5 h-120 bg-blue rounded-3xl">
               <ListingImageSlider listingImages={listingImages} />
             </div>
           </div>
