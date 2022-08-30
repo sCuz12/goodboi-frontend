@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 function ListingImageSlider({ listingImages }) {
@@ -39,32 +40,39 @@ function ListingImageSlider({ listingImages }) {
   };
 
   return (
-    <div className="relative flex items-center justify-center justify-between w-full h-full p-2 rounded-3xl">
-      <div style={leftArrowStyles} onClick={goToPrevious}>
-        ❮
-      </div>
-      <div style={rightArrowStyles} onClick={goToNext}>
-        ❯
-      </div>
-      <div className="flex flex-col items-center w-full h-full ">
-        <div
-          className="w-full h-full bg-center bg-cover rounded-3xl"
-          style={slideStyles}
-        ></div>
-        {/**doTs */}
-        <div className="flex justify-center pt-2">
-          {listingImages.map((slide, slideIndex) => {
-            return slideIndex === currentIndex ? (
-              <p key={slideIndex}>&#9670;</p>
-            ) : (
-              <p key={slideIndex}>&#9671;</p>
-            );
-          })}
+    <>
+      <div className="relative flex-col items-center w-full h-full rounded-3xl">
+        <div style={leftArrowStyles} onClick={goToPrevious}>
+          ❮
         </div>
-        {/**Next photos section */}
-        <div></div>
+        <div style={rightArrowStyles} onClick={goToNext}>
+          ❯
+        </div>
+
+        <div className="flex flex-col items-center ">
+          <div className="w-full bg-center h-3/5 rounded-3xl">
+            <Image
+              className="object-cover shadow-inner rounded-2xl"
+              src={`${listingImages[currentIndex].url}`}
+              layout="fill"
+            />
+          </div>
+
+          {/**Next photos section */}
+          <div></div>
+          {/**doTs */}
+          <div className="z-50 flex justify-center w-full pt-8">
+            {listingImages.map((slide, slideIndex) => {
+              return slideIndex === currentIndex ? (
+                <p key={slideIndex}>&#9670;</p>
+              ) : (
+                <p key={slideIndex}>&#9671;</p>
+              );
+            })}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
