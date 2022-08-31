@@ -54,7 +54,7 @@ export default function Home() {
       <div className="pt-20"></div>
       <IndexBanner user={user} />
       {/* Listings */}
-      <main className="p-16 sm:px-16">
+      <main className="p-4 lg:p-16 ">
         <section className="p-6">
           <h3 className="pb-5 header_titles">Adopt Me</h3>
           {listings.length === 0 ? (
