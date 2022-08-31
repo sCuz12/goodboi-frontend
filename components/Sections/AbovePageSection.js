@@ -4,8 +4,8 @@ import Heart from "../Icons/Heart";
 
 export default function AbovePageSection({ title, description, image }) {
   return (
-    <div className="flex w-full text-center h-96 ">
-      <div className="flex w-4/5 lg:w-4/5">
+    <div className="flex w-full text-center h-96">
+      <div className="flex w-4/5 pl-16 lg:w-4/5">
         <div className="flex flex-col items-start justify-center pl-6">
           <h1 className="header_titles">{title}</h1>
           <div className="flex w-full lg:w-1/2">

@@ -93,7 +93,7 @@ function animals() {
   return (
     <div className="pt-0 lg:pt-20">
       {/* Header section */}
-      <section className="">
+      <section>
         <AbovePageSection
           title={"Leave no one behind !"}
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -118,7 +118,7 @@ function animals() {
           )}
 
           {/* Listings */}
-          <div className="p-4 lg:pr-8 lg:w-4/5 max-w-7xl sm:px-16 ">
+          <div className="p-4 lg:pr-8 lg:w-4/5 sm:px-16 ">
             <h1 className="header_titles font-cherryBomb">All Dogs</h1>
 
             {animalListings.length == 0 ? (
