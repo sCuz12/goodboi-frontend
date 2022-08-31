@@ -71,7 +71,7 @@ Cards
  }
 
  .charectiristics_labels {
-   @apply text-xl font-bold
+   @apply text-2xl font-extrabold
  }
 
  .header_titles {

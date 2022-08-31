@@ -13,6 +13,7 @@ import CopyLink from "../../../components/Buttons/CopyLink";
 import { Tabs } from "antd";
 import { useMediaQuery } from "../../../utils/hooks";
 import DogInfo from "../../../components/Mobile/dogInfo";
+import SolidPaw from "../../../components/Icons/SolidPaw";
 
 const { TabPane } = Tabs;
 
@@ -74,7 +75,7 @@ const AnimalListingView = () => {
     <UserRoute showSide={false}>
       <>
         {animal.name && listingImages && (
-          <div className="min-h-screen pt-10 lg:pl-10">
+          <div className="min-h-screen pt-10 lg:pl-6">
             <div className="w-full">
               <section className="flex flex-col lg:pt-10 lg:flex-row ">
                 {/* Image Div*/}
@@ -88,12 +89,12 @@ const AnimalListingView = () => {
                           : "/default2.png"
                       }
                       className="border rounded-full "
-                      height={350}
-                      width={350}
+                      height={450}
+                      width={450}
                     />
                   </div>
                 </div>
-                <div className="grid w-full pt-12 lg:w-2/5">
+                <div className="grid w-full pt-12 lg:w-3/5">
                   <div className="flex flex-col items-center">
                     {/*Upper info */}
                     <h1 className="text-4xl font-semibold font-cherryBomb lg:w-full">
@@ -104,13 +105,23 @@ const AnimalListingView = () => {
                         </div>
                       </div>
                     </h1>
-                    <p className="flex-grow lg:w-full h-44">
-                      {animal.description}
-                    </p>
-                    <div className="justify-center w-3/5 lg:w-full">
-                      <div className="pt-4 lg:w-2/5 ">
-                        <CallShelter onclick={() => setShowTelModal(true)} />
-                      </div>
+                    <p className="flex h-40 lg:w-full">{animal.description}</p>
+                    <div className="flex-col justify-center w-3/5 lg:w-full">
+                      {!isMobile ? (
+                        <div className="flex flex-row w-full">
+                          <div className="pt-4 lg:w-2/5 ">
+                            <CallShelter
+                              onclick={() => setShowTelModal(true)}
+                            />
+                          </div>
+                          <SolidPaw />
+                        </div>
+                      ) : (
+                        <div className="pt-4 lg:w-2/5 ">
+                          <CallShelter onclick={() => setShowTelModal(true)} />
+                        </div>
+                      )}
+
                       <div className="pt-4 lg:w-2/5">
                         <CopyLink
                           onclick={copyUrlToClipboard}
@@ -174,6 +185,7 @@ const AnimalListingView = () => {
                         {animal.age}
                       </span>
                     </p>
+                    <SolidPaw />
                   </div>
                   <p className="mr-5 text-roz h-5/5 border-x-2"></p>
                   <div className="w-2/4">
@@ -191,6 +203,7 @@ const AnimalListingView = () => {
                         {animal.size.toUpperCase()}
                       </span>
                     </p>
+                    <Heart />
                   </div>
                 </div>
               </div>
