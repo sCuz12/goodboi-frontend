@@ -67,7 +67,7 @@ export default function Register({ isShelter }) {
           <p>{feMessages.description}</p>
           <SolidPaw />
           {/* Section for the banner that shows the steps*/}
-          <div className="flex w-full pt-20 pb-20 ml-20 lg:ml-0">
+          <div className="flex justify-center w-full pt-20 pb-20 lg:ml-0">
             <RectGuides
               text_one={feMessages.text1}
               text_two={feMessages.text2}
@@ -197,7 +197,7 @@ export default function Register({ isShelter }) {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col text-center">
                 <p>
                   Already have an account?
                   <a className="text-black underline" href="/login">

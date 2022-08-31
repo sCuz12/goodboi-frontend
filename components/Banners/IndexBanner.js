@@ -9,7 +9,7 @@ const dogsPictures = ["dog1", "dog2", "dog3", "dog4"];
 function IndexBanner({ user }) {
   return (
     <section className="py-16 bg-red-100 ">
-      <div className="flex items-center justify-center w-full">
+      <div className="flex items-center justify-center w-full lg:pl-16">
         <div className="flex sm:flex-col lg:flex-row sm:w-full">
           {/**Left */}
           <div className="items-center w-full text-center lg:w-3/5 lg:text-left">

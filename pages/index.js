@@ -55,7 +55,7 @@ export default function Home() {
       <IndexBanner user={user} />
       {/* Listings */}
       <main className="p-4 lg:p-16 ">
-        <section className="p-6">
+        <section className="lg:p-6">
           <h3 className="pb-5 header_titles">Adopt Me</h3>
           {listings.length === 0 ? (
             <div className="flex justify-center w-full pt-20 pb-20">
