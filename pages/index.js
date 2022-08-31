@@ -54,8 +54,8 @@ export default function Home() {
       <div className="pt-20"></div>
       <IndexBanner user={user} />
       {/* Listings */}
-      <main className="px-8 mx-auto max-w-7xl sm:px-16">
-        <section className="pt-6">
+      <main className="p-16 sm:px-16">
+        <section className="p-6">
           <h3 className="pb-5 header_titles">Adopt Me</h3>
           {listings.length === 0 ? (
             <div className="flex justify-center w-full pt-20 pb-20">

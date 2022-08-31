@@ -8,24 +8,24 @@ const dogsPictures = ["dog1", "dog2", "dog3", "dog4"];
 
 function IndexBanner({ user }) {
   return (
-    <section className="py-16 bg-red-100">
-      <div className="flex items-center justify-center w-full">
-        <div className="container flex px-2 sm:flex-col lg:flex-row sm:w-full">
+    <section className="py-16 bg-red-100 ">
+      <div className="flex items-center justify-center w-full pl-16">
+        <div className="flex sm:flex-col lg:flex-row sm:w-full">
           {/**Left */}
-          <div className="items-center w-full text-center lg:w-1/2 lg:text-left">
+          <div className="items-center w-full text-center lg:w-3/5 lg:text-left">
             <div className="">
               <div className="hidden lg:block">
                 <SolidPaw height={60} width={60} />
               </div>
 
-              <h1 className="text-5xl font-cherryBomb text-darkPurple lg:text-7xl">
+              <h1 className="font-cherryBomb text-darkPurple header_titles">
                 Find your new <p>best friend!</p>{" "}
               </h1>
 
               <SolidPaw height={60} width={60} />
             </div>
 
-            <p>
+            <p className="copyright_text">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
@@ -39,7 +39,7 @@ function IndexBanner({ user }) {
           </div>
           {/**Left */}
           {/** Desktop Photo section */}
-          <div className="hidden w-1/2 lg:block ">
+          <div className="hidden w-2/5 lg:block ">
             {dogsPictures.map((imageName) => {
               <Image />;
             })}
