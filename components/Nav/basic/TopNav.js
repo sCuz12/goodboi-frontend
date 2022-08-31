@@ -59,7 +59,7 @@ function TopNav() {
     <div className="w-full ">
       <nav>
         <div className="max-w-full px-4 mx-auto sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20 shadow-xl lg:border-b-2 lg:rounded-2xl border-roz">
             <div className="flex items-center w-2/4">
               {/*Logo section */}
               <div className="flex-shrink-0 w-1/2">

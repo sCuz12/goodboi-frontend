@@ -79,7 +79,7 @@ Cards
  }
 
  .nav_link_text {
-   @apply lg:text-lg text-black no-underline hover:text-black sm:text-sm font-extrabold whitespace-nowrap
+   @apply lg:text-2xl text-black no-underline hover:text-black sm:text-sm font-extrabold whitespace-nowrap font-cherryBomb
  }
  .description_text {
    @apply text-xl text-black 
