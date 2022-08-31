@@ -44,7 +44,7 @@ function ListingCard({
   return (
     <div className="bg-roz hover:bg-basicPurple hover:text-white">
       <div className="items-center text-center">
-        <div className="p-2.5 transition duration-300 ease-out transform cursor-pointer hover:scale-105">
+        <div className="p-1.5 transition duration-300 ease-out transform cursor-pointer hover:scale-105">
           <div className="relative">
             <Link href={`/animals/view/${id}`}>
               <Image
