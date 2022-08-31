@@ -62,7 +62,7 @@ function TopNav() {
           <div className="flex items-center justify-between h-20 border-b-2 shadow-xl rounded-2xl border-roz">
             <div className="flex items-center w-2/4">
               {/*Logo section */}
-              <div className="flex-shrink-0 w-1/2">
+              <div className="flex-shrink-0 w-2/2 lg:w-1/2">
                 <a href="/">
                   <Image
                     key={1}
