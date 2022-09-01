@@ -130,3 +130,6 @@ Cards
  .copyright_text{ 
   @apply text-lg
  }
+ .buttons_links_text {
+  @apply text-black cursor-pointer lg:text-xl hover:text-white md:inline-flex w-max font-cherryBomb;
+ }
