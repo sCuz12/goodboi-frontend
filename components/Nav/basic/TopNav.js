@@ -157,7 +157,7 @@ function TopNav() {
               </div>
             </div>
             {/* mob*/}
-            <div className="flex md:hidden">
+            <div className="flex mr-8 md:hidden">
               <GiHamburgerMenu
                 className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-900 rounded-md hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 aria-controls="mobile-menu"

@@ -94,6 +94,7 @@ export default function Home() {
             {shelters.map((item) => (
               <div key={item.id} className="mb-10 overflow-hidden rounded-2xl">
                 <ShelterCard
+                  id={item.id}
                   name={item.shelter_name}
                   image={item.cover_image}
                   city={item.city}
