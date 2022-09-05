@@ -49,6 +49,10 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       url: "/shelter/listing/create",
     },
     {
+      text: "My Listings",
+      url: "/shelter/mylistings/view",
+    },
+    {
       text: "Update Shelter Info",
       url: "/shelter/profile/update",
     },
