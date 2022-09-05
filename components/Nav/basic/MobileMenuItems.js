@@ -46,7 +46,7 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
     ...BASIC_URLS,
     {
       text: "List Dog",
-      url: "/shelter/",
+      url: "/shelter/listing/create",
     },
     {
       text: "Update Shelter Info",
