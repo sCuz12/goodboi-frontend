@@ -28,7 +28,7 @@ Cards
    @apply bg-primary-50;
  }
  .card_row {
-   @apply flex flex-row w-full;
+   @apply flex flex-col w-full lg:flex-row ;
  }
  
  .card_column {
@@ -62,7 +62,7 @@ Cards
  }
 
  .card_row .actions {
-    border-left-width: 1px;
+    @apply lg:border-x-2
 }
 
  

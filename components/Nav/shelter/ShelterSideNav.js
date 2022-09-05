@@ -20,7 +20,7 @@ function ShelterSideNav() {
   return (
     <>
       {isSidebarCollapsed ? (
-        <div className="hidden pl-4 pr-4 lg:block lg:pr-4 pt-28">
+        <div className="pl-4 pr-4  lg:pr-4 pt-28">
           <BsArrowUpRight onClick={expandSidebarHandler} size={20} />
         </div>
       ) : (

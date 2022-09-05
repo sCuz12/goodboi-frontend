@@ -23,28 +23,29 @@ function RowListingCard({
         <p>{description}</p>
       </div>
 
-      <div className="p-4 actions">
-        <a
-          href={"/shelter/listing/edit/" + id}
-          className="pb-8 mt-auto text-black btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
-        >
-          <AiFillEdit size={30} />
-        </a>
-        <button
-          onClick={() => handleDelete(index, id)}
-          className="text-black btn btn-icon btn_outlined btn_danger lg:mt-2 ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
-        >
-          <AiFillDelete size={30} />
-        </button>
-
+      <div className="flex p-4 space-x-4 actions lg:flex-col lg:space-x-0 sm:space-x-4">
         <p>
           <a
             href={"/animals/view/" + id}
-            className="pb-8 mt-auto text-black btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
+            className="pb-4 mt-auto text-black btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
           >
             <MdPreview size={30} />
           </a>
         </p>
+
+        <a
+          href={"/shelter/listing/edit/" + id}
+          className="pb-8 mt-auto text-black lg:pb-0 btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
+        >
+          <AiFillEdit size={30} />
+        </a>
+
+        <a
+          onClick={() => handleDelete(index, id)}
+          className="text-black btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
+        >
+          <AiFillDelete size={30} />
+        </a>
       </div>
     </div>
   );
