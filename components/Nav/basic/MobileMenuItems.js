@@ -19,10 +19,6 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       text: "Find Shelter",
       url: "/listings/shelters",
     },
-    {
-      text: "My Favourites",
-      url: "/user/favourites/",
-    },
   ];
 
   {
@@ -49,12 +45,16 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
   const SHELTER_URLS = [
     ...BASIC_URLS,
     {
-      text: "Dashboard",
+      text: "List Dog",
       url: "/shelter/",
     },
     {
-      text: "List Dog",
-      url: "/shelter/",
+      text: "Update Shelter Info",
+      url: "/shelter/profile/update",
+    },
+    {
+      text: "Update Shelter User",
+      url: "/user/profile/update",
     },
   ];
 
@@ -66,6 +66,10 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
     {
       text: "Update Profile",
       url: "/user/profile/update",
+    },
+    {
+      text: "My Favourites",
+      url: "/user/favourites/",
     },
   ];
 
