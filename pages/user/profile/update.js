@@ -110,7 +110,9 @@ function update() {
   return (
     <UserRoute>
       <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mt-24">
-        <h3 className="header_titles font-cherryBomb">Update User Profile</h3>
+        <h3 className="text-center header_titles font-cherryBomb">
+          Update User Profile
+        </h3>
         <div className="grid grid-cols-1 gap-6">
           <div className="flex flex-wrap mb-6 -mx-3">
             {/*First Name */}

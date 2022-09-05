@@ -39,7 +39,7 @@ const UserRoute = ({ children, showSide = false }) => {
         <div className="flex min-h-screen ">
           {showSide && <UserSideNav />}
 
-          <div className="w-full m-25">{children}</div>
+          <div className="w-full p-8 m-25 lg:p-8">{children}</div>
         </div>
       )}
     </>

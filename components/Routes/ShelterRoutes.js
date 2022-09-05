@@ -37,7 +37,7 @@ const ShelterRoute = ({ children }) => {
       ) : (
         <div className="flex min-h-screen ">
           <ShelterSideNav />
-          <div className="w-full m-25">{children}</div>
+          <div className="w-full p-8 m-25 lg:p-0">{children}</div>
         </div>
       )}
     </>

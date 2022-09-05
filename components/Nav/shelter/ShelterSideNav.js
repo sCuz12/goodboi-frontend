@@ -8,7 +8,7 @@ import Logout from "./Items/Logout";
 import { BsArrowUpRight, BsArrowDownLeft } from "react-icons/bs";
 
 function ShelterSideNav() {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const expandSidebarHandler = () => {
     setIsSidebarCollapsed(false);
@@ -20,7 +20,7 @@ function ShelterSideNav() {
   return (
     <>
       {isSidebarCollapsed ? (
-        <div className="pl-4 pr-4 lg:pr-4 pt-28">
+        <div className="hidden pl-4 pr-4 lg:block lg:pr-4 pt-28">
           <BsArrowUpRight onClick={expandSidebarHandler} size={20} />
         </div>
       ) : (
@@ -38,13 +38,6 @@ function ShelterSideNav() {
                 }
                 name="Dashboard"
                 url="/shelter/"
-              />
-              <SideBarItem
-                icon={
-                  <GiLoveHowl className="block float-left mr-2 text-xl text-black cursor-pointer" />
-                }
-                name="My Favourites"
-                url="/user/favourites"
               />
 
               <SideBarItem

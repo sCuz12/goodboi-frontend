@@ -193,7 +193,7 @@ function create() {
     <ShelterRoute>
       {user !== null && (
         <div className="max-w-2xl mx-auto mt-24">
-          <h3 className="pb-4 header_titles font-cherryBomb">
+          <h3 className="pb-4 text-center header_titles font-cherryBomb">
             Create Dog Listing
           </h3>
           <form onSubmit={handleFormSubmit}>
