@@ -185,6 +185,13 @@ const AnimalListingView = () => {
                         {animal.age}
                       </span>
                     </p>
+                    <p className="charectiristics_labels">
+                      Hometown:{" "}
+                      <span className="charectiristics_values">
+                        {animal.city}
+                      </span>
+                    </p>
+
                     <SolidPaw />
                   </div>
                   <p className="mr-5 text-roz h-5/5 border-x-2"></p>
