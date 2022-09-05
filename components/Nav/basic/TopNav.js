@@ -141,9 +141,6 @@ function TopNav() {
                               </Link>
                             </>
                           )}
-                          <Link href="/user/favourites/">
-                            <a className="top_nav_a">My Favourites</a>
-                          </Link>
                           <Link href="">
                             <a onClick={logout} className="top_nav_a">
                               Logout

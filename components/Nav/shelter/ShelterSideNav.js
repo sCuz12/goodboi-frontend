@@ -39,13 +39,6 @@ function ShelterSideNav() {
                 name="Dashboard"
                 url="/shelter/"
               />
-              <SideBarItem
-                icon={
-                  <GiLoveHowl className="block float-left mr-2 text-xl text-black cursor-pointer" />
-                }
-                name="My Favourites"
-                url="/user/favourites"
-              />
 
               <SideBarItem
                 icon={
