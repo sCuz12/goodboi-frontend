@@ -62,7 +62,7 @@ Cards
  }
 
  .card_row .actions {
-    border-left-width: 1px;
+    @apply lg:border-x-2
 }
 
  
