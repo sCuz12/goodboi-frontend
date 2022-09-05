@@ -107,7 +107,7 @@ function updateProfile() {
   return (
     <ShelterRoute>
       <div className="max-w-2xl pb-4 mx-auto mt-24">
-        <h3 className="header_titles font-cherryBomb">
+        <h3 className="text-center header_titles font-cherryBomb">
           Update Shelter Profile
         </h3>
         <form onSubmit={handleSubmit}>

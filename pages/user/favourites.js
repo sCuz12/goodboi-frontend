@@ -30,7 +30,7 @@ function favourites() {
       <div className="pt-20">
         <main className="px-8 mx-auto max-w-7xl sm:px-16">
           <section className="pt-6">
-            <h3 className="pb-5 header_titles">My Favourites</h3>
+            <h3 className="pb-5 text-center header_titles">My Favourites</h3>
             {favListings.length === 0 ? (
               <div className="flex justify-center w-full pt-20 pb-20">
                 <NoResults />
