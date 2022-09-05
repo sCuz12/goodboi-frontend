@@ -8,7 +8,7 @@ import Logout from "./Items/Logout";
 import { BsArrowUpRight, BsArrowDownLeft } from "react-icons/bs";
 
 function ShelterSideNav() {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const expandSidebarHandler = () => {
     setIsSidebarCollapsed(false);
