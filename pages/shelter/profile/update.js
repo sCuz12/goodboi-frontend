@@ -5,6 +5,7 @@ import axiosInstance from "../../../helpers/axios";
 import { toast } from "react-toastify";
 import { Context } from "../../../context";
 import { useRouter } from "next/router";
+import Spin from "../../../components/Decos/Spin";
 
 function updateProfile() {
   const [shelterName, setShelterName] = useState("");
@@ -16,6 +17,7 @@ function updateProfile() {
   const [currentValues, setCurrentValues] = useState([]);
   const { state, dispatch } = useContext(Context);
   const [nameError, setNameError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -55,6 +57,7 @@ function updateProfile() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     let formData = new FormData();
     formData.append("shelter_name", shelterName);
     formData.append("address", shelterAddress);
@@ -70,7 +73,7 @@ function updateProfile() {
         },
       })
       .then((res) => {
-        console.log(res);
+        setLoading(false);
         //update shelter in global state
         dispatch({
           type: "UPDATE_SHELTER",
@@ -82,6 +85,7 @@ function updateProfile() {
         router.push("/");
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
         toast.error(err);
       });
@@ -119,7 +123,7 @@ function updateProfile() {
                   className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                   htmlFor="grid-first-name"
                 >
-                  Shelter Name
+                  Shelter Name <span className="required"></span>
                 </label>
                 <input
                   name="sheter_name"
@@ -128,6 +132,7 @@ function updateProfile() {
                   className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                   id="grid-shelter-name"
                   type="text"
+                  required
                 />
                 {nameError ? (
                   <div className="error_messages">{nameError}</div>
@@ -139,13 +144,14 @@ function updateProfile() {
                   className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                   htmlFor="grid-first-name"
                 >
-                  Shelter Address
+                  Shelter Address <span className="required"></span>
                 </label>
                 <input
                   defaultValue={currentValues.address}
                   onChange={(e) => {
                     setShelterAddress(e.target.value);
                   }}
+                  required
                   className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                   id="grid-shelter-address"
                   type="text"
@@ -155,7 +161,7 @@ function updateProfile() {
               {/*Shelter Description */}
               <div className="w-full px-3">
                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">
-                  Shelter Description
+                  Shelter Description <span className="required"></span>
                 </label>
                 <textarea
                   onChange={(e) => {
@@ -165,6 +171,7 @@ function updateProfile() {
                   className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none h-28 focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-shelter-description"
                   type="textarea"
+                  required
                 />
               </div>
 
@@ -174,7 +181,7 @@ function updateProfile() {
                   className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                   htmlFor="grid-first-name"
                 >
-                  Shelter Phone
+                  Shelter Phone <span className="required"></span>
                 </label>
                 <input
                   onChange={(e) => {
@@ -184,6 +191,7 @@ function updateProfile() {
                   className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                   id="grid-shelter-phone"
                   type="text"
+                  required
                   placeholder="22xxxxxx"
                 />
               </div>
@@ -193,14 +201,16 @@ function updateProfile() {
                 data={citiesOptions}
                 handler={citySelectionHandler}
                 defaultValue={currentValues.city_id}
+                required
               />
             </div>
             <div className="flex flex-wrap">
               <button
                 className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"
                 type="submit"
+                disabled={loading}
               >
-                Submit
+                {loading ? <Spin /> : "Update"}
               </button>
             </div>
           </div>

@@ -23,6 +23,8 @@ function create() {
   const [dogName, setDogName] = useState("");
   const [dogDescription, setDogDescription] = useState("");
   const [buttonLoading, setButtonLoading] = useState(false);
+  const [uploadCoverError, setUploadCoverError] = useState("");
+  const [uploadListingPhotosError, setUploadListingPhotoError] = useState("");
 
   const { state, dispatch } = useContext(Context);
   const router = useRouter();
@@ -58,13 +60,16 @@ function create() {
     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
 
     if (!isJpgOrPng) {
-      message.error("You can only upload JPG/PNG file!");
+      setUploadCoverError("You can only upload JPG/PNG file!");
+      return false;
     }
 
     const isLt2M = file.size / 1024 / 1024 < 2;
 
     if (!isLt2M) {
+      setUploadCoverError("Image must smaller than 2MB!");
       message.error("Image must smaller than 2MB!");
+      return false;
     }
 
     return true;
@@ -87,7 +92,7 @@ function create() {
       setCoverImageUrl(fileList);
     }
     if (fileList.file.status === "error") {
-      toast.error("try again,upload cover photo");
+      setUploadCoverError("Error on uploading cover photo,please retry");
       setCoverImageUrl();
     }
   };
@@ -109,9 +114,11 @@ function create() {
   };
   const listingsImagesUploadHandler = async (fileList) => {
     if (fileList.file.status === "done") {
+      setUploadListingPhotoError("");
       setListingsImages(fileList);
     }
     if (fileList.file.status === "error") {
+      setUploadListingPhotoError("Error on uploading picture,please retry");
       setListingsImages();
     }
   };
@@ -339,10 +346,14 @@ function create() {
                   name="listing-cover"
                   listType="picture-card"
                   maxCount={1}
+                  accept="image/png, image/jpeg"
                   required
                 >
                   <ImageUploadButton />
                 </Upload>
+                {uploadCoverError && (
+                  <div className="error_messages">{uploadCoverError}</div>
+                )}
               </div>
               {/* Listing Images*/}
               <div className="w-full px-3 md:w-1/2">
@@ -359,9 +370,15 @@ function create() {
                   onChange={listingsImagesUploadHandler}
                   name="listing-cover"
                   listType="picture-card"
+                  accept="image/png, image/jpeg"
                 >
                   <ImageUploadButton />
                 </Upload>
+                {uploadListingPhotosError && (
+                  <div className="error_messages">
+                    {uploadListingPhotosError}
+                  </div>
+                )}
               </div>
               {/*Countries flex */}
               <div className="flex flex-wrap mb-2 -mx-3">
@@ -411,7 +428,7 @@ function create() {
                 <button
                   className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"
                   type="submit"
-                  disabled={disableButton()}
+                  disabled={disableButton() || buttonLoading}
                 >
                   {buttonLoading ? <Spin /> : "Submit"}
                 </button>
