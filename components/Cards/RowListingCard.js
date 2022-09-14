@@ -1,5 +1,6 @@
 import React from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { BsEye } from "react-icons/bs";
 import { MdPreview } from "react-icons/md";
 function RowListingCard({
   title,
@@ -8,6 +9,7 @@ function RowListingCard({
   image,
   index,
   handleDelete,
+  totalViews,
 }) {
   return (
     <div className="card card_row card_hoverable" key={id}>
@@ -19,8 +21,11 @@ function RowListingCard({
         </div>
       </div>
       <div className="m-auto header ">
-        <h5>{title}</h5>
+        <h5 className="text-lg">{title}</h5>
         <p>{description}</p>
+        <div className="flex space-x-2">
+          <BsEye size={20} /> <p>{totalViews}</p>
+        </div>
       </div>
 
       <div className="flex p-4 space-x-4 actions lg:flex-col lg:space-x-0 sm:space-x-4">

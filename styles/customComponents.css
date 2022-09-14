@@ -71,7 +71,7 @@ Cards
  }
 
  .charectiristics_labels {
-   @apply text-2xl font-extrabold
+   @apply text-lg lg:text-2xl font-extrabold
  }
 
  .header_titles {
@@ -132,4 +132,8 @@ Cards
  }
  .buttons_links_text {
   @apply text-black cursor-pointer lg:text-xl hover:text-white md:inline-flex w-max font-cherryBomb;
+ }
+
+ .a {
+  @apply block  text-black hover:text-roz
  }

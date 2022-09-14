@@ -57,6 +57,7 @@ function view() {
                 handleDelete={deleteHandler}
                 id={listing.id}
                 index={index}
+                totalViews={listing.total_views}
               />
             );
           })}

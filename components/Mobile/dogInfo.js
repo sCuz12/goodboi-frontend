@@ -1,5 +1,6 @@
 import React from "react";
 import { Tag } from "antd";
+import { BsEye } from "react-icons/bs";
 
 function dogInfo({ dog, vaccinations }) {
   return (
@@ -29,6 +30,16 @@ function dogInfo({ dog, vaccinations }) {
           Size :{" "}
           <span className="charectiristics_values">
             {dog.size.toUpperCase()}
+          </span>
+        </p>
+        <p className="flex charectiristics_labels ">
+          Hometown :{" "}
+          <span className="flex charectiristics_values"> {dog.city}</span>
+        </p>
+        <p className="flex charectiristics_labels">
+          Post Views:{" "}
+          <span className="flex items-center pl-2 pr-2 align-middle charectiristics_values">
+            <BsEye /> {dog.total_views}
           </span>
         </p>
       </div>

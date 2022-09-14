@@ -8,6 +8,7 @@ import SolidPaw from "../Icons/SolidPaw";
 import DogInCicle from "../CustomImages/DogInCircle";
 import { toast } from "react-toastify";
 import ForgotPassword from "../Modals/ForgotPassword";
+import Spin from "../Decos/Spin";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ export default function Login() {
   const [resetEmail, setResetEmail] = useState("");
   const { state, dispatch } = useContext(Context);
   const [openforgotPasswordModal, setOpenForgotPasswordModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { user } = state;
   const router = useRouter();
@@ -25,6 +27,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const res = await axiosInstance.post("/api/login", {
         email,
@@ -47,6 +50,7 @@ export default function Login() {
         if (res.data.user.shelter.is_profile_complete === 0) {
           router.push("/shelter/profile/update");
         }
+        router.push("/shelter");
       }
 
       //redirect
@@ -54,6 +58,7 @@ export default function Login() {
     } catch (err) {
       console.log(err);
       if (err.response) {
+        setLoading(false);
         toast.error(err.response.data.error);
       } else {
         toast("Error on login");
@@ -139,8 +144,9 @@ export default function Login() {
                   <button
                     type="submit"
                     className="inline-block px-12 py-2 mt-5 mb-2 font-semibold text-white border-2 rounded-full bg-basicPurple border-green"
+                    disabled={loading ? true : false}
                   >
-                    Sign In
+                    {loading ? <Spin /> : "Sign up"}
                   </button>
                 </div>
                 <p className="text-bold">
