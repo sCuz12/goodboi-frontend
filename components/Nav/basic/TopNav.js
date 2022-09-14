@@ -10,7 +10,7 @@ import MenuItems from "./MenuItems";
 import { GiHamburgerMenu } from "react-icons/gi";
 import MobileMenuItems from "./MobileMenuItems";
 import TopNavButton from "../../Buttons/TopNavButton";
-
+import { BiDownArrowAlt } from "react-icons/bi";
 function TopNav() {
   const { state, dispatch } = useContext(Context);
   const [isOpen, setOpen] = useState(false);
@@ -99,17 +99,22 @@ function TopNav() {
                       />
                     </>
                   ) : (
-                    <div ref={container} className="hidden w-12 h-12 md:flex">
+                    <div
+                      ref={container}
+                      className="hidden w-12 h-12 md:flex lg:flex-col"
+                    >
                       <button
                         onClick={dropDownOpenHandler}
-                        className="flex block w-8 h-8 overflow-hidden border-gray-500 rounded-full focus:outline-none focus:border-black"
+                        className="flex block w-10 h-10 overflow-hidden border-gray-500 rounded-full focus:outline-none focus:border-black"
                       >
                         <img
                           className="object-cover w-full h-full"
                           src={user.cover_photo}
                         />
                       </button>
-
+                      <div className="flex justify-center">
+                        <BiDownArrowAlt />
+                      </div>
                       <Transition
                         show={isOpen}
                         enter=" ease-out duration-100 "
