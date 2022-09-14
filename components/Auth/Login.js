@@ -50,6 +50,7 @@ export default function Login() {
         if (res.data.user.shelter.is_profile_complete === 0) {
           router.push("/shelter/profile/update");
         }
+        router.push("/shelter");
       }
 
       //redirect
