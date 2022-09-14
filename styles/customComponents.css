@@ -133,3 +133,7 @@ Cards
  .buttons_links_text {
   @apply text-black cursor-pointer lg:text-xl hover:text-white md:inline-flex w-max font-cherryBomb;
  }
+
+ .a {
+  @apply block  text-black hover:text-roz
+ }

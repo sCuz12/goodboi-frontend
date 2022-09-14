@@ -15,6 +15,8 @@ function updateProfile() {
   const [selectedShelterCity, setSelectedShelterCity] = useState([]);
   const [citiesOptions, setCitiesOptions] = useState([]);
   const [currentValues, setCurrentValues] = useState([]);
+  const [instagram, setInstagram] = useState("");
+  const [facebook, setFacebook] = useState("");
   const { state, dispatch } = useContext(Context);
   const [nameError, setNameError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -64,6 +66,8 @@ function updateProfile() {
     formData.append("phone", shelterPhone);
     formData.append("description", shelterDescription);
     formData.append("city_id", selectedShelterCity);
+    formData.append("instagram", instagram);
+    formData.append("facebook", facebook);
 
     axiosInstance
       .post("/api/shelter/profile", formData, {
@@ -195,7 +199,6 @@ function updateProfile() {
                   placeholder="22xxxxxx"
                 />
               </div>
-
               {/* Cities*/}
               <CityDropdown
                 data={citiesOptions}
@@ -203,6 +206,38 @@ function updateProfile() {
                 defaultValue={currentValues.city_id}
                 required
               />
+
+              {/*Instagram */}
+              <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
+                <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">
+                  Instagram
+                </label>
+                <input
+                  onChange={(e) => {
+                    setInstagram(e.target.value);
+                  }}
+                  defaultValue={currentValues.instagram}
+                  className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
+                  id="grid-shelter-instagram"
+                  type="text"
+                />
+              </div>
+
+              {/*Facebook */}
+              <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
+                <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">
+                  Facebook
+                </label>
+                <input
+                  onChange={(e) => {
+                    setFacebook(e.target.value);
+                  }}
+                  defaultValue={currentValues.facebook}
+                  className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
+                  id="grid-shelter-facebook"
+                  type="text"
+                />
+              </div>
             </div>
             <div className="flex flex-wrap">
               <button

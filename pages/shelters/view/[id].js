@@ -4,14 +4,14 @@ import axiosInstance from "../../../helpers/axios";
 import Image from "next/image";
 import Heart from "../../../components/Icons/Heart";
 import { AiOutlineMail } from "react-icons/ai";
+import { FiFacebook } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
-import { BsTelephone } from "react-icons/bs";
+import { BsTelephone, BsInstagram } from "react-icons/bs";
 import SolidPaw from "../../../components/Icons/SolidPaw";
 import SwipeCarouselSlider from "../../../components/Slides/SwipeCarouselSlider";
 import { useMediaQuery } from "../../../utils/hooks";
 import { Tabs } from "antd";
 import SingleShlterInfo from "../../../components/Mobile/singleShelterInfo";
-import ShelterCard from "../../../components/Cards/ListingCard";
 import ListingCard from "../../../components/Cards/ListingCard";
 const { TabPane } = Tabs;
 
@@ -145,6 +145,33 @@ function ShelterProfileView() {
                           <BsTelephone size={30} />
                         </div>
                         <div className="w-4/5">{shelterInfo.phone}</div>
+                      </div>
+                      {/**Social media */}
+
+                      <div className="flex pt-12 space-x-5">
+                        {shelterInfo.instagram && (
+                          <div>
+                            <a
+                              class="a"
+                              target="_blank"
+                              href={shelterInfo.instagram}
+                            >
+                              <BsInstagram size={30} />
+                            </a>
+                          </div>
+                        )}
+
+                        {shelterInfo.facebook && (
+                          <div>
+                            <a
+                              class="a"
+                              target="_blank"
+                              href={shelterInfo.facebook}
+                            >
+                              <FiFacebook size={30} />
+                            </a>
+                          </div>
+                        )}
                       </div>
                     </div>
                     {/**Displayed only on desktop */}
