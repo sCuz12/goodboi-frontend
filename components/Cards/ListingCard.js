@@ -15,6 +15,7 @@ function ListingCard({
   id,
   token,
   isfavourite,
+  totalViews,
 }) {
   const router = useRouter();
   const [isFavourite, setIsFavourite] = useState(isfavourite);
@@ -75,7 +76,12 @@ function ListingCard({
       </div>
 
       <div>
-        <CardDetails age={age} name={name} city={city} />
+        <CardDetails
+          age={age}
+          name={name}
+          city={city}
+          totalViews={totalViews}
+        />
       </div>
     </div>
   );

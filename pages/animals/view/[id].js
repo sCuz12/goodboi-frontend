@@ -14,6 +14,7 @@ import { Tabs } from "antd";
 import { useMediaQuery } from "../../../utils/hooks";
 import DogInfo from "../../../components/Mobile/dogInfo";
 import SolidPaw from "../../../components/Icons/SolidPaw";
+import { BsEye } from "react-icons/bs";
 
 const { TabPane } = Tabs;
 
@@ -191,7 +192,6 @@ const AnimalListingView = () => {
                         {animal.city}
                       </span>
                     </p>
-
                     <SolidPaw />
                   </div>
                   <p className="mr-5 text-roz h-5/5 border-x-2"></p>
@@ -208,6 +208,12 @@ const AnimalListingView = () => {
                       Size :{" "}
                       <span className="charectiristics_values">
                         {animal.size.toUpperCase()}
+                      </span>
+                    </p>
+                    <p className="flex charectiristics_labels">
+                      Views:{" "}
+                      <span className="flex items-center pl-2 pr-2 align-middle charectiristics_values">
+                        <BsEye /> {animal.total_views}
                       </span>
                     </p>
                     <Heart />

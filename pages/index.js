@@ -77,6 +77,7 @@ export default function Home() {
                     id={item.id}
                     token={token}
                     isfavourite={item.is_favourited}
+                    totalViews={item.total_views}
                   />
                 </div>
               ))}
