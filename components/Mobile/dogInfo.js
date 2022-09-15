@@ -33,7 +33,7 @@ function dogInfo({ dog, vaccinations }) {
           </span>
         </p>
         <p className="flex charectiristics_labels ">
-          Hometown :{" "}
+          Hometown :
           <span className="flex charectiristics_values"> {dog.city}</span>
         </p>
         <p className="flex charectiristics_labels">
