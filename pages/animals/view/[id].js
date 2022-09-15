@@ -51,6 +51,7 @@ const AnimalListingView = () => {
   /*This method loads into state the single animal and listing_images */
   const loadListingInfo = async () => {
     //get the ip
+    //TODO: Change the service that is used for retrieving the ip
     const response = await fetch("https://geolocation-db.com/json/");
     const dataClient = await response.json();
     const ip = dataClient.IPv4;

@@ -6,6 +6,7 @@ import "antd/dist/antd.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import TopNav from "../components/Nav/basic/TopNav";
+import Footer from "../components/Sections/Footer";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -13,6 +14,7 @@ function MyApp({ Component, pageProps }) {
       <TopNav />
       <ToastContainer position="top-center" />
       <Component key={1} {...pageProps} />
+      <Footer />
     </Provider>
   );
 }

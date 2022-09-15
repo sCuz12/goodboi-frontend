@@ -137,3 +137,12 @@ Cards
  .a {
   @apply block  text-black hover:text-roz
  }
+
+.footer_header_titles {
+  @apply lg:font-semibold  text-2xl lg:text-3xl font-cherryBomb sm:font-semibold
+}
+
+.footer_nav {
+  @apply block px-4 py-2 text-black hover:text-black
+ }
+
