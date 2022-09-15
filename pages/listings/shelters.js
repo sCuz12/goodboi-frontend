@@ -71,7 +71,7 @@ export default function Shelters() {
   };
 
   return (
-    <div className="pt-0 lg:pt-20">
+    <div className="pt-0 lg:pt-20 lg:pb-20">
       <section>
         <AbovePageSection
           title={BANNER_TITLE}
