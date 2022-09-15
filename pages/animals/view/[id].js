@@ -25,7 +25,6 @@ const AnimalListingView = () => {
   const [dogVaccinations, setDogVaccination] = useState([]);
   const [showTelModal, setShowTelModal] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [ip, setIp] = useState("");
 
   // Check wether is on mobileview
   const isMobile = useMediaQuery("(max-width: 960px)");
@@ -36,18 +35,9 @@ const AnimalListingView = () => {
 
   useEffect(() => {
     if (!router.isReady) return;
-    loadIp();
     loadListingInfo();
   }, [id]);
 
-  const loadIp = async () => {
-    //get the ip
-    const response = await fetch("https://geolocation-db.com/json/");
-    const data = await response.json();
-    const ip = data.IPv4;
-    console.log(ip);
-    setIp(ip);
-  };
   function copyUrlToClipboard() {
     const el = document.createElement("input");
     el.value = window.location.href;
@@ -60,6 +50,11 @@ const AnimalListingView = () => {
 
   /*This method loads into state the single animal and listing_images */
   const loadListingInfo = async () => {
+    //get the ip
+    const response = await fetch("https://geolocation-db.com/json/");
+    const dataClient = await response.json();
+    const ip = dataClient.IPv4;
+
     const { data } = await axiosInstance.get("/api/animals/" + id, {
       headers: {
         "Client-Ip": ip,
