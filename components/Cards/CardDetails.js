@@ -11,11 +11,11 @@ function CardDetails({ name, age, city, totalViews }) {
             {name}
           </p>
         </div>
-        <p className="grid justify-center gird-cols-2">
+        <div className="grid justify-center gird-cols-2">
           <div className="flex space-x-1">
             <BsEye size={20} /> <span>{totalViews}</span>
           </div>
-        </p>
+        </div>
       </div>
       <div className="container mx-auto">
         <span className="font-thin">Age:</span>
