@@ -18,7 +18,7 @@ import { BsEye } from "react-icons/bs";
 
 const { TabPane } = Tabs;
 
-const AnimalListingView = () => {
+const AnimalListingView = ({ ip }) => {
   const [animal, setAnimal] = useState({});
   const [listingImages, setListingImages] = useState([]);
   const [shelterInfo, setShelterInfo] = useState({});
@@ -50,7 +50,11 @@ const AnimalListingView = () => {
 
   /*This method loads into state the single animal and listing_images */
   const loadListingInfo = async () => {
-    const { data } = await axiosInstance.get("/api/animals/" + id);
+    const { data } = await axiosInstance.get("/api/animals/" + id, {
+      headers: {
+        CLIENT_IP: ip,
+      },
+    });
     setAnimal(data.data);
     prepareListingImages(data.data.listing_images);
     prepareShelterInfo(data.data.shelter_info);
@@ -252,3 +256,14 @@ const AnimalListingView = () => {
 };
 
 export default AnimalListingView;
+
+export async function getServerSideProps(context) {
+  //get the ip
+  const response = await fetch("https://geolocation-db.com/json/");
+  const data = await response.json();
+  const ip = data.IPv4;
+
+  return {
+    props: { ip }, // will be passed to the page component as props
+  };
+}
