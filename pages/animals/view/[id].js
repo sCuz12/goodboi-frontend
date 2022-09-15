@@ -52,7 +52,7 @@ const AnimalListingView = ({ ip }) => {
   const loadListingInfo = async () => {
     const { data } = await axiosInstance.get("/api/animals/" + id, {
       headers: {
-        CLIENT_IP: ip,
+        "Client-Ip": ip,
       },
     });
     setAnimal(data.data);
