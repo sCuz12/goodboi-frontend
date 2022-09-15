@@ -35,7 +35,6 @@ const AnimalListingView = () => {
 
   useEffect(() => {
     if (!router.isReady) return;
-    loadIp();
     loadListingInfo();
   }, [id]);
 
