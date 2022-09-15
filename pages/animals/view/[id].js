@@ -18,13 +18,14 @@ import { BsEye } from "react-icons/bs";
 
 const { TabPane } = Tabs;
 
-const AnimalListingView = ({ ip }) => {
+const AnimalListingView = () => {
   const [animal, setAnimal] = useState({});
   const [listingImages, setListingImages] = useState([]);
   const [shelterInfo, setShelterInfo] = useState({});
   const [dogVaccinations, setDogVaccination] = useState([]);
   const [showTelModal, setShowTelModal] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [ip, setIp] = useState("");
 
   // Check wether is on mobileview
   const isMobile = useMediaQuery("(max-width: 960px)");
@@ -35,9 +36,18 @@ const AnimalListingView = ({ ip }) => {
 
   useEffect(() => {
     if (!router.isReady) return;
+    loadIp();
     loadListingInfo();
   }, [id]);
 
+  const loadIp = async () => {
+    //get the ip
+    const response = await fetch("https://geolocation-db.com/json/");
+    const data = await response.json();
+    const ip = data.IPv4;
+    console.log(ip);
+    setIp(ip);
+  };
   function copyUrlToClipboard() {
     const el = document.createElement("input");
     el.value = window.location.href;
@@ -257,13 +267,8 @@ const AnimalListingView = ({ ip }) => {
 
 export default AnimalListingView;
 
-export async function getServerSideProps(context) {
-  //get the ip
-  const response = await fetch("https://geolocation-db.com/json/");
-  const data = await response.json();
-  const ip = data.IPv4;
-
-  return {
-    props: { ip }, // will be passed to the page component as props
-  };
-}
+// export async function getServerSideProps(context) {
+//   return {
+//     props: { ip }, // will be passed to the page component as props
+//   };
+// }
