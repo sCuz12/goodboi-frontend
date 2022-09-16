@@ -197,7 +197,7 @@ const AnimalListingView = () => {
                       </span>
                     </p>
                     <p className="charectiristics_labels">
-                      Hometown:{" "}
+                      Hometown:
                       <span className="charectiristics_values">
                         {animal.city}
                       </span>
@@ -262,9 +262,3 @@ const AnimalListingView = () => {
 };
 
 export default AnimalListingView;
-
-// export async function getServerSideProps(context) {
-//   return {
-//     props: { ip }, // will be passed to the page component as props
-//   };
-// }

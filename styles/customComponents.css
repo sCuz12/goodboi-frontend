@@ -146,3 +146,7 @@ Cards
   @apply block px-4 py-2 text-black hover:text-black
  }
 
+ .subheader_titles{
+  @apply text-xl lg:text-4xl md:text-xl font-cherryBomb
+ }
+

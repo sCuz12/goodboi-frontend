@@ -3,6 +3,7 @@ import Image from "next/image";
 import CardDetails from "./CardDetails";
 import Link from "next/link";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { IoPawOutline, IoPaw } from "react-icons/io5";
 import axiosInstance from "../../helpers/axios";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -59,15 +60,15 @@ function ListingCard({
             </Link>
 
             {isFavourite ? (
-              <AiFillHeart
+              <IoPaw
                 className="absolute top-0 right-0 z-99"
-                size={25}
+                size={30}
                 onClick={handleUnFavourite}
               />
             ) : (
-              <AiOutlineHeart
+              <IoPawOutline
                 className="absolute top-0 right-0 z-99"
-                size={25}
+                size={30}
                 onClick={handleOnFavourite}
               />
             )}
