@@ -146,7 +146,7 @@ export default function Login() {
                     className="inline-block px-12 py-2 mt-5 mb-2 font-semibold text-white border-2 rounded-full bg-basicPurple border-green"
                     disabled={loading ? true : false}
                   >
-                    {loading ? <Spin /> : "Sign up"}
+                    {loading ? <Spin /> : "Sign In"}
                   </button>
                 </div>
                 <p className="text-bold">
