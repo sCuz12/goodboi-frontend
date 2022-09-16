@@ -49,8 +49,9 @@ export default function Login() {
         //profile not complete redirect to update profile for shelter
         if (res.data.user.shelter.is_profile_complete === 0) {
           router.push("/shelter/profile/update");
+        } else {
+          router.push("/shelter");
         }
-        router.push("/shelter");
       }
 
       //redirect
