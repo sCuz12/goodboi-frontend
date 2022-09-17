@@ -7,7 +7,7 @@ import { FiFacebook } from "react-icons/fi";
 
 function Footer() {
   return (
-    <footer className="text-black bg-roz">
+    <footer className="bottom-0 left-0 right-0 text-black bg-roz">
       <div className="content-center py-12 md:px-10 xl:px-40">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {/**Left section */}
