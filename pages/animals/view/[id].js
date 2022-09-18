@@ -16,6 +16,8 @@ import DogInfo from "../../../components/Mobile/dogInfo";
 import SolidPaw from "../../../components/Icons/SolidPaw";
 import { BsEye } from "react-icons/bs";
 
+import SocialShare from "../../../components/Sections/SocialShare";
+
 const { TabPane } = Tabs;
 
 const AnimalListingView = () => {
@@ -24,7 +26,7 @@ const AnimalListingView = () => {
   const [shelterInfo, setShelterInfo] = useState({});
   const [dogVaccinations, setDogVaccination] = useState([]);
   const [showTelModal, setShowTelModal] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
 
   // Check wether is on mobileview
   const isMobile = useMediaQuery("(max-width: 960px)");
@@ -36,16 +38,11 @@ const AnimalListingView = () => {
   useEffect(() => {
     if (!router.isReady) return;
     loadListingInfo();
+    getCurrentUrl();
   }, [id]);
 
-  function copyUrlToClipboard() {
-    const el = document.createElement("input");
-    el.value = window.location.href;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
-    setCopied(true);
+  function getCurrentUrl() {
+    setCurrentUrl(window.location.href);
   }
 
   /*This method loads into state the single animal and listing_images */
@@ -55,7 +52,7 @@ const AnimalListingView = () => {
     const response = await fetch("https://geolocation-db.com/json/");
     const dataClient = await response.json();
     const ip = dataClient.IPv4;
-
+    console.log("hitting");
     const { data } = await axiosInstance.get("/api/animals/" + id, {
       headers: {
         "Client-Ip": ip,
@@ -134,10 +131,7 @@ const AnimalListingView = () => {
                       )}
 
                       <div className="pt-4 lg:w-2/5">
-                        <CopyLink
-                          onclick={copyUrlToClipboard}
-                          copiedText={copied}
-                        />
+                        <SocialShare currentUrl={currentUrl} />
                       </div>
                     </div>
                     {isMobile ? (
