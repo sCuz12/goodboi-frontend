@@ -127,9 +127,14 @@ function TopNav() {
                         <div className="absolute right-0 w-48 py-2 mt-1 origin-top-right rounded shadow-md">
                           {/* if user is normal*/}
                           {user.user_type.includes("user") && (
-                            <Link href="/user/profile/update">
-                              <a className="top_nav_a">Update Profile</a>
-                            </Link>
+                            <>
+                              <Link href="/user/profile/update">
+                                <a className="top_nav_a">Update Profile</a>
+                              </Link>
+                              <Link href="/user/favourites">
+                                <a className="top_nav_a">My Favourites</a>
+                              </Link>
+                            </>
                           )}
 
                           {/* If user is shelter */}
