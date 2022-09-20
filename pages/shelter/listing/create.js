@@ -72,10 +72,10 @@ function create() {
 
   const coverImageUploadHandler = (fileList) => {
     setUploadCoverError("");
-    const canUpload = ImageUploadValidator(file);
+    const canUpload = ImageUploadValidator(fileList.file);
 
     //Passed the validator
-    if (!canUpload) {
+    if (canUpload != true) {
       setUploadCoverError(canUpload);
       return;
     }
@@ -106,11 +106,10 @@ function create() {
     }
     setSize(e.target.value);
   };
-
   const listingsImagesUploadHandler = async (fileList) => {
-    const canUpload = ImageUploadValidator(file);
+    const canUpload = ImageUploadValidator(fileList.file);
 
-    if (!canUpload) {
+    if (canUpload != true) {
       setUploadListingPhotoError(canUpload);
       return;
     }
