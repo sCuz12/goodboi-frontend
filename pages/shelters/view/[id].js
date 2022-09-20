@@ -152,7 +152,7 @@ function ShelterProfileView() {
                         {shelterInfo.instagram && (
                           <div>
                             <a
-                              class="a"
+                              className="a"
                               target="_blank"
                               href={shelterInfo.instagram}
                             >
@@ -164,7 +164,7 @@ function ShelterProfileView() {
                         {shelterInfo.facebook && (
                           <div>
                             <a
-                              class="a"
+                              className="a"
                               target="_blank"
                               href={shelterInfo.facebook}
                             >

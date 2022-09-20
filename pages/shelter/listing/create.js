@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import CityDropdown from "../../../components/FormsComponents/CityDropdown";
 import { useRouter } from "next/router";
 import Spin from "../../../components/Decos/Spin";
+import { ImageUploadValidator } from "../../../helpers/functions";
 
 function create() {
   const [countryOptions, setCountryOptions] = useState([]);
@@ -54,25 +55,9 @@ function create() {
     }
   }, [user]);
 
-  const beforeUploadHandler = (file) => {
-    //check the type of image
-
-    const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-
-    if (!isJpgOrPng) {
-      setUploadCoverError("You can only upload JPG/PNG file!");
-      return false;
-    }
-
-    const isLt2M = file.size / 1024 / 1024 < 2;
-
-    if (!isLt2M) {
-      setUploadCoverError("Image must smaller than 2MB!");
-      message.error("Image must smaller than 2MB!");
-      return false;
-    }
-
-    return true;
+  //** Remove Listing Image */
+  const removeListingImageHandler = () => {
+    setUploadListingPhotoError("");
   };
 
   //*Handlers Start **//
@@ -86,6 +71,15 @@ function create() {
   };
 
   const coverImageUploadHandler = (fileList) => {
+    setUploadCoverError("");
+    const canUpload = ImageUploadValidator(file);
+
+    //Passed the validator
+    if (!canUpload) {
+      setUploadCoverError(canUpload);
+      return;
+    }
+
     if (fileList.file.status === "done") {
       console.log("done photo");
       // Get this url from response in real world.
@@ -112,9 +106,16 @@ function create() {
     }
     setSize(e.target.value);
   };
+
   const listingsImagesUploadHandler = async (fileList) => {
+    const canUpload = ImageUploadValidator(file);
+
+    if (!canUpload) {
+      setUploadListingPhotoError(canUpload);
+      return;
+    }
+
     if (fileList.file.status === "done") {
-      setUploadListingPhotoError("");
       setListingsImages(fileList);
     }
     if (fileList.file.status === "error") {
@@ -151,7 +152,9 @@ function create() {
       dogDescription == "" ||
       postTitle == "" ||
       size == "" ||
-      dobDate == ""
+      dobDate == "" ||
+      uploadCoverError != "" ||
+      uploadListingPhotosError != ""
     );
   }
 
@@ -365,6 +368,8 @@ function create() {
                   <span className="required"></span>
                 </label>
                 <Upload
+                  onRemove={removeListingImageHandler}
+                  beforeUpload={beforeUploadListingImagesHandler}
                   maxCount={4}
                   customRequest={dummyRequest}
                   onChange={listingsImagesUploadHandler}

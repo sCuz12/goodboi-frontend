@@ -83,7 +83,7 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       {!user && user === null && (
         <>
           {BASIC_URLS.map((item) => (
-            <Link href={item.url}>
+            <Link href={item.url} key={item.text}>
               <a
                 onClick={() => {
                   closeHamburger(false);
@@ -110,7 +110,7 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       {user &&
         user.user_type === "shelter" &&
         SHELTER_URLS.map((item) => (
-          <Link href={item.url}>
+          <Link href={item.url} key={item.text}>
             <a
               onClick={() => {
                 closeHamburger(false);
@@ -127,7 +127,7 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
         user.user_type === "user" &&
         NORMAL_USER_URLS.map((item) => (
           <>
-            <Link href={item.url}>
+            <Link href={item.url} key={item.text}>
               <a
                 onClick={() => {
                   closeHamburger(false);

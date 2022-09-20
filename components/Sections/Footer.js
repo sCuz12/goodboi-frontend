@@ -7,7 +7,7 @@ import { FiFacebook } from "react-icons/fi";
 
 function Footer() {
   return (
-    <footer className="bottom-0 left-0 right-0 text-black bg-roz">
+    <footer className="text-black bg-roz ">
       <div className="content-center py-12 md:px-10 xl:px-40">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {/**Left section */}
@@ -37,7 +37,7 @@ function Footer() {
               <h1 className="footer_header_titles">Social Media</h1>
               <div className="flex items-center justify-center text-center">
                 <a
-                  class="text-black"
+                  className="text-black"
                   target="_blank"
                   href="http://www.instagram.com"
                 >
@@ -45,7 +45,7 @@ function Footer() {
                 </a>
 
                 <a
-                  class="text-black"
+                  className="text-black"
                   target="_blank"
                   href="http://www.facebook.com"
                 >
