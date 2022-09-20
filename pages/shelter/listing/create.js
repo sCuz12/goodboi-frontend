@@ -106,6 +106,7 @@ function create() {
     }
     setSize(e.target.value);
   };
+  //TODO: Refactor needed and for covers
   const listingsImagesUploadHandler = async (fileList) => {
     const canUpload = ImageUploadValidator(fileList.file);
 
