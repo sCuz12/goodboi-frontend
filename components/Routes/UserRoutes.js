@@ -32,7 +32,7 @@ const UserRoute = ({ children, showSide = false }) => {
   return (
     <>
       {!ok ? (
-        <div className="flex justify-center pt-40">
+        <div className="flex justify-center min-h-screen pt-40 ">
           <Spin />
         </div>
       ) : (
