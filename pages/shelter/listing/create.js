@@ -343,7 +343,6 @@ function create() {
                   <span className="required"></span>
                 </label>
                 <Upload
-                  beforeUpload={beforeUploadHandler}
                   onChange={coverImageUploadHandler}
                   customRequest={dummyRequest}
                   name="listing-cover"
@@ -369,7 +368,6 @@ function create() {
                 </label>
                 <Upload
                   onRemove={removeListingImageHandler}
-                  beforeUpload={beforeUploadListingImagesHandler}
                   maxCount={4}
                   customRequest={dummyRequest}
                   onChange={listingsImagesUploadHandler}
