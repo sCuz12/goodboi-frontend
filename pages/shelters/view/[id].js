@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import axiosInstance from "../../../helpers/axios";
 import Image from "next/image";
@@ -13,11 +13,19 @@ import { useMediaQuery } from "../../../utils/hooks";
 import { Tabs } from "antd";
 import SingleShlterInfo from "../../../components/Mobile/singleShelterInfo";
 import ListingCard from "../../../components/Cards/ListingCard";
+import { Context } from "../../../context";
+import LoginActionModal from "../../../components/Modals/LoginActionModal";
+
 const { TabPane } = Tabs;
 
 function ShelterProfileView() {
   const [shelterInfo, setShelterInfo] = useState({});
   const [shelterListings, setShelterListings] = useState([]);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const { state, dispatch } = useContext(Context);
+
+  const { user } = state;
 
   // Check wether is on mobileview
   const isMobile = useMediaQuery("(max-width: 960px)");
@@ -26,6 +34,13 @@ function ShelterProfileView() {
   const { id } = router.query;
 
   useEffect(() => {
+    if (!user) {
+      //pop up login modal
+      setTimeout(() => {
+        setShowLoginModal(true);
+      }, 5000);
+    }
+
     if (!router.isReady) return;
     loadShelterInfo();
     loadShelterListing();
@@ -48,6 +63,8 @@ function ShelterProfileView() {
       console.log(err);
     }
   };
+
+  const disableUserViewInfo = !user ? "blur-sm select-none" : "";
 
   return (
     <>
@@ -96,7 +113,7 @@ function ShelterProfileView() {
                       <div className="pt-20">
                         <Tabs defaultActiveKey="1" centered>
                           <TabPane tab="Contact details" key="1">
-                            <div className="p-8">
+                            <div className={` ${disableUserViewInfo} p-8`}>
                               <SingleShlterInfo shelter={shelterInfo} />
                             </div>
                           </TabPane>
@@ -127,12 +144,16 @@ function ShelterProfileView() {
                     ) : null}
 
                     {/**Displayed only on desktop */}
-                    <div className="hidden lg:block lg:pt-4 lg:space-y-4 lg:flex-col lg:w-2/5 ">
+                    <div
+                      className={`hidden lg:block lg:pt-4 lg:space-y-4 lg:flex-col lg:w-2/5 ${disableUserViewInfo} `}
+                    >
                       <div className="flex w-full description_text">
                         <div className="flex w-1/5">
                           <AiOutlineMail size={30} />
                         </div>
-                        <div className="w-4/5">{shelterInfo.email}</div>
+                        <div className="w-4/5 select-none">
+                          {shelterInfo.email}
+                        </div>
                       </div>
                       <div className="flex w-full description_text">
                         <div className="flex w-1/5">
@@ -187,6 +208,9 @@ function ShelterProfileView() {
               <SwipeCarouselSlider listings={shelterListings} />
             </section>
           </div>
+          {showLoginModal && (
+            <LoginActionModal onClose={() => setShowLoginModal(false)} />
+          )}
         </div>
       )}
     </>
