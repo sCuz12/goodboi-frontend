@@ -13,7 +13,9 @@ function MyApp({ Component, pageProps }) {
     <Provider>
       <TopNav />
       <ToastContainer position="top-center" />
-      <Component key={1} {...pageProps} />
+      <div className="min-h-screen pb-20 ">
+        <Component key={1} {...pageProps} />
+      </div>
       <Footer />
     </Provider>
   );

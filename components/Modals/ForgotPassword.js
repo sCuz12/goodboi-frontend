@@ -1,5 +1,4 @@
 import React from "react";
-import axiosInstance from "../../helpers/axios";
 
 function ForgotPassword({ onclose, onsubmit, resetemail, setresetemail }) {
   return (
