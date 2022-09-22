@@ -64,6 +64,18 @@ function ShelterProfileView() {
     }
   };
 
+  /*
+   *Handle click of contact info whole div
+   *(Display LoginModal if user is not login)
+   */
+  const handleContactClick = async () => {
+    if (!user) {
+      setShowLoginModal(true);
+    } else {
+      return;
+    }
+  };
+
   const disableUserViewInfo = !user ? "blur-sm select-none" : "";
 
   return (
@@ -113,7 +125,10 @@ function ShelterProfileView() {
                       <div className="pt-20">
                         <Tabs defaultActiveKey="1" centered>
                           <TabPane tab="Contact details" key="1">
-                            <div className={` ${disableUserViewInfo} p-8`}>
+                            <div
+                              onClick={handleContactClick}
+                              className={` ${disableUserViewInfo} p-8`}
+                            >
                               <SingleShlterInfo shelter={shelterInfo} />
                             </div>
                           </TabPane>
@@ -146,6 +161,7 @@ function ShelterProfileView() {
                     {/**Displayed only on desktop */}
                     <div
                       className={`hidden lg:block lg:pt-4 lg:space-y-4 lg:flex-col lg:w-2/5 ${disableUserViewInfo} `}
+                      onClick={handleContactClick}
                     >
                       <div className="flex w-full description_text">
                         <div className="flex w-1/5">
