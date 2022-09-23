@@ -105,9 +105,9 @@ function ShelterProfileView() {
               <div className="grid pt-12 lg:w-3/5 sm:w-4/5 lg:pl-6">
                 <div className="">
                   {/* column of name,description , info */}
-                  <div className="flex flex-col">
+                  <div className="flex flex-col items-center lg:items-start">
                     {/*Upper info */}
-                    <div className="p-6">
+                    <div className="">
                       <h1 className="header_titles">
                         <div className="flex items-center text-center">
                           {shelterInfo.shelter_name}{" "}
