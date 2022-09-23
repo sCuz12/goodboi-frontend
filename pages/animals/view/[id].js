@@ -124,16 +124,16 @@ const AnimalListingView = () => {
                     </div>
                   </h1>
                   <p className="flex h-40 lg:w-full">{animal.description}</p>
-                  <div className="flex-col justify-center w-3/5 lg:w-full">
+                  <div className="flex-col justify-center w-5/5 lg:w-full">
                     {!isMobile ? (
-                      <div className="flex flex-row w-full">
+                      <div className="flex flex-row items-center w-full">
                         <div className="pt-4 lg:w-2/5 ">
                           <CallShelter onclick={callShelterHandler} />
                         </div>
                         <SolidPaw />
                       </div>
                     ) : (
-                      <div className="pt-4 lg:w-2/5 ">
+                      <div className="flex justify-center pt-4">
                         <CallShelter onclick={callShelterHandler} />
                       </div>
                     )}
