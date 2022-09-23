@@ -28,23 +28,37 @@ function editListing() {
   const { id } = router.query;
 
   useEffect(() => {
-    const getCountryOptions = async () => {
-      const { data } = await axiosInstance.get("/api/countries");
-      setCountryOptions(data);
-      fetchCitiesById(1);
-    };
     if (!router.isReady) return;
     loadListing();
     getCountryOptions();
     fetchAvailableVacinnes();
   }, [id]);
 
-  const loadListing = async () => {
-    const { data } = await axiosInstance.get(`/api/shelter/animals/${id}/edit`);
+  //load country options for dropdown
+  const getCountryOptions = async () => {
+    const { data } = await axiosInstance.get("/api/countries");
+    setCountryOptions(data);
+    fetchCitiesById(1);
+  };
 
-    if (data.data) {
-      const res = data.data;
-      setCurrentValues(res);
+  const loadListing = async () => {
+    try {
+      const { data } = await axiosInstance.get(
+        `/api/shelter/animals/${id}/edit`
+      );
+
+      if (data.data) {
+        const res = data.data;
+        setCurrentValues(res);
+      }
+    } catch (e) {
+      switch (e.response.status) {
+        case 401:
+          toast.error("Not authorized");
+          router.push("/shelter/mylistings/view");
+        default:
+          router.push("/shelter/mylistings/view");
+      }
     }
   };
 
