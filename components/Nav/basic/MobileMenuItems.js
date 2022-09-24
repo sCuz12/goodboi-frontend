@@ -78,7 +78,7 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
   ];
 
   return (
-    <div className="pt-12 pl-28">
+    <div className="pt-12 text-center">
       {/* Logout Users */}
       {!user && user === null && (
         <>
