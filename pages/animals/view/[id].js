@@ -16,6 +16,7 @@ import SolidPaw from "../../../components/Icons/SolidPaw";
 import { BsEye } from "react-icons/bs";
 import SocialShare from "../../../components/Sections/SocialShare";
 import LoginActionModal from "../../../components/Modals/LoginActionModal";
+import DirectMessage from "../../../components/Buttons/DirectMessage";
 
 const { TabPane } = Tabs;
 
@@ -27,6 +28,8 @@ const AnimalListingView = () => {
   const [showTelModal, setShowTelModal] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("");
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [facebookPage, setFacebookPage] = useState("");
+
   const { state, dispatch } = useContext(Context);
 
   const { user } = state;
@@ -65,6 +68,7 @@ const AnimalListingView = () => {
     prepareListingImages(data.data.listing_images);
     prepareShelterInfo(data.data.shelter_info);
     setDogVaccination(data.data.vaccinations);
+    setFacebookPage(data.data.facebook_page);
   };
 
   //This method prepares listing image and assign them to state array
@@ -90,6 +94,30 @@ const AnimalListingView = () => {
       setShowTelModal(true);
     } else {
       setShowLoginModal(true);
+    }
+  };
+
+  const showDirectMessage = (isMobile) => {
+    {
+      if (animal.facebook_page) {
+        if (isMobile) {
+          return (
+            <div className="justify-center pt-4 ">
+              <a target="_blank" href={"http://m.me/" + facebookPage}>
+                <DirectMessage />
+              </a>
+            </div>
+          );
+        } else {
+          return (
+            <div className="pt-4 lg:w-2/5 ">
+              <a target="_blank" href={"http://m.me/" + facebookPage}>
+                <DirectMessage />
+              </a>
+            </div>
+          );
+        }
+      }
     }
   };
   return (
@@ -126,16 +154,22 @@ const AnimalListingView = () => {
                   <p className="flex h-40 lg:w-full">{animal.description}</p>
                   <div className="flex-col justify-center w-5/5 lg:w-full">
                     {!isMobile ? (
-                      <div className="flex flex-row items-center w-full">
-                        <div className="pt-4 lg:w-2/5 ">
+                      <div className="flex flex-col items-start w-full">
+                        <div className="pt-4 lg:w-2/5">
                           <CallShelter onclick={callShelterHandler} />
                         </div>
+
+                        {showDirectMessage()}
+
                         <SolidPaw />
                       </div>
                     ) : (
-                      <div className="flex justify-center pt-4">
-                        <CallShelter onclick={callShelterHandler} />
-                      </div>
+                      <>
+                        <div className="flex justify-center pt-4">
+                          <CallShelter onclick={callShelterHandler} />
+                        </div>
+                        {showDirectMessage(isMobile)}
+                      </>
                     )}
 
                     <div className="pt-4 lg:w-2/5">
