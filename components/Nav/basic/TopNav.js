@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { Transition } from "@tailwindui/react";
 import Link from "next/link";
 import axiosInstance from "../../../helpers/axios";
-import NavButton from "../../Buttons/NavButton";
 import MenuItems from "./MenuItems";
 import { GiHamburgerMenu } from "react-icons/gi";
 import MobileMenuItems from "./MobileMenuItems";
@@ -62,7 +61,7 @@ function TopNav() {
           <div className="flex items-center justify-between h-20 border-b-2 shadow-xl rounded-2xl border-roz">
             <div className="flex items-center w-2/4">
               {/*Logo section */}
-              <div className="flex-shrink-0 w-2/2 lg:w-1/2">
+              <div className="w-2/2 lg:w-1/2">
                 <a href="/">
                   <Image
                     key={1}
@@ -74,14 +73,14 @@ function TopNav() {
                   />
                 </a>
               </div>
-              <div className="hidden md:block">
+              <div className="hidden lg:block">
                 <div className="flex items-baseline space-x-4">
                   <MenuItems />
                 </div>
               </div>
             </div>
             <div className="flex items-end">
-              <div className="hidden md:flex">
+              <div className="hidden lg:flex">
                 {/* Right of footer*/}
 
                 <div className="flex items-center justify-end w-3/4 space-x-4 text-black">
@@ -101,7 +100,7 @@ function TopNav() {
                   ) : (
                     <div
                       ref={container}
-                      className="hidden w-12 h-12 md:flex lg:flex-col"
+                      className="hidden w-12 h-12 lg:flex lg:flex-col"
                     >
                       <button
                         onClick={dropDownOpenHandler}
@@ -164,7 +163,7 @@ function TopNav() {
               </div>
             </div>
             {/* mob*/}
-            <div className="flex mr-8 md:hidden">
+            <div className="flex mr-8 lg:hidden">
               <GiHamburgerMenu
                 className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-900 rounded-md hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 aria-controls="mobile-menu"
@@ -205,10 +204,10 @@ function TopNav() {
         leaveTo="opacity-0 scale-95"
       >
         {(ref) => (
-          <div className="md:hidden" id="mobile-menu">
+          <div className="lg:hidden" id="mobile-menu">
             <div
               ref={ref}
-              className="flex w-full pt-2 pb-3 space-y-1 text-center bg-roz"
+              className="flex justify-center w-full pt-2 pb-3 space-y-1 text-center bg-roz"
             >
               <MobileMenuItems
                 user={user}

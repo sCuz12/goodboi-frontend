@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { Context } from "../../../context";
 import { useRouter } from "next/router";
 import Spin from "../../../components/Decos/Spin";
+import { extractGroupNameFromFacebook } from "../../../helpers/functions";
 
 function updateProfile() {
   const [shelterName, setShelterName] = useState("");
@@ -40,6 +41,7 @@ function updateProfile() {
   const loadCurrentShelterDetails = async () => {
     const { data } = await axiosInstance.get("/api/loggedin-user");
     if (data.shelter) {
+      console.log(data.shelter);
       //UPDATE State fields with current
       setShelterName(data.shelter.shelter_name);
       setShelterAddress(data.shelter.address);
@@ -47,12 +49,13 @@ function updateProfile() {
       setShelterDescription(data.shelter.description);
       setSelectedShelterCity(data.shelter.city_id);
       setCurrentValues(data.shelter);
+      setFacebook(data.shelter.facebook);
+      setInstagram(data.shelter.instagram);
     }
   };
 
   //*Handlers Start **//
   const citySelectionHandler = (value) => {
-    console.log(value);
     const id = value;
     setSelectedShelterCity(id);
   };
@@ -68,6 +71,10 @@ function updateProfile() {
     formData.append("city_id", selectedShelterCity);
     formData.append("instagram", instagram);
     formData.append("facebook", facebook);
+    formData.append(
+      "facebook_pagename",
+      extractGroupNameFromFacebook(facebook)
+    );
 
     axiosInstance
       .post("/api/shelter/profile", formData, {

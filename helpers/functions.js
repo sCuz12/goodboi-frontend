@@ -13,3 +13,18 @@ export function ImageUploadValidator(file) {
   }
   return true;
 }
+
+/**
+ * Extracts the group name from facebook url
+ * @param string url
+ */
+export function extractGroupNameFromFacebook(url) {
+  console.log(url);
+  var facebookUrl = new URL(url);
+  let groupName = facebookUrl.pathname;
+
+  //remove slash
+  const str = groupName.replace(/\//g, "");
+
+  return str;
+}
