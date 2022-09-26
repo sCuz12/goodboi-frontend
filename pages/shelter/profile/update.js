@@ -6,7 +6,10 @@ import { toast } from "react-toastify";
 import { Context } from "../../../context";
 import { useRouter } from "next/router";
 import Spin from "../../../components/Decos/Spin";
-import { extractGroupNameFromFacebook } from "../../../helpers/functions";
+import {
+  extractGroupNameFromFacebook,
+  isValidSocialUrl,
+} from "../../../helpers/functions";
 
 function updateProfile() {
   const [shelterName, setShelterName] = useState("");
@@ -21,6 +24,7 @@ function updateProfile() {
   const { state, dispatch } = useContext(Context);
   const [nameError, setNameError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [facebookError, setFacebookError] = useState("");
 
   const router = useRouter();
 
@@ -41,7 +45,6 @@ function updateProfile() {
   const loadCurrentShelterDetails = async () => {
     const { data } = await axiosInstance.get("/api/loggedin-user");
     if (data.shelter) {
-      console.log(data.shelter);
       //UPDATE State fields with current
       setShelterName(data.shelter.shelter_name);
       setShelterAddress(data.shelter.address);
@@ -63,6 +66,15 @@ function updateProfile() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const facebook_pagename = "";
+
+    if (facebook == "" || facebook == null) {
+      setFacebook("");
+    } else {
+      facebook_pagename = extractGroupNameFromFacebook(facebook);
+    }
+
     let formData = new FormData();
     formData.append("shelter_name", shelterName);
     formData.append("address", shelterAddress);
@@ -71,10 +83,7 @@ function updateProfile() {
     formData.append("city_id", selectedShelterCity);
     formData.append("instagram", instagram);
     formData.append("facebook", facebook);
-    formData.append(
-      "facebook_pagename",
-      extractGroupNameFromFacebook(facebook)
-    );
+    formData.append("facebook_pagename", facebook_pagename);
 
     axiosInstance
       .post("/api/shelter/profile", formData, {
@@ -119,6 +128,49 @@ function updateProfile() {
     return true;
   };
 
+  /*
+   * Change Facebook textboox
+   * Valids Facebook urls
+   */
+  const facebookUrlChangeHandler = (e) => {
+    const faceBookInput = e.target.value;
+    //if empty
+    if (faceBookInput == "" || faceBookInput == null) {
+      setFacebook("");
+      setFacebookError("");
+      return;
+    }
+
+    const isValidUrl = isValidSocialUrl(faceBookInput, "facebook");
+
+    if (!isValidUrl) {
+      setFacebook("");
+      setFacebookError("Not a valid facebook url");
+      return;
+    }
+    setFacebookError("");
+    setFacebook(faceBookInput);
+  };
+
+  /*
+   * Change Instagram textboox
+   */
+  const instagramChangeHandler = (e) => {
+    const instagramInput = e.target.value;
+    //if empty
+
+    if (instagramInput == "" || instagramInput == null) {
+      setInstagram("");
+      return;
+    }
+
+    setInstagram(instagramInput);
+  };
+
+  const isSubmitDisabled = () => {
+    return loading || facebookError != "";
+  };
+
   return (
     <ShelterRoute>
       <div className="max-w-2xl pb-4 mx-auto mt-24">
@@ -147,7 +199,9 @@ function updateProfile() {
                 />
                 {nameError ? (
                   <div className="error_messages">{nameError}</div>
-                ) : null}
+                ) : (
+                  ""
+                )}
               </div>
               {/* Shelter Address*/}
               <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
@@ -220,9 +274,7 @@ function updateProfile() {
                   Instagram
                 </label>
                 <input
-                  onChange={(e) => {
-                    setInstagram(e.target.value);
-                  }}
+                  onChange={instagramChangeHandler}
                   defaultValue={currentValues.instagram}
                   className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                   id="grid-shelter-instagram"
@@ -236,21 +288,24 @@ function updateProfile() {
                   Facebook
                 </label>
                 <input
-                  onChange={(e) => {
-                    setFacebook(e.target.value);
-                  }}
+                  onChange={facebookUrlChangeHandler}
                   defaultValue={currentValues.facebook}
                   className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
                   id="grid-shelter-facebook"
                   type="text"
                 />
+                {facebookError ? (
+                  <div className="error_messages">{facebookError}</div>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className="flex flex-wrap">
               <button
                 className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"
                 type="submit"
-                disabled={loading}
+                disabled={isSubmitDisabled()}
               >
                 {loading ? <Spin /> : "Update"}
               </button>
