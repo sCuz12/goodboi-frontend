@@ -1,8 +1,10 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import FsLightbox from "fslightbox-react";
 
-function ListingImageSlider({ listingImages }) {
+function ListingImageSlider({ listingImages, listingImagesUrls }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [toggler, setToggler] = useState(false);
 
   const leftArrowStyles = {
     position: "absolute",
@@ -24,9 +26,6 @@ function ListingImageSlider({ listingImages }) {
     zIndex: 1,
     cursor: "pointer",
   };
-  const slideStyles = {
-    backgroundImage: `url(${listingImages[currentIndex].url})`,
-  };
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -37,6 +36,10 @@ function ListingImageSlider({ listingImages }) {
     const isLastSlide = currentIndex === listingImages.length - 1;
     const newIndex = isLastSlide ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
+  };
+
+  const handleToggler = (value) => {
+    setToggler(value);
   };
 
   return (
@@ -51,13 +54,17 @@ function ListingImageSlider({ listingImages }) {
 
         <div className="flex flex-col items-center ">
           <div className="w-full bg-center h-3/5 rounded-3xl">
-            <Image
-              className="object-cover shadow-inner rounded-2xl"
-              src={`${listingImages[currentIndex].url}`}
-              layout="fill"
-            />
+            <button onClick={() => handleToggler(!toggler)}>
+              asda
+              <Image
+                className="object-cover shadow-inner rounded-2xl"
+                src={`${listingImages[currentIndex].url}`}
+                layout="fill"
+              />
+            </button>
           </div>
 
+          <FsLightbox toggler={toggler} sources={listingImagesUrls} />
           {/**Next photos section */}
           <div></div>
           {/**doTs */}
