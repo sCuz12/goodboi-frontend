@@ -13,7 +13,7 @@ import { Tabs } from "antd";
 import { useMediaQuery } from "../../../utils/hooks";
 import DogInfo from "../../../components/Mobile/dogInfo";
 import SolidPaw from "../../../components/Icons/SolidPaw";
-import { BsEye } from "react-icons/bs";
+import { BsEye, BsGenderMale, BsGenderFemale } from "react-icons/bs";
 import SocialShare from "../../../components/Sections/SocialShare";
 import LoginActionModal from "../../../components/Modals/LoginActionModal";
 import DirectMessage from "../../../components/Buttons/DirectMessage";
@@ -278,6 +278,17 @@ const AnimalListingView = () => {
                     Views:{" "}
                     <span className="flex items-center pl-2 pr-2 align-middle charectiristics_values">
                       <BsEye /> {animal.total_views}
+                    </span>
+                  </p>
+                  <p className="flex charectiristics_labels">
+                    Gender:{" "}
+                    <span className="flex items-center pl-2 pr-2 align-middle charectiristics_values">
+                      {animal.gender === "m" ? (
+                        <BsGenderMale />
+                      ) : (
+                        <BsGenderFemale />
+                      )}
+                      {animal.gender.toUpperCase()}
                     </span>
                   </p>
                   <Heart />
