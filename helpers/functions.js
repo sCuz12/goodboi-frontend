@@ -19,7 +19,6 @@ export function ImageUploadValidator(file) {
  * @param string url
  */
 export function extractGroupNameFromFacebook(url) {
-  console.log(url);
   var facebookUrl = new URL(url);
   let groupName = facebookUrl.pathname;
 
@@ -27,4 +26,35 @@ export function extractGroupNameFromFacebook(url) {
   const str = groupName.replace(/\//g, "");
 
   return str;
+}
+
+/**
+ * Extracts the group name from facebook url
+ * @param string url
+ * @param string type
+ */
+export function isValidSocialUrl(url, type) {
+  try {
+    var urlParsed = new URL(url);
+    const hostname = urlParsed.hostname;
+
+    switch (type) {
+      case "facebook":
+        if (hostname === "www.facebook.com") {
+          return true;
+        }
+        break;
+      case "instagram":
+        if (hostname === "www.instagram.com") {
+          return true;
+        }
+        break;
+      default:
+        return false;
+    }
+
+    return false;
+  } catch (_) {
+    return false;
+  }
 }
