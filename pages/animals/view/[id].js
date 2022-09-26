@@ -72,15 +72,23 @@ const AnimalListingView = () => {
     setFacebookPage(data.data.facebook_page);
   };
 
-  //This method prepares listing image and assign them to state array
+  /*This method prepares listing image and assign them to state array
+   * prepares also the Image for the fslightbox into div and next image component
+   */
   const prepareListingImages = async (listingImages) => {
     let slides = [];
     let urls = [];
     listingImages.map((image) => {
       let obj = {};
       obj["url"] = image;
+      const element = (
+        <div style={{ width: "1920px", height: "1080px" }}>
+          <Image src={obj.url} layout="fill" />
+        </div>
+      );
+
       slides.push(obj);
-      urls.push(obj.url.replace("http://", "https://"));
+      urls.push(element);
     });
 
     setListingsImagesUrls(urls);

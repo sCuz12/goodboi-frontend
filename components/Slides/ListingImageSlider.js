@@ -55,7 +55,6 @@ function ListingImageSlider({ listingImages, listingImagesUrls }) {
         <div className="flex flex-col items-center ">
           <div className="w-full bg-center h-3/5 rounded-3xl">
             <button onClick={() => handleToggler(!toggler)}>
-              asda
               <Image
                 className="object-cover shadow-inner rounded-2xl"
                 src={`${listingImages[currentIndex].url}`}
