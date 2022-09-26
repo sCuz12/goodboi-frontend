@@ -29,6 +29,7 @@ const AnimalListingView = () => {
   const [currentUrl, setCurrentUrl] = useState("");
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [facebookPage, setFacebookPage] = useState("");
+  const [listingsImagesUrls, setListingsImagesUrls] = useState([]);
 
   const { state, dispatch } = useContext(Context);
 
@@ -74,11 +75,15 @@ const AnimalListingView = () => {
   //This method prepares listing image and assign them to state array
   const prepareListingImages = async (listingImages) => {
     let slides = [];
+    let urls = [];
     listingImages.map((image) => {
       let obj = {};
       obj["url"] = image;
       slides.push(obj);
+      urls.push(obj.url);
     });
+
+    setListingsImagesUrls(urls);
     setListingImages(slides);
   };
 
@@ -202,7 +207,10 @@ const AnimalListingView = () => {
                         <TabPane tab="Photos" key="3">
                           {/** All pictures section */}
                           <div className="items-center justify-center w-full p-3 bg-center h-80 bg-blue rounded-3xl">
-                            <ListingImageSlider listingImages={listingImages} />
+                            <ListingImageSlider
+                              listingImages={listingImages}
+                              listingImagesUrls={listingsImagesUrls}
+                            />
                           </div>
                         </TabPane>
                       </Tabs>
@@ -282,7 +290,10 @@ const AnimalListingView = () => {
           </section>
           {/** All pictures section */}
           <div className="items-center justify-center hidden p-8 bg-center lg:flex lg:w-3/5 md:w-3/5 sm:w-5/5 h-120 bg-blue rounded-3xl">
-            <ListingImageSlider listingImages={listingImages} />
+            <ListingImageSlider
+              listingImages={listingImages}
+              listingImagesUrls={listingsImagesUrls}
+            />
           </div>
         </div>
       )}
