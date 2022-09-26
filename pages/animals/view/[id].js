@@ -80,7 +80,7 @@ const AnimalListingView = () => {
       let obj = {};
       obj["url"] = image;
       slides.push(obj);
-      urls.push(obj.url);
+      urls.push(obj.url.replace("http://", "https://"));
     });
 
     setListingsImagesUrls(urls);
