@@ -23,6 +23,7 @@ function editListing() {
   const [currentValues, setCurrentValues] = useState([]);
   const [selectedVaccinations, setSelectedVaccinations] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [gender, setGender] = useState("");
 
   const router = useRouter();
   const { id } = router.query;
@@ -155,7 +156,8 @@ function editListing() {
       coverImageUrl == "" &&
       listingsImages == "" &&
       selectedVaccinations == "" &&
-      selectedCity == ""
+      selectedCity == "" &&
+      gender == ""
     );
   }
 
@@ -195,6 +197,10 @@ function editListing() {
 
     if (coverImageUrl.length != 0) {
       formData.append("cover_photo", coverImageUrl.fileList[0].originFileObj);
+    }
+
+    if (gender != "") {
+      formData.append("gender", gender);
     }
 
     if (listingsImages.length != 0 && listingsImages.fileList.length != 0) {
@@ -310,7 +316,7 @@ function editListing() {
                 </div>
                 {/** Age */}
                 <div className="flex flex-wrap mb-6 -mx-3">
-                  <div className="w-full px-3">
+                  <div className="w-1/2 px-3">
                     <label
                       className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                       htmlFor="grid-age"
@@ -325,14 +331,34 @@ function editListing() {
                       }}
                     />
                   </div>
-                </div>
-                {/** Vaccinations */}
-                <div className="flex flex-wrap mb-6 -mx-3">
-                  <div className="w-full px-3">
+                  {/** Gender*/}
+                  <div className="w-1/2 px-3">
                     <label
                       className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                       htmlFor="grid-age"
                     >
+                      Gender
+                      <span className="required"></span>
+                    </label>
+                    <Select
+                      options={[
+                        { value: "m", label: "male" },
+                        { value: "f", label: "female" },
+                      ]}
+                      defaultValue={currentValues.gender}
+                      onChange={(value) => {
+                        setGender(value);
+                      }}
+                      className="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="cities"
+                    ></Select>
+                  </div>
+                </div>
+
+                {/** Vaccinations */}
+                <div className="flex flex-wrap mb-6 -mx-3">
+                  <div className="w-full px-3">
+                    <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">
                       Vaccinations
                     </label>
 
