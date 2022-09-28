@@ -9,6 +9,7 @@ import DogInCicle from "../CustomImages/DogInCircle";
 import { toast } from "react-toastify";
 import ForgotPassword from "../Modals/ForgotPassword";
 import Spin from "../Decos/Spin";
+import LoginFacebook from "../Buttons/LoginFacebook";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -81,6 +82,10 @@ export default function Login() {
       }
     }
     setOpenForgotPasswordModal(false);
+  };
+
+  const loginWithFacebookHandler = async () => {
+    router.push("http://localhost:80/api/auth/facebook");
   };
 
   return (
@@ -158,6 +163,9 @@ export default function Login() {
                 </p>
               </div>
             </form>
+            <LoginFacebook
+              loginWithFacebookHandler={loginWithFacebookHandler}
+            />
           </div>{" "}
           {/*login*/}
         </div>
