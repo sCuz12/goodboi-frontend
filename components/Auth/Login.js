@@ -85,7 +85,8 @@ export default function Login() {
   };
 
   const loginWithFacebookHandler = async () => {
-    router.push("http://localhost:80/api/auth/facebook");
+    //http://localhost:80/api/auth/facebook
+    router.push("http://api.goodboi.com.cy/api/auth/facebook");
   };
 
   return (
