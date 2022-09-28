@@ -34,7 +34,7 @@ function index() {
         });
     }
   }, [code]);
-  return <div>index</div>;
+  return <div></div>;
 }
 
 export default index;
