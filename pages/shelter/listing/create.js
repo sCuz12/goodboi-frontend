@@ -26,7 +26,7 @@ function create() {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [uploadCoverError, setUploadCoverError] = useState("");
   const [uploadListingPhotosError, setUploadListingPhotoError] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("m");
 
   const { state, dispatch } = useContext(Context);
   const router = useRouter();
