@@ -1,6 +1,6 @@
 import React from "react";
 import { Tag } from "antd";
-import { BsEye } from "react-icons/bs";
+import { BsEye, BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 function dogInfo({ dog, vaccinations }) {
   return (
@@ -13,6 +13,15 @@ function dogInfo({ dog, vaccinations }) {
           </p>
           <p className="charectiristics_labels">
             Age : <span className="charectiristics_values">{dog.age}</span>
+          </p>
+          <p>
+            <p className="flex gap-2 charectiristics_labels">
+              Gender:
+              <span className="flex charactiristics_values">
+                {dog.gender === "m" ? <BsGenderMale /> : <BsGenderFemale />}
+                {dog.gender.toUpperCase()}
+              </span>
+            </p>
           </p>
         </div>
         <p className="mr-5 text-roz h-5/5 border-x-2"></p>
@@ -40,6 +49,12 @@ function dogInfo({ dog, vaccinations }) {
           Post Views:{" "}
           <span className="flex items-center pl-2 pr-2 align-middle charectiristics_values">
             <BsEye /> {dog.total_views}
+          </span>
+        </p>
+        <p className="flex charectiristics_labels">
+          Likes
+          <span className="flex items-center pl-2 pr-2 align-middle charectiristics_values">
+            {dog.total_favourites}
           </span>
         </p>
       </div>
