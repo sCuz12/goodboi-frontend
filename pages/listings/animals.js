@@ -13,6 +13,7 @@ import AbovePageSection from "../../components/Sections/AbovePageSection";
 import Pagination from "react-js-pagination";
 import NoResults from "../../components/CustomImages/Illustrations/NoResults";
 import ListingsFilters from "../../components/Filters/ListingsFilters";
+import { useRouter } from "next/router";
 
 function animals() {
   const [citiesFilter, setCitiesFilter] = useState([]);
@@ -24,6 +25,14 @@ function animals() {
   const [token, setToken] = useState("");
   const [filtersCollapse, setFiltersCollapse] = useState(false);
   const [sortBy, setSortBy] = useState([]);
+
+  const { query } = useRouter();
+
+  const initialValues = {
+    size: query.size || "all",
+    cities: query.cities || "all",
+    gender: query.gender || "all",
+  };
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
@@ -80,6 +89,7 @@ function animals() {
       setTotalListings(data.data.total);
     }
   };
+
   //sends add sort fields and send request
   const sortListingsBy = async () => {
     let formData = new FormData();
@@ -129,6 +139,24 @@ function animals() {
       default:
         setSortBy(["name", "asc"]);
     }
+  };
+
+  /* Handles the change of gender in filters*/
+  const genderFilterHandler = async (value) => {
+    //means both so initial filter listing
+    if (value === "b") {
+      getInitialListings();
+      return;
+    }
+
+    const { data } = await axiosInstance.post("/api/animals/dogs", null, {
+      params: {
+        gender: value,
+      },
+    });
+
+    setAnimalLIstings(data.data);
+    setTotalListings(data.data.total);
   };
 
   const sortMenu = (
@@ -182,6 +210,7 @@ function animals() {
               isCollapse={filtersCollapse}
               openFiltersHandler={openFiltersHandler}
               handleSelect={handleToggle}
+              genderFilterHandler={genderFilterHandler}
             />
           )}
 

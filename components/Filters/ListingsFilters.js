@@ -1,11 +1,28 @@
 import React from "react";
 import { AiOutlineLeftCircle } from "react-icons/ai";
+import { Radio } from "antd";
+
+const GENDER_FILTERS = [
+  {
+    label: "Male",
+    value: "m",
+  },
+  {
+    label: "Female",
+    value: "f",
+  },
+  {
+    label: "Both",
+    value: "b",
+  },
+];
 
 function ListingsFilters({
   cities,
   isCollapse,
   openFiltersHandler,
   handleSelect,
+  genderFilterHandler,
 }) {
   return (
     <div
@@ -41,6 +58,23 @@ function ListingsFilters({
               />
             </div>
           ))}
+          <div className="flex w-full mt-5 text-center border bottom-3" />
+          <h2 className="w-4/5 text-xl">Gender</h2>
+          <div className="flex flex-col">
+            <Radio.Group>
+              {GENDER_FILTERS.map((gender) => {
+                return (
+                  <Radio.Button
+                    key={gender.value}
+                    value={gender.value}
+                    onChange={() => genderFilterHandler(gender.value)}
+                  >
+                    {gender.label}
+                  </Radio.Button>
+                );
+              })}
+            </Radio.Group>
+          </div>
         </div>
       </div>
     </div>
