@@ -1,23 +1,26 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import axiosInstance from "../../helpers/axios";
-import ShelterSideNav from "../Nav/shelter/ShelterSideNav";
+import { IoSyncOutline } from "react-icons/io5";
+import UserSideNav from "../Nav/user/UserSideNav";
 import Spin from "../Decos/Spin";
-
-const ShelterRoute = ({ children }) => {
+/**
+ * Middleware that checks if logged in user has type = user
+ */
+const NormalUserRoute = ({ children, showSide = false }) => {
   const [ok, setOk] = useState();
 
   const router = useRouter();
 
   useEffect(() => {
-    fetchShelter();
+    fetchUser();
   }, []);
 
-  const fetchShelter = async () => {
+  const fetchUser = async () => {
     try {
       const token = window.localStorage.getItem("token");
       axiosInstance.defaults.headers.Authorization = `Bearer ${token}`;
-      const data = await axiosInstance.get("is-normal-user", {
+      const data = await axiosInstance.get("/api/is-normal-user", {
         headers: { "Content-Type": "application/json" },
       });
       if (data.status === 200) setOk(true);
@@ -31,20 +34,18 @@ const ShelterRoute = ({ children }) => {
   return (
     <>
       {!ok ? (
-        <div className="flex justify-center min-h-screen pt-40">
+        <div className="flex justify-center min-h-screen pt-40 ">
           <Spin />
         </div>
       ) : (
         <div className="flex min-h-screen ">
-          <div className="hidden lg:block">
-            <ShelterSideNav />
-          </div>
+          {showSide && <UserSideNav />}
 
-          <div className="w-full p-8 m-25 lg:p-0">{children}</div>
+          <div className="w-full p-8 m-25 lg:p-8">{children}</div>
         </div>
       )}
     </>
   );
 };
 
-export default ShelterRoute;
+export default NormalUserRoute;

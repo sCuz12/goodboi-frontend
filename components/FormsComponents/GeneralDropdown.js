@@ -1,6 +1,6 @@
 import React from "react";
 import { Select } from "antd";
-function CityDropdown({ data, handler, defaultValue }) {
+function GeneralDropdown({ data, handler, defaultValue, labelName }) {
   const options = [];
   //construct array of options
   data.map((option) => {
@@ -9,7 +9,7 @@ function CityDropdown({ data, handler, defaultValue }) {
 
   return (
     <>
-      <label className="form_label_text">City</label>
+      <label className="form_label_text">{labelName}</label>
       <div className="relative">
         <Select
           options={options}
@@ -32,4 +32,4 @@ function CityDropdown({ data, handler, defaultValue }) {
   );
 }
 
-export default CityDropdown;
+export default GeneralDropdown;
