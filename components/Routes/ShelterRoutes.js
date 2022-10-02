@@ -17,7 +17,7 @@ const ShelterRoute = ({ children }) => {
     try {
       const token = window.localStorage.getItem("token");
       axiosInstance.defaults.headers.Authorization = `Bearer ${token}`;
-      const data = await axiosInstance.get("is-normal-user", {
+      const data = await axiosInstance.get("/api/is-shelter-user", {
         headers: { "Content-Type": "application/json" },
       });
       if (data.status === 200) setOk(true);

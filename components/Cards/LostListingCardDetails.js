@@ -15,7 +15,6 @@ function LostListingCardDetails({ item }) {
         <div className="flex w-full gap-0 text-sm">
           <MdDateRange size={20} />
           <p>{item.lost_date}</p>
-          <p className="flex justify-end">asa</p>
         </div>
         <div className="flex gap-2 text-sm">
           <IoLocationSharp size={20} />
