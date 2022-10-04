@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NormalUserRoute from "../../../components/Routes/UserTypeRoutes";
-import { DatePicker, Upload, Radio, Select, Empty } from "antd";
+import { DatePicker, Upload, Radio, Select, Empty, Spin } from "antd";
 import ImageUploadButton from "../../../components/Buttons/ImageUploadButton";
 import { ImageUploadValidator } from "../../../helpers/functions";
 import CityDropdown from "../../../components/FormsComponents/CityDropdown";
@@ -25,6 +25,7 @@ function create() {
   const [coverImageUrl, setCoverImageUrl] = useState([]);
   const [listingsImages, setListingsImages] = useState([]);
   const [size, setSize] = useState("");
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const router = useRouter();
 
@@ -50,6 +51,7 @@ function create() {
   /**Handlers */
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setButtonLoading(true);
     let formData = new FormData();
     formData.append("cover_photo", coverImageUrl.fileList[0].originFileObj);
 
@@ -74,7 +76,7 @@ function create() {
       })
 
       .then((res) => {
-        console.log(res);
+        setButtonLoading(false);
         toast.success("Dog succesfully listed");
       })
       .catch((err) => {
@@ -150,6 +152,21 @@ function create() {
     const { data } = await axiosInstance.get(`/api/locations/${city_id}`);
     setLocationsOptions(data);
   };
+
+  /*Checks if are required fields are completed */
+  function disableButton() {
+    console.log(name, description, location, size, lostDate, title);
+    return (
+      name == "" ||
+      description == "" ||
+      selectedLocation == "" ||
+      size == "" ||
+      lostDate == "" ||
+      uploadCoverError != "" ||
+      uploadListingPhotosError != "" ||
+      title == ""
+    );
+  }
 
   return (
     <NormalUserRoute>
@@ -320,8 +337,9 @@ function create() {
               <button
                 className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"
                 type="submit"
+                disabled={disableButton() || buttonLoading}
               >
-                Submit
+                {buttonLoading ? <Spin /> : "Submit"}
               </button>
             </div>
           </div>
