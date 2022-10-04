@@ -1,7 +1,7 @@
 import React from "react";
 import { MdDateRange } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
-import { AiOutlineEuroCircle } from "react-icons/ai";
+import { AiOutlineEuroCircle, AiOutlineUser } from "react-icons/ai";
 
 function LostListingCardDetails({ item }) {
   return (
@@ -26,6 +26,10 @@ function LostListingCardDetails({ item }) {
             <p>{item.reward}</p>
           </div>
         )}
+        <div className="flex gap-2 text-sm">
+          <AiOutlineUser size={20} />
+          <p>{item.owner}</p>
+        </div>
       </div>
     </div>
   );
