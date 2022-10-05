@@ -13,6 +13,7 @@ function update() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [coverimage, setCoverimage] = useState([]);
   const { state, dispatch } = useContext(Context);
 
@@ -28,6 +29,7 @@ function update() {
 
     formData.append("first_name", firstName);
     formData.append("last_name", lastName);
+    formData.append("phone", phone);
 
     axiosInstance
       .post("/api/user/update_profile", formData, {
@@ -95,6 +97,7 @@ function update() {
         setFirstName(data.user.first_name);
         setLastName(data.user.last_name);
         setEmail(data.user.emai);
+        setPhone(data.user.phone);
         setCurrentData(data.user);
       }
     } catch (err) {
@@ -190,6 +193,21 @@ function update() {
               <ImageUploadButton />
             </Upload>
           </div>
+
+          {/**Mobile Phone */}
+          <div className="w-full mb-6 md:w-1/2 md:mb-0">
+            <label className="form_label_text">Mobile Phone</label>
+            <input
+              defaultValue={currentData.phone}
+              onChange={(e) => {
+                setPhone(e.target.value);
+              }}
+              className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
+              id="grid-user-email"
+              type="text"
+            />
+          </div>
+
           <div className="w-1/5">
             <button
               className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"

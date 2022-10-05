@@ -25,12 +25,14 @@ function Telephone({ phone, email, onclose, address }) {
                     </div>
                     <div className="w-4/5">{email}</div>
                   </div>
-                  <div className="flex w-full description_text">
-                    <div className="flex w-1/5">
-                      <GoLocation size={30} />
+                  {address && (
+                    <div className="flex w-full description_text">
+                      <div className="flex w-1/5">
+                        <GoLocation size={30} />
+                      </div>
+                      <div className="w-4/5">{address}</div>
                     </div>
-                    <div className="w-4/5">{address}</div>
-                  </div>
+                  )}
                   <div className="flex w-full description_text">
                     <div className="flex w-1/5">
                       <BsTelephone size={30} />

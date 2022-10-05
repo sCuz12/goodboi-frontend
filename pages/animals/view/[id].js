@@ -164,6 +164,7 @@ const AnimalListingView = () => {
                       </div>
                     </div>
                   </h1>
+                  {/** Description */}
                   <p className="flex h-40 lg:w-full">{animal.description}</p>
                   <div className="flex-col justify-center w-5/5 lg:w-full">
                     {!isMobile ? (
