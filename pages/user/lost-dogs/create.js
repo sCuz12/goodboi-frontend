@@ -272,21 +272,21 @@ function create() {
               </div>
 
               {/* City */}
-              <div className="flex w-full mb-6 md:mb-0 ">
-                <div className="w-full px-3 md:w-1/2 ">
-                  <CityDropdown
-                    data={citiesOptions}
-                    handler={citySelectionHandler}
-                  />
-                </div>
-                <div className="w-full px-3 md:w-1/2">
-                  <GeneralDropdown
-                    data={locationsOptions}
-                    handler={locationSelectionHandler}
-                    labelName="Location"
-                  />
-                </div>
+              <div className="w-full px-3 pb-4 md:w-1/2">
+                <GeneralDropdown
+                  data={citiesOptions}
+                  handler={citySelectionHandler}
+                  labelName="City"
+                />
               </div>
+              <div className="w-full px-3 md:w-1/2">
+                <GeneralDropdown
+                  data={locationsOptions}
+                  handler={locationSelectionHandler}
+                  labelName="Location"
+                />
+              </div>
+
               {/** Cover Photo */}
               <div className="w-full px-3 md:w-2/2">
                 <label className="form_label_text">
