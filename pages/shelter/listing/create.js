@@ -445,12 +445,10 @@ function create() {
                   </div>
                 </div>
                 {/*Cities dropwdown */}
-                <div className="w-full px-3 mb-6 md:w-1/3 md:mb-0">
-                  <CityDropdown
-                    data={citiesOptions}
-                    handler={citySelectionHandler}
-                  />
-                </div>
+                <CityDropdown
+                  data={citiesOptions}
+                  handler={citySelectionHandler}
+                />
               </div>
 
               <div className="flex flex-wrap">
