@@ -3,7 +3,6 @@ import NormalUserRoute from "../../../components/Routes/UserTypeRoutes";
 import { DatePicker, Upload, Radio, Select, Empty, Spin } from "antd";
 import ImageUploadButton from "../../../components/Buttons/ImageUploadButton";
 import { ImageUploadValidator } from "../../../helpers/functions";
-import CityDropdown from "../../../components/FormsComponents/CityDropdown";
 import axiosInstance from "../../../helpers/axios";
 import GeneralDropdown from "../../../components/FormsComponents/GeneralDropdown";
 import { toast } from "react-toastify";
@@ -169,7 +168,7 @@ function create() {
   }
 
   return (
-    <NormalUserRoute>
+    <NormalUserRoute showSide={true}>
       <div className="max-w-2xl mx-auto mt-24">
         <h3 className="pb-4 text-center header_titles font-cherryBomb">
           Create Lost Dog

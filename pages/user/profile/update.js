@@ -6,7 +6,7 @@ import { Context } from "../../../context";
 import axiosInstance from "../../../helpers/axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import UserRoute from "../../../components/Routes/UserRoutes";
+import NormalUserRoute from "../../../components/Routes/UserTypeRoutes";
 
 function update() {
   const [currentData, setCurrentData] = useState([]);
@@ -111,7 +111,7 @@ function update() {
   }
 
   return (
-    <UserRoute>
+    <NormalUserRoute showSide={true}>
       <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mt-24">
         <h3 className="text-center header_titles font-cherryBomb">
           Update User Profile
@@ -219,7 +219,7 @@ function update() {
           </div>
         </div>
       </form>
-    </UserRoute>
+    </NormalUserRoute>
   );
 }
 

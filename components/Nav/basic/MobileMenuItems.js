@@ -75,6 +75,10 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       text: "My Favourites",
       url: "/user/favourites/",
     },
+    {
+      text: "Post Lost Dog",
+      text: "/user/lost-dogs/create",
+    },
   ];
 
   return (
