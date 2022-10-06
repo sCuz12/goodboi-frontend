@@ -136,6 +136,9 @@ function TopNav() {
                               <Link href="/user/lost-dogs/create">
                                 <a className="top_nav_a">Post Lost Dog</a>
                               </Link>
+                              <Link href="/user/lost-dogs/mylistings">
+                                <a className="top_nav_a">View Lost Listings</a>
+                              </Link>
                             </>
                           )}
 

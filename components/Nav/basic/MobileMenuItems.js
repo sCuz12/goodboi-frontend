@@ -77,7 +77,11 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
     },
     {
       text: "Post Lost Dog",
-      text: "/user/lost-dogs/create",
+      url: "/user/lost-dogs/create",
+    },
+    {
+      text: "My Listings",
+      url: "/user/lost-dogs/mylistings",
     },
   ];
 
