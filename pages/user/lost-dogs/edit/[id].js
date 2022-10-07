@@ -35,6 +35,8 @@ function update() {
     if (!router.isReady) return;
     loadListing();
     getCountryOptions();
+    //TODO: Fetch dynamic the country
+    fetchCitiesByCountryId(1);
   }, [id]);
 
   //render every time selectedCity Changes
@@ -47,9 +49,8 @@ function update() {
   const loadListing = async () => {
     try {
       const { data } = await axiosInstance.get("api/user/lost-dogs/edit/" + id);
-      setCurrentValues(data.data);
       setSelectedCity(data.data.city_id);
-      setSelectedLocation(data.data.lost_at);
+      setCurrentValues(data.data);
     } catch (e) {
       switch (e.response.status) {
         case 401:
@@ -65,14 +66,11 @@ function update() {
   const getCountryOptions = async () => {
     const { data } = await axiosInstance.get("/api/countries");
     setCountryOptions(data);
-    //TODO: Fetch dynamic the country
-    fetchCitiesById(1);
   };
 
   //*Fetching methods start **//
-  const fetchCitiesById = async (id) => {
+  const fetchCitiesByCountryId = async (id) => {
     const { data } = await axiosInstance.get(`/api/cities/${id}`);
-    fetchLocationsByCity(id);
     setCitiesOptions(data);
   };
 
@@ -244,7 +242,7 @@ function update() {
                   data={locationsOptions}
                   handler={locationSelectionHandler}
                   labelName="Location"
-                  defaultValue={currentValues.lost_at}
+                  defaultValue={currentValues.location_id}
                 />
               </div>
             </div>
