@@ -23,6 +23,7 @@ function ListingsFilters({
   openFiltersHandler,
   handleSelect,
   genderFilterHandler,
+  showGenderFilter,
 }) {
   return (
     <div
@@ -59,22 +60,26 @@ function ListingsFilters({
             </div>
           ))}
           <div className="flex w-full mt-5 text-center border bottom-3" />
-          <h2 className="w-4/5 text-xl">Gender</h2>
-          <div className="flex flex-col">
-            <Radio.Group>
-              {GENDER_FILTERS.map((gender) => {
-                return (
-                  <Radio.Button
-                    key={gender.value}
-                    value={gender.value}
-                    onChange={() => genderFilterHandler(gender.value)}
-                  >
-                    {gender.label}
-                  </Radio.Button>
-                );
-              })}
-            </Radio.Group>
-          </div>
+          {showGenderFilter && (
+            <>
+              <h2 className="w-4/5 text-xl">Gender</h2>
+              <div className="flex flex-col">
+                <Radio.Group>
+                  {GENDER_FILTERS.map((gender) => {
+                    return (
+                      <Radio.Button
+                        key={gender.value}
+                        value={gender.value}
+                        onChange={() => genderFilterHandler(gender.value)}
+                      >
+                        {gender.label}
+                      </Radio.Button>
+                    );
+                  })}
+                </Radio.Group>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

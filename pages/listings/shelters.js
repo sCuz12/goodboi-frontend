@@ -33,7 +33,7 @@ export default function Shelters() {
 
   /* Get Cities api call & set state */
   const getCities = async () => {
-    const { data } = await axiosInstance.post("/api/cities/all");
+    const { data } = await axiosInstance.get("/api/cities/");
     setCitiesFilter(data);
   };
 
@@ -53,7 +53,6 @@ export default function Shelters() {
   };
 
   const filterSheltersByCities = async () => {
-    console.log(checkedCity);
     if (checkedCity.length > 0) {
       let formData = new FormData();
       for (const option of checkedCity) {
@@ -67,7 +66,6 @@ export default function Shelters() {
 
   const openFiltersHandler = () => {
     filtersCollapse ? setFiltersCollapse(false) : setFiltersCollapse(true);
-    console.log(filtersCollapse);
   };
 
   return (

@@ -56,7 +56,7 @@ function animals() {
 
   /* Method gets all cities and set state*/
   const getCities = async () => {
-    const { data } = await axiosInstance.post("/api/cities/all");
+    const { data } = await axiosInstance.get("/api/cities");
     setCitiesFilter(data);
   };
 
@@ -211,6 +211,7 @@ function animals() {
               openFiltersHandler={openFiltersHandler}
               handleSelect={handleToggle}
               genderFilterHandler={genderFilterHandler}
+              showGenderFilter={true}
             />
           )}
 
