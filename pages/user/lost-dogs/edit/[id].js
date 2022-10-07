@@ -9,18 +9,24 @@ import NormalUserRoute from "../../../../components/Routes/UserTypeRoutes";
 import axiosInstance from "../../../../helpers/axios";
 import { useRouter } from "next/router";
 import moment from "moment";
+import SubmitBtn from "../../../../components/FormsComponents/SubmitBtn";
+import { toast } from "react-toastify";
 
 function update() {
   const [name, setName] = useState("");
   const [dogTitle, setDogTitle] = useState("");
   const [description, setDescription] = useState("");
   const [reward, setReward] = useState("");
+  const [size, setSize] = useState("");
   const [lostDate, setLostDate] = useState("");
   const [citiesOptions, setCitiesOptions] = useState([]);
   const [countryOptions, setCountryOptions] = useState([]);
   const [locationsOptions, setLocationsOptions] = useState([]);
   const [currentValues, setCurrentValues] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   const router = useRouter();
   const { id } = router.query;
@@ -33,7 +39,9 @@ function update() {
 
   //render every time selectedCity Changes
   useEffect(() => {
-    fetchLocationsByCity(selectedCity);
+    if (selectedCity != "") {
+      fetchLocationsByCity(selectedCity);
+    }
   }, [selectedCity]);
 
   const loadListing = async () => {
@@ -41,6 +49,7 @@ function update() {
       const { data } = await axiosInstance.get("api/user/lost-dogs/edit/" + id);
       setCurrentValues(data.data);
       setSelectedCity(data.data.city_id);
+      setSelectedLocation(data.data.lost_at);
     } catch (e) {
       switch (e.response.status) {
         case 401:
@@ -56,12 +65,14 @@ function update() {
   const getCountryOptions = async () => {
     const { data } = await axiosInstance.get("/api/countries");
     setCountryOptions(data);
+    //TODO: Fetch dynamic the country
     fetchCitiesById(1);
   };
 
   //*Fetching methods start **//
   const fetchCitiesById = async (id) => {
     const { data } = await axiosInstance.get(`/api/cities/${id}`);
+    fetchLocationsByCity(id);
     setCitiesOptions(data);
   };
 
@@ -71,8 +82,53 @@ function update() {
   };
 
   /* handlers */
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e) => {
     //TODO : Handle submit of form
+    e.preventDefault();
+    setLoading(true);
+    let formData = new FormData();
+
+    if (selectedCity != "") {
+      formData.append("city_id", selectedCity);
+    }
+
+    if (lostDate != "") {
+      formData.append("lost_at", lostDate);
+    }
+
+    if (name != "") {
+      formData.append("name", name);
+    }
+    if (dogTitle != "") {
+      formData.append("title", dogTitle);
+    }
+    if (description != "") {
+      formData.append("description", description);
+    }
+    if (selectedLocation != "") {
+      formData.append("location_id", selectedLocation);
+    }
+
+    if (size != "") {
+      formData.append("size", size);
+    }
+
+    //send post to api
+    axiosInstance
+      .post(`/api/user/lost-dogs/edit/${id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(() => {
+        toast.success("Lost Dog listing succesfully uploaded");
+        router.push("/user/lost-dogs/mylistings");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data);
+      });
   };
   const citySelectionHandler = (value) => {
     setSelectedCity(value);
@@ -82,9 +138,9 @@ function update() {
     setSelectedLocation(value);
   };
 
-  const sizeChangeHandler = () => {};
-
-  const coverImageUploadHandler = () => {};
+  const sizeChangeHandler = (e) => {
+    setSize(e.target.value);
+  };
 
   return (
     <NormalUserRoute showSide={true}>
@@ -192,6 +248,12 @@ function update() {
                 />
               </div>
             </div>
+
+            <SubmitBtn
+              disableButtonHandler={false}
+              name="update"
+              isLoading={loading}
+            />
           </form>
         </div>
       )}

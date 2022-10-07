@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 function Label({ labelName, isRequired }) {
   return (
     <label className="form_label_text">
-      Lost Dog Name
-      <span className="required"></span>
+      {labelName}
+      {isRequired ? <span className="required"></span> : ""}
     </label>
   );
 }
