@@ -4,6 +4,8 @@ import { AiOutlineDashboard, AiOutlineProfile } from "react-icons/ai";
 import { GiLoveHowl } from "react-icons/gi";
 import Logout from "../shelter/Items/Logout";
 import { BsArrowDownLeft, BsArrowUpRight } from "react-icons/bs";
+import { SiDatadog } from "react-icons/si";
+import { IoCreateOutline } from "react-icons/io5";
 
 function UserSideNav() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -39,18 +41,31 @@ function UserSideNav() {
             <ul className="relative">
               <SideBarItem
                 icon={
-                  <GiLoveHowl className="block float-left mr-2 text-xl text-black cursor-pointer" />
-                }
-                name="My Favourites"
-                url="/user/favourites"
-              />
-
-              <SideBarItem
-                icon={
                   <AiOutlineProfile className="block float-left mr-2 text-xl text-black cursor-pointer" />
                 }
                 name="Account Profile"
                 url="/user/profile/update"
+              />
+              <SideBarItem
+                icon={
+                  <IoCreateOutline className="block float-left mr-2 text-xl text-black cursor-pointer" />
+                }
+                name="Post Lost Dog"
+                url="/user/lost-dogs/create"
+              />
+              <SideBarItem
+                icon={
+                  <SiDatadog className="block float-left mr-2 text-xl text-black cursor-pointer" />
+                }
+                name="My Listings"
+                url="/user/lost-dogs/mylistings"
+              />
+              <SideBarItem
+                icon={
+                  <GiLoveHowl className="block float-left mr-2 text-xl text-black cursor-pointer" />
+                }
+                name="My Favourites"
+                url="/user/favourites"
               />
 
               <Logout />

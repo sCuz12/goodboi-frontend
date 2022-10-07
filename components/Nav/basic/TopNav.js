@@ -127,6 +127,9 @@ function TopNav() {
                           {/* if user is normal*/}
                           {user.user_type.includes("user") && (
                             <>
+                              <Link href="/user">
+                                <a className="top_nav_a">Dashboard</a>
+                              </Link>
                               <Link href="/user/profile/update">
                                 <a className="top_nav_a">Update Profile</a>
                               </Link>
@@ -137,7 +140,7 @@ function TopNav() {
                                 <a className="top_nav_a">Post Lost Dog</a>
                               </Link>
                               <Link href="/user/lost-dogs/mylistings">
-                                <a className="top_nav_a">View Lost Listings</a>
+                                <a className="top_nav_a">My Listings</a>
                               </Link>
                             </>
                           )}
