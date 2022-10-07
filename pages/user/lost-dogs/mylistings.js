@@ -3,9 +3,12 @@ import { toast } from "react-toastify";
 import LostDogRowListing from "../../../components/Cards/LostDogRowListing.js";
 import NormalUserRoute from "../../../components/Routes/UserTypeRoutes";
 import axiosInstance from "../../../helpers/axios";
+import { useRouter } from "next/router";
 
 function mylistings() {
   const [currentUserListings, setCurrentUserListings] = useState([]);
+
+  const router = useRouter();
 
   useEffect(() => {
     fetchUserLostListings();

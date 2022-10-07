@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NormalUserRoute from "../../../components/Routes/UserTypeRoutes";
-import { DatePicker, Upload, Radio, Select, Empty, Spin } from "antd";
+import { DatePicker, Upload, Radio, Spin } from "antd";
 import ImageUploadButton from "../../../components/Buttons/ImageUploadButton";
 import { ImageUploadValidator } from "../../../helpers/functions";
 import axiosInstance from "../../../helpers/axios";
@@ -76,6 +76,7 @@ function create() {
 
       .then((res) => {
         setButtonLoading(false);
+        router.push("/user/lost-dogs/mylistings");
         toast.success("Dog succesfully listed");
       })
       .catch((err) => {
@@ -154,7 +155,6 @@ function create() {
 
   /*Checks if are required fields are completed */
   function disableButton() {
-    console.log(name, description, location, size, lostDate, title);
     return (
       name == "" ||
       description == "" ||
