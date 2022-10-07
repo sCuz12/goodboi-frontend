@@ -169,8 +169,6 @@ function editListing() {
       formData.append("city_id", selectedCity);
     }
     if (dobDate != "") {
-      console.log(dobDate);
-
       formData.append("dob", dobDate);
     }
 

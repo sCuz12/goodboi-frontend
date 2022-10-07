@@ -35,11 +35,6 @@ function create() {
   const { user } = state;
   /*page load trigger hook (no dependencies) */
   useEffect(() => {
-    const getCountryOptions = async () => {
-      const { data } = await axiosInstance.get("/api/countries");
-      // console.log(data);
-      setCountryOptions(data);
-    };
     getCountryOptions();
     fetchCitiesById(1); //default retrieve Cyprus countries
     fetchAvailableVacinnes();
@@ -144,6 +139,12 @@ function create() {
   const fetchAvailableVacinnes = async (id) => {
     const { data } = await axiosInstance.get("/api/vaccinations");
     setAvailableVaccines(data);
+  };
+
+  const getCountryOptions = async () => {
+    const { data } = await axiosInstance.get("/api/countries");
+    // console.log(data);
+    setCountryOptions(data);
   };
 
   /*Checks if are required fields are completed */

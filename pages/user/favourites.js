@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ListingCard from "../../components/Cards/ListingCard";
-import UserRoute from "../../components/Routes/UserRoutes";
 import axiosInstance from "../../helpers/axios";
 import NoResults from "../../components/CustomImages/Illustrations/NoResults";
+import NormalUserRoute from "../../components/Routes/UserTypeRoutes";
 
 function favourites() {
   const [favListings, setFavListings] = useState([]);
@@ -26,7 +26,7 @@ function favourites() {
     setFavListings(data.data);
   };
   return (
-    <UserRoute>
+    <NormalUserRoute showSide={true}>
       <div className="pt-20">
         <main className="px-8 mx-auto max-w-7xl sm:px-16">
           <section className="pt-6">
@@ -60,7 +60,7 @@ function favourites() {
           </section>
         </main>
       </div>
-    </UserRoute>
+    </NormalUserRoute>
   );
 }
 
