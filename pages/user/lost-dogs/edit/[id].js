@@ -111,6 +111,10 @@ function update() {
       formData.append("size", size);
     }
 
+    if (reward != "") {
+      formData.append("reward", reward);
+    }
+
     //send post to api
     axiosInstance
       .post(`/api/user/lost-dogs/edit/${id}`, formData, {
