@@ -8,10 +8,14 @@ import IndexBanner from "../components/Banners/IndexBanner";
 import NavButton from "../components/Buttons/NavButton";
 import NoResults from "../components/CustomImages/Illustrations/NoResults";
 import { Context } from "../context";
+import LostListingCard from "../components/Cards/LostListingCard";
+import ListingsRowSection from "../components/Sections/IndexPage/ListingsRowSection";
 
 export default function Home() {
   const [listings, setListings] = useState([]);
   const [shelters, setShelters] = useState([]);
+  const [lostListings, setLostlistings] = useState([]);
+
   const { state, dispatch } = useContext(Context);
   const [token, setToken] = useState("");
   const { user } = state;
@@ -25,20 +29,28 @@ export default function Home() {
       )}`;
     }
 
-    const fetchListings = async () => {
-      const { data } = await axiosInstance.get("/api/animals/dogs");
-      //Slice to Limit only 8 in index
-      setListings(data.data.slice(0, 8));
-    };
-
-    const fetchShelters = async () => {
-      const { data } = await axiosInstance.get("/api/get_shelters");
-      setShelters(data.data.slice(0, 8));
-    };
-
     fetchListings();
     fetchShelters();
+    fetchLostListings();
   }, []);
+
+  const fetchListings = async () => {
+    const { data } = await axiosInstance.get("/api/animals/dogs");
+    //Slice to Limit only 8 in index
+    setListings(data.data.slice(0, 8));
+  };
+
+  const fetchShelters = async () => {
+    const { data } = await axiosInstance.get("/api/get_shelters");
+    setShelters(data.data.slice(0, 8));
+  };
+
+  const fetchLostListings = async () => {
+    const { data } = await axiosInstance.get(
+      "/api/animals/lost-dogs/all?sortBy=lost_at"
+    );
+    setLostlistings(data.data.slice(0, 8));
+  };
 
   return (
     <>
@@ -53,8 +65,9 @@ export default function Home() {
       </Head>
       <div className="pt-20"></div>
       <IndexBanner user={user} />
-      {/* Listings */}
+
       <main className="p-4 lg:p-16 ">
+        {/* Dogs for adoption */}
         <section className="lg:p-6">
           <h3 className="pb-5 header_titles">Adopt Me</h3>
           {listings.length === 0 ? (
@@ -88,25 +101,19 @@ export default function Home() {
             <NavButton title="See more" link="/listings/animals" />
           </div>
         </section>
+
+        {/* Lost dogs section*/}
+        <ListingsRowSection
+          title="Lost Dogs"
+          listings={lostListings}
+          listingType="lost"
+        />
         {/* Shelter section*/}
-        <section className="pt-6">
-          <h3 className="pb-5 header_titles">Find Shelter</h3>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {shelters.map((item) => (
-              <div key={item.id} className="mb-10 overflow-hidden rounded-2xl">
-                <ShelterCard
-                  id={item.id}
-                  name={item.shelter_name}
-                  image={item.cover_image}
-                  city={item.city}
-                />
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center mx-auto ">
-            <NavButton title="See more" link="/listings/shelters" />
-          </div>
-        </section>
+        <ListingsRowSection
+          title="Shelters"
+          listings={shelters}
+          listingType="shelters"
+        />
       </main>
     </>
   );
