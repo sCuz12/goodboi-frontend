@@ -39,6 +39,20 @@ function view() {
     }
   };
 
+  const adoptedHandler = async (id) => {
+    const answer = confirm("Are you sure you want to mark this as adopted?");
+    if (!answer) return;
+    try {
+      const { data } = await axiosInstance.post(
+        `api/shelter/animals/${id}}/markAsAdopted`
+      );
+      router.push("/shelter/mylistings/view");
+      toast.success("Listing marked as adopted");
+    } catch (err) {
+      toast.error("Error marking this listing as adopted");
+    }
+  };
+
   return (
     <ShelterRoute>
       <div className="mx-auto mt-24 w-4/4">
@@ -58,6 +72,7 @@ function view() {
                 id={listing.id}
                 index={index}
                 totalViews={listing.total_views}
+                handleAdopted={adoptedHandler}
               />
             );
           })}

@@ -2,6 +2,7 @@ import React from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
 import { MdPreview } from "react-icons/md";
+import { TiInputChecked } from "react-icons/ti";
 function RowListingCard({
   title,
   id,
@@ -10,6 +11,7 @@ function RowListingCard({
   index,
   handleDelete,
   totalViews,
+  handleAdopted,
 }) {
   return (
     <div className="card card_row card_hoverable" key={id}>
@@ -50,6 +52,12 @@ function RowListingCard({
           className="text-black btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
         >
           <AiFillDelete size={30} />
+        </a>
+        <a
+          onClick={() => handleAdopted(id)}
+          className="text-black btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
+        >
+          <TiInputChecked size={30} />
         </a>
       </div>
     </div>
