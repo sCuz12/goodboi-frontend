@@ -84,8 +84,12 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       url: "/user/lost-dogs/create",
     },
     {
+      text: "Post Found Dog",
+      url: "/user/found-dogs/create",
+    },
+    {
       text: "My Listings",
-      url: "/user/lost-dogs/mylistings",
+      url: "/user/mylistings",
     },
   ];
 

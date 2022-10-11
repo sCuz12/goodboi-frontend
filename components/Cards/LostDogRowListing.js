@@ -2,7 +2,19 @@ import React from "react";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
 import { MdPreview } from "react-icons/md";
+import { Tag } from "antd";
+
 function LostDogRowListing({ index, listing, handleDelete }) {
+  let tag;
+  //render tag color based of type
+  if (listing.listing_type === "lost") {
+    tag = <Tag color="red">{listing.listing_type}</Tag>;
+  }
+
+  if (listing.listing_type === "found") {
+    tag = <Tag color="orange">{listing.listing_type}</Tag>;
+  }
+
   return (
     <div className="card card_row card_hoverable" key={listing.id}>
       <div>
@@ -15,6 +27,7 @@ function LostDogRowListing({ index, listing, handleDelete }) {
       <div className="m-auto header ">
         <h5 className="text-lg">{listing.title}</h5>
         <p>{listing.description}</p>
+        {tag}
       </div>
 
       <div className="flex p-4 space-x-4 actions lg:flex-col lg:space-x-0 sm:space-x-4">

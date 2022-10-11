@@ -125,7 +125,7 @@ function update() {
       })
       .then(() => {
         toast.success("Lost Dog listing succesfully uploaded");
-        router.push("/user/lost-dogs/mylistings");
+        router.push("/user/mylistings");
       })
       .catch((err) => {
         console.log(err);

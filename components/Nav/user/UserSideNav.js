@@ -55,10 +55,17 @@ function UserSideNav() {
               />
               <SideBarItem
                 icon={
+                  <IoCreateOutline className="block float-left mr-2 text-xl text-black cursor-pointer" />
+                }
+                name="Post Found Dog"
+                url="/user/found-dogs/create"
+              />
+              <SideBarItem
+                icon={
                   <SiDatadog className="block float-left mr-2 text-xl text-black cursor-pointer" />
                 }
                 name="My Listings"
-                url="/user/lost-dogs/mylistings"
+                url="/user/mylistings"
               />
               <SideBarItem
                 icon={

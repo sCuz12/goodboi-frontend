@@ -17,9 +17,7 @@ function mylistings() {
   const fetchUserLostListings = async () => {
     const token = window.localStorage.getItem("token");
     axiosInstance.defaults.headers.Authorization = `Bearer ${token}`;
-    const { data } = await axiosInstance.get(
-      "/api/user/lost-dogs/current/listings"
-    );
+    const { data } = await axiosInstance.get("/api/user/current/listings");
     setCurrentUserListings(data.data);
   };
 
@@ -31,14 +29,36 @@ function mylistings() {
     const removed = allListings.splice(index, 1);
 
     setCurrentUserListings(allListings);
+    console.log(removed[0]);
     //update be
     try {
-      const { data } = await axiosInstance.put(
-        `api/user/lost-dogs/delete/${removed[0].dog_id}`
+      const { data } = await axiosInstance.post(
+        `api/user/lost-dogs/delete/${removed[0].id}`
       );
       toast.success("Listing succesfully deleted");
-      router.push("/");
+      router.push("/user/mylistings");
     } catch (err) {
+      console.log(err);
+      toast.error("Error Deleting listing");
+    }
+  };
+
+  const deleteFoundHandler = async (index) => {
+    const answer = confirm("Are you sure you want to delete?");
+    if (!answer) return;
+    let allListings = currentUserListings;
+    const removed = allListings.splice(index, 1);
+
+    setCurrentUserListings(allListings);
+    //update be
+    try {
+      const { data } = await axiosInstance.post(
+        `api/user/found-dogs/delete/${removed[0].id}`
+      );
+      toast.success("Listing succesfully deleted");
+      router.push("/user/mylistings");
+    } catch (err) {
+      console.log(err);
       toast.error("Error Deleting listing");
     }
   };
@@ -53,7 +73,11 @@ function mylistings() {
           {currentUserListings.map((listing, index) => {
             return (
               <LostDogRowListing
-                handleDelete={deleteHandler}
+                handleDelete={
+                  listing.listing_type === "lost"
+                    ? deleteHandler
+                    : deleteFoundHandler
+                }
                 key={index}
                 index={index}
                 listing={listing}

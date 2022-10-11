@@ -98,7 +98,7 @@ function CreateForm({ type }) {
 
       .then((res) => {
         setButtonLoading(false);
-        router.push("/user/lost-dogs/mylistings");
+        router.push("/user/mylistings");
         toast.success("Dog succesfully listed");
       })
       .catch((err) => {
