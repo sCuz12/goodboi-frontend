@@ -59,9 +59,9 @@ function TopNav() {
       <nav>
         <div className="max-w-full mx-auto ">
           <div className="flex items-center justify-between h-20 border-b-2 shadow-xl rounded-2xl border-roz">
-            <div className="flex items-center w-2/4">
+            <div className="flex items-center w-3/5">
               {/*Logo section */}
-              <div className="w-2/2 lg:w-1/2">
+              <div className="w-2/2 lg:w-2/4">
                 <a href="/">
                   <Image
                     key={1}

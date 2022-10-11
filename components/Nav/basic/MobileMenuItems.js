@@ -23,6 +23,10 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       text: "Lost Dogs",
       url: "/listings/lost-dogs",
     },
+    {
+      text: "Found Dogs",
+      url: "/listings/found-dogs",
+    },
   ];
 
   {
