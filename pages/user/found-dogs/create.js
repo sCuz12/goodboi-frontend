@@ -1,5 +1,5 @@
 import React from "react";
-import CreateForm from "../../../components/Form/Dogs/createForm";
+import CreateForm from "../../../components/Form/Dogs/CreateForm";
 import NormalUserRoute from "../../../components/Routes/UserTypeRoutes";
 
 function create() {
