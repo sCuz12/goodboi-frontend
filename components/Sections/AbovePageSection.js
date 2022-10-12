@@ -8,7 +8,7 @@ export default function AbovePageSection({ title, description, image }) {
       <div className="flex w-4/5 pl-16 lg:w-4/5">
         <div className="flex flex-col items-start justify-center pl-6">
           <h1 className="header_titles">{title}</h1>
-          <div className="flex w-full lg:w-1/2">
+          <div className="flex w-full lg:w-2/2">
             <p className="copyright_text">{description}</p>
             <div className="hidden lg:block">
               <SolidPaw />

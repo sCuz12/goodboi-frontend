@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import CardDetails from "./CardDetails";
 import Link from "next/link";
-import { IoPawOutline, IoPaw } from "react-icons/io5";
-import axiosInstance from "../../helpers/axios";
+
 import { useRouter } from "next/router";
 import LostListingCardDetails from "./LostListingCardDetails";
 

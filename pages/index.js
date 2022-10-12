@@ -3,18 +3,17 @@ import React from "react";
 import { useEffect, useState, useContext } from "react";
 import ListingCard from "../components/Cards/ListingCard";
 import axiosInstance from "../helpers/axios";
-import ShelterCard from "../components/Cards/ShelterCard";
 import IndexBanner from "../components/Banners/IndexBanner";
 import NavButton from "../components/Buttons/NavButton";
 import NoResults from "../components/CustomImages/Illustrations/NoResults";
 import { Context } from "../context";
-import LostListingCard from "../components/Cards/LostListingCard";
 import ListingsRowSection from "../components/Sections/IndexPage/ListingsRowSection";
 
 export default function Home() {
   const [listings, setListings] = useState([]);
   const [shelters, setShelters] = useState([]);
   const [lostListings, setLostlistings] = useState([]);
+  const [foundListings, setFoundListings] = useState([]);
 
   const { state, dispatch } = useContext(Context);
   const [token, setToken] = useState("");
@@ -32,6 +31,7 @@ export default function Home() {
     fetchListings();
     fetchShelters();
     fetchLostListings();
+    fetchFoundListings();
   }, []);
 
   const fetchListings = async () => {
@@ -50,6 +50,13 @@ export default function Home() {
       "/api/animals/lost-dogs/all?sortBy=lost_at"
     );
     setLostlistings(data.data.slice(0, 8));
+  };
+
+  const fetchFoundListings = async () => {
+    const { data } = await axiosInstance.get(
+      "/api/animals/found-dogs/all?sortBy=found_at"
+    );
+    setFoundListings(data.data.slice(0, 8));
   };
 
   return (
@@ -107,6 +114,12 @@ export default function Home() {
           title="Lost Dogs"
           listings={lostListings}
           listingType="lost"
+        />
+        {/* Found dogs section*/}
+        <ListingsRowSection
+          title="Found Dogs"
+          listings={foundListings}
+          listingType="found"
         />
         {/* Shelter section*/}
         <ListingsRowSection

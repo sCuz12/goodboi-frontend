@@ -3,65 +3,65 @@ import AbovePageSection from "../../../components/Sections/AbovePageSection";
 import PinkCircle from "../../../components/CustomImages/DogInCircle";
 import axiosInstance from "../../../helpers/axios";
 import NoResults from "../../../components/CustomImages/Illustrations/NoResults";
-import LostListingCard from "../../../components/Cards//Listings/Lost/LostListingCard";
+import FoundListingCard from "../../../components/Cards//Listings/Found/FoundListingCard";
 import Pagination from "react-js-pagination";
 import { Select } from "antd";
 const { Option } = Select;
 
 function index() {
-  const [lostAnimals, setLostAnimals] = useState([]);
+  const [foundAnimals, setFoundAnimals] = useState([]);
   const [totalListings, setTotalListings] = useState();
   const [activePage, setActivePage] = useState();
   const [perPage, setPerPage] = useState();
-  const [sortBy, setSortBy] = useState(["lost_at", "desc"]);
+  const [sortBy, setSortBy] = useState(["found_at", "desc"]);
 
   useEffect(() => {
-    getInitialLostDogs();
+    getInitialFoundDogs();
   }, []);
 
   //handle when sort by is Selected
   useEffect(() => {
-    sortLostDogsBy();
+    sortFoundDogsBy();
   }, [sortBy]);
 
-  /* This method gets all lost dogs and sets the states*/
-  const getInitialLostDogs = async (pageNumber = 1) => {
+  /* This method gets all found dogs and sets the states*/
+  const getInitialFoundDogs = async (pageNumber = 1) => {
     const { data } = await axiosInstance.get(
-      `/api/animals/lost-dogs/all?page=${pageNumber}&sortBy=${sortBy[0]}&sortValue=${sortBy[1]}`
+      `/api/animals/found-dogs/all?page=${pageNumber}&sortBy=${sortBy[0]}&sortValue=${sortBy[1]}`
     );
     setActivePage(data.meta.current_page);
     setPerPage(data.meta.per_page);
     setTotalListings(data.meta.total);
-    setLostAnimals(data.data);
+    setFoundAnimals(data.data);
   };
 
   /**Retrieves sorted listings  & set animals state*/
-  const sortLostDogsBy = async () => {
+  const sortFoundDogsBy = async () => {
     const { data } = await axiosInstance.get(
-      `/api/animals/lost-dogs/all?sortBy=${sortBy[0]}&sortValue=${sortBy[1]}`
+      `/api/animals/found-dogs/all?sortBy=${sortBy[0]}&sortValue=${sortBy[1]}`
     );
 
-    setLostAnimals(data.data);
+    setFoundAnimals(data.data);
   };
 
   const sortData = [
     {
       label: "Newest",
-      key: "lost_at_desc",
+      key: "found_at_desc",
     },
     {
       label: "Oldest",
-      key: "lost_at_asc",
+      key: "found_at_asc",
     },
   ];
 
   const handleSortChange = (value) => {
     switch (value) {
-      case "lost_at_asc":
-        setSortBy(["lost_at", "asc"]);
+      case "found_at_asc":
+        setSortBy(["found_at", "asc"]);
         break;
-      case "lost_at_desc":
-        setSortBy(["lost_at", "desc"]);
+      case "found_at_desc":
+        setSortBy(["found_at", "desc"]);
         break;
     }
   };
@@ -71,7 +71,7 @@ function index() {
       <section>
         <AbovePageSection
           title={"Be a dog saver"}
-          description="Contribute to efforts to find lost dogs asdada asdadasdasdasdas asdsadsa"
+          description="All the dogs found by our heros"
           image={<PinkCircle />}
         />
       </section>
@@ -80,7 +80,9 @@ function index() {
           {/* Listings */}
           <div className="p-4 lg:pr-8 lg:w-4/5 sm:px-16 ">
             <div className="flex">
-              <h1 className="w-3/4 header_titles font-cherryBomb">Lost Dogs</h1>
+              <h1 className="w-3/4 header_titles font-cherryBomb">
+                Found Dogs
+              </h1>
               {/**Sorting ui */}
               <Select
                 style={{ width: 120 }}
@@ -92,18 +94,18 @@ function index() {
                 ))}
               </Select>
             </div>
-            {lostAnimals.length == 0 ? (
+            {foundAnimals.length == 0 ? (
               <div className="flex justify-center w-full pt-20">
                 <NoResults />
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 ">
-                {lostAnimals.map((item) => (
+                {foundAnimals.map((item) => (
                   <div
                     key={item.id}
                     className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30"
                   >
-                    <LostListingCard item={item} />
+                    <FoundListingCard item={item} />
                   </div>
                 ))}
               </div>
@@ -118,7 +120,7 @@ function index() {
                 totalItemsCount={totalListings}
                 activePage={activePage}
                 itemsCountPerPage={perPage}
-                onChange={(pageNumber) => getInitialLostDogs(pageNumber)}
+                onChange={(pageNumber) => getInitialFoundDogs(pageNumber)}
                 itemClass="page_item"
                 linkClass="page_link"
                 firstPageText="First"
