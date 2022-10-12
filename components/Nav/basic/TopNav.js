@@ -123,10 +123,10 @@ function TopNav() {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <div className="absolute right-0 w-48 py-2 mt-1 origin-top-right rounded shadow-md">
+                        <div className="absolute right-0 z-40 w-48 py-2 mt-1 font-medium origin-top-right rounded shadow-md">
                           {/* if user is normal*/}
                           {user.user_type.includes("user") && (
-                            <>
+                            <div className="z-99">
                               <Link href="/user">
                                 <a className="top_nav_a">Dashboard</a>
                               </Link>
@@ -139,10 +139,13 @@ function TopNav() {
                               <Link href="/user/lost-dogs/create">
                                 <a className="top_nav_a">Post Lost Dog</a>
                               </Link>
+                              <Link href="/user/found -dogs/create">
+                                <a className="top_nav_a">Post Found Dog</a>
+                              </Link>
                               <Link href="/user/mylistings">
                                 <a className="top_nav_a">My Listings</a>
                               </Link>
-                            </>
+                            </div>
                           )}
 
                           {/* If user is shelter */}
@@ -172,15 +175,14 @@ function TopNav() {
               </div>
             </div>
             {/* mob*/}
-            <div className="flex mr-8 lg:hidden">
-              <GiHamburgerMenu
-                className="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-900 rounded-md hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                aria-controls="mobile-menu"
-                aria-expanded="false"
-                onClick={() => setMobMenuOpen(!mobMenuOpen)}
-              />
+            <div className="flex pr-6 lg:hidden">
               {!mobMenuOpen ? (
-                <GiHamburgerMenu className="w-5 h-5" />
+                <GiHamburgerMenu
+                  className="w-6 h-6"
+                  aria-controls="mobile-menu"
+                  aria-expanded="false"
+                  onClick={() => setMobMenuOpen(!mobMenuOpen)}
+                />
               ) : (
                 <svg
                   className="block w-6 h-6"
@@ -189,6 +191,7 @@ function TopNav() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   aria-hidden="true"
+                  onClick={() => setMobMenuOpen(false)}
                 >
                   <path
                     strokeLinecap="round"
