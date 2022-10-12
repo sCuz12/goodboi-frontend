@@ -48,7 +48,9 @@ function update() {
 
   const loadListing = async () => {
     try {
-      const { data } = await axiosInstance.get("api/user/lost-dogs/edit/" + id);
+      const { data } = await axiosInstance.get(
+        "api/user/mylistings/edit/" + id
+      );
       setSelectedCity(data.data.city_id);
       setCurrentValues(data.data);
     } catch (e) {
@@ -115,9 +117,19 @@ function update() {
       formData.append("reward", reward);
     }
 
+    let submitUrl;
+
+    if (currentValues.listing_type === "lost") {
+      submitUrl = `/api/user/lost-dogs/edit/${id}`;
+    }
+
+    if (currentValues.listing_type === "found") {
+      submitUrl = `/api/user/found-dogs/edit/${id}`;
+    }
+
     //send post to api
     axiosInstance
-      .post(`/api/user/lost-dogs/edit/${id}`, formData, {
+      .post(submitUrl, formData, {
         headers: {
           Authorization: `Bearer ${window.localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
@@ -125,7 +137,7 @@ function update() {
       })
       .then(() => {
         toast.success("Lost Dog listing succesfully uploaded");
-        router.push("/user/lost-dogs/mylistings");
+        router.push("/user/mylistings");
       })
       .catch((err) => {
         console.log(err);
@@ -203,27 +215,33 @@ function update() {
                     </Radio.Group>
                   </div>
                 </div>
-                <div className="px-3 mb-6 md:w-1/2 md:mb-0">
-                  <label className="form_label_text">Reward €</label>
-                  <input
-                    defaultValue={currentValues.reward}
-                    className="form_input_box"
-                    id="input-dog-lost-date"
-                    type="number"
-                    pattern="[0-9]*"
-                    onChange={(e) => {
-                      setReward(e.target.value);
-                    }}
-                  />
-                </div>
+                {currentValues.listing_type == "lost" && (
+                  <div className="px-3 mb-6 md:w-1/2 md:mb-0">
+                    <label className="form_label_text">Reward €</label>
+                    <input
+                      defaultValue={currentValues.reward}
+                      className="form_input_box"
+                      id="input-dog-lost-date"
+                      type="number"
+                      pattern="[0-9]*"
+                      onChange={(e) => {
+                        setReward(e.target.value);
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </div>
             {/* Date Losted */}
             <div className="px-3 mb-6 md:w-full">
+              {console.log(currentValues.lost_date)}
               <label className="form_label_text">Lost Date </label>
               <DatePicker
-                defaultValue={moment(currentValues.dob)}
-                dateFromat="YYYY-MM-dd"
+                defaultValue={
+                  currentValues.listing_type == "lost"
+                    ? moment(currentValues.lost_date, "YYYY-MM-DD")
+                    : moment(currentValues.found_date, "YYYY-MM-DD")
+                }
                 onChange={(date, dateString) => {
                   setLostDate(dateString);
                 }}

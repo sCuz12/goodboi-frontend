@@ -1,23 +1,18 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import CardDetails from "./CardDetails";
 import Link from "next/link";
-import { IoPawOutline, IoPaw } from "react-icons/io5";
-import axiosInstance from "../../helpers/axios";
 import { useRouter } from "next/router";
-import LostListingCardDetails from "./LostListingCardDetails";
+import FoundListingCardDetails from "./FoundListingCardDetails";
 
-function LostListingCard({ item }) {
+function FoundListingCard({ item }) {
   const router = useRouter();
-  {
-    item;
-  }
+
   return (
     <div className="h-full bg-roz hover:bg-basicPurple hover:text-white">
       <div className="items-center text-center">
         <div className="p-1.5 transition duration-300 ease-out transform cursor-pointer hover:scale-105">
           <div className="relative">
-            <Link href={`/listings/lost-dogs/view/${item.dog_id}`}>
+            <Link href={`/listings/found-dogs/view/${item.dog_id}`}>
               <Image
                 className="block object-cover shadow-inner rounded-2xl"
                 src={item.cover_image}
@@ -31,10 +26,10 @@ function LostListingCard({ item }) {
         </div>
       </div>
       <div>
-        <LostListingCardDetails item={item} />
+        <FoundListingCardDetails item={item} />
       </div>
     </div>
   );
 }
 
-export default LostListingCard;
+export default FoundListingCard;

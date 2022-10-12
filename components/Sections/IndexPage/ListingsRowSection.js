@@ -1,18 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import LostListingCard from "../../Cards/LostListingCard";
+import LostListingCard from "../../Cards/Listings/Lost/LostListingCard";
 import NavButton from "../../Buttons/NavButton";
-import ListingCard from "../../Cards/ListingCard";
 import ShelterCard from "../../Cards/ShelterCard";
+import FoundListingCard from "../../Cards/Listings/Found/FoundListingCard";
 
 const SHELTER_TYPE = "shelters";
 const LOST_DOGS_TYPE = "lost";
+const FOUND_DOGS_TYPE = "found";
 
 function ListingsRowSection({ title, listings, listingType }) {
   //decide what component should render based on type
 
   function decideComponent(type, item) {
     switch (type) {
+      case FOUND_DOGS_TYPE:
+        return <FoundListingCard item={item} />;
       case LOST_DOGS_TYPE:
         return <LostListingCard item={item} />;
       case SHELTER_TYPE:

@@ -14,6 +14,9 @@ function MenuItems() {
       <Link href="/listings/lost-dogs">
         <a className="nav_link_text">Lost Dogs</a>
       </Link>
+      <Link href="/listings/found-dogs">
+        <a className="nav_link_text">Found Dogs</a>
+      </Link>
       <Link href="/about_us">
         <a className="nav_link_text">About us</a>
       </Link>
