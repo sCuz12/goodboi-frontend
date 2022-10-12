@@ -25,7 +25,7 @@ function LostDogRowListing({ index, listing, handleDelete }) {
         </div>
       </div>
       <div className="m-auto header ">
-        <h5 className="text-lg">{listing.title}</h5>
+        <h5 className="text-lg">{listing.name}</h5>
         <p>{listing.description}</p>
         {tag}
       </div>
@@ -33,7 +33,7 @@ function LostDogRowListing({ index, listing, handleDelete }) {
       <div className="flex p-4 space-x-4 actions lg:flex-col lg:space-x-0 sm:space-x-4">
         <p>
           <a
-            href={"/listings/lost-dogs/view/" + listing.dog_id}
+            href={"/listings/lost-dogs/view/" + listing.id}
             className="pb-4 mt-auto text-black btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
           >
             <MdPreview size={30} />
@@ -41,14 +41,14 @@ function LostDogRowListing({ index, listing, handleDelete }) {
         </p>
 
         <a
-          href={"/user/lost-dogs/edit/" + listing.dog_id}
+          href={"/user/mylistings/edit/" + listing.id}
           className="pb-8 mt-auto text-black lg:pb-0 btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
         >
           <AiFillEdit size={30} />
         </a>
 
         <a
-          onClick={() => handleDelete(index, listing.dog_id)}
+          onClick={() => handleDelete(index, listing.id)}
           className="text-black btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
         >
           <AiFillDelete size={30} />
