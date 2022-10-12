@@ -368,6 +368,8 @@ function CreateForm({ type }) {
   );
 }
 
-CreateForm.propTypes = {};
+CreateForm.propTypes = {
+  type: PropTypes.string,
+};
 
 export default CreateForm;
