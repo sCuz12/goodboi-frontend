@@ -4,61 +4,61 @@ import { BsEye } from "react-icons/bs";
 import { MdPreview } from "react-icons/md";
 import { TiInputChecked } from "react-icons/ti";
 function RowListingCard({
-  title,
-  id,
-  description,
-  image,
+  item,
   index,
   handleDelete,
-  totalViews,
   handleAdopted,
+  listingType,
 }) {
   return (
-    <div className="card card_row card_hoverable" key={id}>
+    <div className="card card_row card_hoverable" key={item.id}>
       <div>
         <div className="image">
           <div className="aspect-w-4 aspect-h-3">
-            <img src={image} />
+            <img src={item.cover_image} />
           </div>
         </div>
       </div>
       <div className="m-auto header ">
-        <h5 className="text-lg">{title}</h5>
-        <p>{description}</p>
+        <h5 className="text-lg">{item.title}</h5>
+        <p>{item.description}</p>
         <div className="flex space-x-2">
-          <BsEye size={20} /> <p>{totalViews}</p>
+          <BsEye size={20} /> <p>{item.total_views}</p>
         </div>
       </div>
 
       <div className="flex p-4 space-x-4 actions lg:flex-col lg:space-x-0 sm:space-x-4">
         <p>
           <a
-            href={"/animals/view/" + id}
+            href={"/animals/view/" + item.id}
             className="pb-4 mt-auto text-black btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
           >
             <MdPreview size={30} />
           </a>
         </p>
+        {listingType == "active" && (
+          <a
+            href={"/shelter/listing/edit/" + item.id}
+            className="pb-8 mt-auto text-black lg:pb-0 btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
+          >
+            <AiFillEdit size={30} />
+          </a>
+        )}
 
         <a
-          href={"/shelter/listing/edit/" + id}
-          className="pb-8 mt-auto text-black lg:pb-0 btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
-        >
-          <AiFillEdit size={30} />
-        </a>
-
-        <a
-          onClick={() => handleDelete(index, id)}
+          onClick={() => handleDelete(index, item.id)}
           className="text-black btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
         >
           <AiFillDelete size={30} />
         </a>
-        <a
-          onClick={() => handleAdopted(id)}
-          className="text-black btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
-        >
-          <TiInputChecked size={30} />
-        </a>
+        {listingType === "active" && (
+          <a
+            onClick={() => handleAdopted(item.id)}
+            className="text-black btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
+          >
+            <TiInputChecked size={30} />
+          </a>
+        )}
       </div>
     </div>
   );

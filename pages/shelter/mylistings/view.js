@@ -4,22 +4,34 @@ import axiosInstance from "../../../helpers/axios";
 import { useRouter } from "next/router";
 import RowListingCard from "../../../components/Cards/RowListingCard";
 import { toast } from "react-toastify";
+import { Tabs } from "antd";
 
 function view() {
   const [CurrentShelterListings, setCurrentShelterListings] = useState([]);
+  const [adoptedListings, setAdoptedListings] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
     axiosInstance.defaults.headers.Authorization = `Bearer ${token}`;
 
-    const fetchListings = async () => {
-      const { data } = await axiosInstance.get("/api/shelter/current/listings");
-      setCurrentShelterListings(data.data);
-    };
-
     fetchListings();
+    fetchAdoptedListings();
   }, []);
+
+  const fetchListings = async () => {
+    const { data } = await axiosInstance.get("/api/shelter/current/listings");
+    setCurrentShelterListings(data.data);
+  };
+
+  const fetchAdoptedListings = async () => {
+    const params = { status: 2 };
+    const { data } = await axiosInstance.get("/api/shelter/current/listings", {
+      params,
+    });
+
+    setAdoptedListings(data.data);
+  };
 
   const deleteHandler = async (index) => {
     const answer = confirm("Are you sure you want to delete?");
@@ -59,24 +71,36 @@ function view() {
         <h1 className="flex justify-center header_titles font-cherryBomb">
           My Listings
         </h1>
-        {/*Card*/}
-        <div className="flex flex-col gap-y-5 ">
-          {CurrentShelterListings.map((listing, index) => {
-            return (
+        <Tabs centered>
+          <Tabs.TabPane tab="Active" key="1">
+            {/*Card*/}
+            <div className="flex flex-col gap-y-5 ">
+              {CurrentShelterListings.map((listing, index) => {
+                return (
+                  <RowListingCard
+                    listingType="active"
+                    key={index}
+                    handleDelete={deleteHandler}
+                    index={index}
+                    item={listing}
+                    handleAdopted={adoptedHandler}
+                  />
+                );
+              })}
+            </div>
+          </Tabs.TabPane>
+          <Tabs.TabPane tab="Adopted" key="2">
+            {adoptedListings.map((listing, index) => (
               <RowListingCard
-                key={index}
-                title={listing.title}
-                description={listing.description}
-                image={listing.cover_image}
+                listingType="deleted"
                 handleDelete={deleteHandler}
-                id={listing.id}
                 index={index}
-                totalViews={listing.total_views}
+                item={listing}
                 handleAdopted={adoptedHandler}
               />
-            );
-          })}
-        </div>
+            ))}
+          </Tabs.TabPane>
+        </Tabs>
       </div>
     </ShelterRoute>
   );
