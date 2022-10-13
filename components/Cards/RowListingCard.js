@@ -20,7 +20,7 @@ function RowListingCard({
         </div>
       </div>
       <div className="m-auto header ">
-        <h5 className="text-lg">{item.title}</h5>
+        <h5 className="text-lg">{index}</h5>
         <p>{item.description}</p>
         <div className="flex space-x-2">
           <BsEye size={20} /> <p>{item.total_views}</p>

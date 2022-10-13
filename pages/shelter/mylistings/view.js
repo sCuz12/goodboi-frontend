@@ -47,7 +47,35 @@ function view() {
       toast.success("Listing succesfully deleted");
       router.push("/shelter/mylistings/view");
     } catch (err) {
-      toast.error("Error Deleting listing");
+      if (err.response.data.error) {
+        toast.error(err.response.data.error);
+      } else {
+        toast.error("Error Deleting listing");
+      }
+    }
+  };
+
+  const deleteAdoptedHandler = async (index) => {
+    const answer = confirm("Are you sure you want to delete?");
+    if (!answer) return;
+    let listings = adoptedListings;
+
+    const removed = listings.splice(index, 1);
+    setAdoptedListings(adoptedListings);
+
+    //send request to BE
+    try {
+      const { data } = await axiosInstance.put(
+        `api/shelter/animals/${removed[0].id}/delete`
+      );
+      toast.success(data.data);
+      router.push("/shelter/mylistings/view");
+    } catch ({ err }) {
+      if (err.response.data.error) {
+        toast.error(err.response.data.error);
+      } else {
+        toast.error("Error Deleting listing");
+      }
     }
   };
 
@@ -72,14 +100,18 @@ function view() {
           My Listings
         </h1>
         <Tabs centered>
-          <Tabs.TabPane tab="Active" key="1">
+          <Tabs.TabPane
+            tab={<span style={{ fontSize: 18 }}>Active</span>}
+            key="1"
+          >
             {/*Card*/}
+
             <div className="flex flex-col gap-y-5 ">
               {CurrentShelterListings.map((listing, index) => {
                 return (
                   <RowListingCard
                     listingType="active"
-                    key={index}
+                    key={listing.id}
                     handleDelete={deleteHandler}
                     index={index}
                     item={listing}
@@ -89,11 +121,16 @@ function view() {
               })}
             </div>
           </Tabs.TabPane>
-          <Tabs.TabPane tab="Adopted" key="2">
+          <Tabs.TabPane
+            tab={<span style={{ fontSize: 18 }}>Adopted</span>}
+            key="2"
+            tabBarStyle={{ "font-size": "200px" }}
+          >
             {adoptedListings.map((listing, index) => (
               <RowListingCard
+                key={listing.id}
                 listingType="deleted"
-                handleDelete={deleteHandler}
+                handleDelete={deleteAdoptedHandler}
                 index={index}
                 item={listing}
                 handleAdopted={adoptedHandler}
