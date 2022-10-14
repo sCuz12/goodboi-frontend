@@ -174,19 +174,19 @@ function LostAnimalListingView() {
                         </span>
                       </p>
                       <p className="charectiristics_labels">
-                        City Lost:{" "}
+                        City Lost:
                         <span className="charectiristics_values">
                           {animal.city}
                         </span>
                       </p>
-                      {animal.reward && (
+                      {animal.reward ? (
                         <p className="charectiristics_labels">
-                          Reward:{" "}
+                          Reward:
                           <span className="charectiristics_values">
                             €{animal.reward}
                           </span>
                         </p>
-                      )}
+                      ) : null}
 
                       <SolidPaw />
                     </div>
