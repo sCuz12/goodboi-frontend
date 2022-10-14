@@ -197,8 +197,7 @@ function create() {
       })
       .catch((err) => {
         setButtonLoading(false);
-        console.log(err);
-        toast.error(err.response.data);
+        toast.error(err.response.data.error);
       });
   };
 
