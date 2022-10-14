@@ -141,7 +141,7 @@ function update() {
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err.response.data);
+        toast.error(err.response.data.error);
       });
   };
   const citySelectionHandler = (value) => {

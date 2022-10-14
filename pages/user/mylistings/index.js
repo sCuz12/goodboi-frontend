@@ -39,7 +39,7 @@ function mylistings() {
       router.push("/user/mylistings");
     } catch (err) {
       console.log(err);
-      toast.error("Error Deleting listing");
+      toast.error(err.response.data.error);
     }
   };
 
@@ -59,7 +59,7 @@ function mylistings() {
       router.push("/user/mylistings");
     } catch (err) {
       console.log(err);
-      toast.error("Error Deleting listing");
+      toast.error(err.response.data.error);
     }
   };
 
