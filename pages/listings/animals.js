@@ -25,14 +25,21 @@ function animals() {
   const [token, setToken] = useState("");
   const [filtersCollapse, setFiltersCollapse] = useState(false);
   const [sortBy, setSortBy] = useState([]);
+  const [showpagination, setShowpagination] = useState(true);
 
-  const { query } = useRouter();
+  const router = useRouter();
+  console.log(router.query);
 
-  const initialValues = {
-    size: query.size || "all",
-    cities: query.cities || "all",
-    gender: query.gender || "all",
+  const serialize = function (obj) {
+    var str = [];
+    for (var p in obj)
+      if (obj.hasOwnProperty(p)) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+      }
+    return str.join("&");
   };
+
+  let url = serialize(router.query);
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
@@ -42,17 +49,58 @@ function animals() {
 
     setToken(token);
 
-    getInitialListings();
     getCities();
   }, []);
 
   useEffect(() => {
-    filterListingsFromCities();
+    if (checkedCity.length != 0) {
+      router.push(
+        {
+          pathname: "/listings/animals",
+          query: {
+            city: checkedCity.join(","),
+          },
+        },
+        undefined,
+        {
+          shallow: true,
+        }
+      );
+    }
   }, [checkedCity]);
 
   useEffect(() => {
     sortListingsBy();
   }, [sortBy]);
+
+  useEffect(() => {
+    if (checkedCity.length == 0) {
+      router.push("/listings/animals");
+    }
+  }, [checkedCity]);
+
+  useEffect(() => {
+    if (url) {
+      console.log(url);
+      const fetchData = async (pageNumber = 1) => {
+        console.log(`/api/animals/dogs?` + url + `page=${pageNumber}`);
+        try {
+          const { data } = await axiosInstance.get(`/api/animals/dogs?` + url);
+          console.log(data);
+          setAnimalLIstings(data.data);
+          setTotalListings(data.meta.total);
+          setActivePage(data.meta.current_page);
+          setPerPage(data.meta.per_page);
+          showpagination(false);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchData();
+    } else {
+      getInitialListings(activePage);
+    }
+  }, [url]);
 
   /* Method gets all cities and set state*/
   const getCities = async () => {
@@ -69,25 +117,6 @@ function animals() {
     setTotalListings(data.meta.total);
     setActivePage(data.meta.current_page);
     setPerPage(data.meta.per_page);
-  };
-
-  const filterListingsFromCities = async () => {
-    /* If user removes all filters*/
-    if (checkedCity.length === 0) {
-      getInitialListings();
-      return;
-    }
-
-    if (checkedCity.length > 0) {
-      let formData = new FormData();
-      for (const option of checkedCity) {
-        formData.append("city[]", option);
-      }
-
-      const { data } = await axiosInstance.post("/api/animals/dogs", formData);
-      setAnimalLIstings(data.data);
-      setTotalListings(data.data.total);
-    }
   };
 
   //sends add sort fields and send request
@@ -110,6 +139,7 @@ function animals() {
     } else {
       newChecked.splice(currentIndex, 1);
     }
+
     setCheckedCity(newChecked);
   };
 
@@ -144,19 +174,8 @@ function animals() {
   /* Handles the change of gender in filters*/
   const genderFilterHandler = async (value) => {
     //means both so initial filter listing
-    if (value === "b") {
-      getInitialListings();
-      return;
-    }
-
-    const { data } = await axiosInstance.post("/api/animals/dogs", null, {
-      params: {
-        gender: value,
-      },
-    });
-
-    setAnimalLIstings(data.data);
-    setTotalListings(data.data.total);
+    router.query.gender = value;
+    router.push(router);
   };
 
   const sortMenu = (
@@ -260,7 +279,7 @@ function animals() {
             )}
 
             {/* Pagination */}
-            {totalListings > 10 && (
+            {totalListings > 10 && showpagination && (
               <div className="flex flex-row justify-center w-full pt-10">
                 <div className="w-2/4 ">
                   <Pagination
@@ -282,5 +301,4 @@ function animals() {
     </div>
   );
 }
-
 export default animals;
