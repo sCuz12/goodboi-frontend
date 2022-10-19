@@ -54,18 +54,8 @@ function animals() {
 
   useEffect(() => {
     if (checkedCity.length != 0) {
-      router.push(
-        {
-          pathname: "/listings/animals",
-          query: {
-            city: checkedCity.join(","),
-          },
-        },
-        undefined,
-        {
-          shallow: true,
-        }
-      );
+      router.query.city = checkedCity.join(",");
+      router.push(router);
     }
   }, [checkedCity]);
 
@@ -91,7 +81,7 @@ function animals() {
           setTotalListings(data.meta.total);
           setActivePage(data.meta.current_page);
           setPerPage(data.meta.per_page);
-          showpagination(false);
+          setShowpagination(false);
         } catch (err) {
           console.log(err);
         }
@@ -178,6 +168,12 @@ function animals() {
     router.push(router);
   };
 
+  const handleAgeFilterHandler = async (values) => {
+    router.query.minAge = values[0];
+    router.query.maxAge = values[1];
+    router.push(router);
+  };
+
   const sortMenu = (
     <Menu
       onClick={MenuClickHandler}
@@ -230,6 +226,7 @@ function animals() {
               openFiltersHandler={openFiltersHandler}
               handleSelect={handleToggle}
               genderFilterHandler={genderFilterHandler}
+              handleAgeFilter={handleAgeFilterHandler}
               showGenderFilter={true}
             />
           )}

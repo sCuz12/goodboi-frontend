@@ -1,6 +1,6 @@
 import React from "react";
 import { AiOutlineLeftCircle } from "react-icons/ai";
-import { Radio } from "antd";
+import { Radio, Slider } from "antd";
 
 const GENDER_FILTERS = [
   {
@@ -24,6 +24,7 @@ function ListingsFilters({
   handleSelect,
   genderFilterHandler,
   showGenderFilter,
+  handleAgeFilter,
 }) {
   return (
     <div
@@ -80,6 +81,19 @@ function ListingsFilters({
               </div>
             </>
           )}
+          <div className="flex w-full mt-5 text-center border bottom-3" />
+          <>
+            <h2 className="w-4/5 text-xl">Age</h2>
+            <div className="flex flex-col">
+              {" "}
+              <Slider
+                range
+                defaultValue={[0, 20]}
+                onChange={handleAgeFilter}
+                max={20}
+              />
+            </div>
+          </>
         </div>
       </div>
     </div>
