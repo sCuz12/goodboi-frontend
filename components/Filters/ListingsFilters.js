@@ -24,6 +24,7 @@ function ListingsFilters({
   handleSelect,
   genderFilterHandler,
   showGenderFilter,
+  showAgeFilter,
   handleAgeFilter,
 }) {
   return (
@@ -82,18 +83,20 @@ function ListingsFilters({
             </>
           )}
           <div className="flex w-full mt-5 text-center border bottom-3" />
-          <>
-            <h2 className="w-4/5 text-xl">Age</h2>
-            <div className="flex flex-col">
-              {" "}
-              <Slider
-                range
-                defaultValue={[0, 20]}
-                onChange={handleAgeFilter}
-                max={20}
-              />
-            </div>
-          </>
+          {showAgeFilter && (
+            <>
+              <h2 className="w-4/5 text-xl">Age</h2>
+              <div className="flex flex-col">
+                {" "}
+                <Slider
+                  range
+                  defaultValue={[0, 20]}
+                  onChange={handleAgeFilter}
+                  max={20}
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

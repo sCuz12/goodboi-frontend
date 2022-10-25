@@ -228,6 +228,7 @@ function animals() {
               genderFilterHandler={genderFilterHandler}
               handleAgeFilter={handleAgeFilterHandler}
               showGenderFilter={true}
+              showAgeFilter={true}
             />
           )}
 
