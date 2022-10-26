@@ -8,12 +8,15 @@ import NavButton from "../components/Buttons/NavButton";
 import NoResults from "../components/CustomImages/Illustrations/NoResults";
 import { Context } from "../context";
 import ListingsRowSection from "../components/Sections/IndexPage/ListingsRowSection";
+import axios from "axios";
+import GeneralStatsCard from "../components/Cards/GeneralStatsCard";
 
 export default function Home() {
   const [listings, setListings] = useState([]);
   const [shelters, setShelters] = useState([]);
   const [lostListings, setLostlistings] = useState([]);
   const [foundListings, setFoundListings] = useState([]);
+  const [generalStats, setGeneralStats] = useState([]);
 
   const { state, dispatch } = useContext(Context);
   const [token, setToken] = useState("");
@@ -32,6 +35,7 @@ export default function Home() {
     fetchShelters();
     fetchLostListings();
     fetchFoundListings();
+    fetchGeneralStats();
   }, []);
 
   const fetchListings = async () => {
@@ -59,6 +63,11 @@ export default function Home() {
     setFoundListings(data.data.slice(0, 8));
   };
 
+  const fetchGeneralStats = async () => {
+    const { data } = await axiosInstance.get("/api/get_stats");
+    setGeneralStats(data.data);
+  };
+
   return (
     <>
       <Head>
@@ -74,6 +83,17 @@ export default function Home() {
       <IndexBanner user={user} />
 
       <main className="p-4 lg:p-16 ">
+        {/* Stats*/}
+        <section className="lg:p-6">
+          <div className="mx-auto max-w-s ">
+            <div className="grid gap-5 sm:grid-cols-4">
+              {generalStats.length != 0 &&
+                generalStats.map((item) => (
+                  <GeneralStatsCard title={item.name} count={item.count} />
+                ))}
+            </div>
+          </div>
+        </section>
         {/* Dogs for adoption */}
         <section className="lg:p-6">
           <h3 className="pb-5 header_titles">Adopt Me</h3>
