@@ -3,6 +3,8 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { BsEye } from "react-icons/bs";
 import { MdPreview } from "react-icons/md";
 import { TiInputChecked } from "react-icons/ti";
+import { Tooltip } from "antd";
+
 function RowListingCard({
   item,
   index,
@@ -41,7 +43,9 @@ function RowListingCard({
             href={"/shelter/listing/edit/" + item.id}
             className="pb-8 mt-auto text-black lg:pb-0 btn btn-icon btn_outlined btn_secondary ltr:ml-auto rtl:mr-auto lg:ltr:ml-0 lg:rtl:mr-0"
           >
-            <AiFillEdit size={30} />
+            <Tooltip placement="top" title="Edit Listing">
+              <AiFillEdit size={30} />
+            </Tooltip>
           </a>
         )}
 
@@ -49,14 +53,18 @@ function RowListingCard({
           onClick={() => handleDelete(index, item.id)}
           className="text-black btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
         >
-          <AiFillDelete size={30} />
+          <Tooltip placement="top" title="Delete Listing">
+            <AiFillDelete size={30} />
+          </Tooltip>
         </a>
         {listingType === "active" && (
           <a
             onClick={() => handleAdopted(item.id)}
             className="text-black btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2 lg:ltr:ml-0 lg:rtl:mr-0"
           >
-            <TiInputChecked size={30} />
+            <Tooltip placement="bottom" title="Mark as adopted">
+              <TiInputChecked size={30} />
+            </Tooltip>
           </a>
         )}
       </div>
