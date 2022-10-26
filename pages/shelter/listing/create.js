@@ -190,14 +190,14 @@ function create() {
         },
       })
 
-      .then(() => {
+      .then((res) => {
         setButtonLoading(false);
         toast.success("Dog listing succesfully uploaded");
         router.push("/shelter/mylistings/view");
       })
       .catch((err) => {
         setButtonLoading(false);
-        toast.error(err.response.data.error);
+        toast.error("Something went wrong");
       });
   };
 

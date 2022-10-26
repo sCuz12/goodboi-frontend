@@ -6,10 +6,10 @@ export function ImageUploadValidator(file) {
     return "You can only upload JPG/PNG file!";
   }
 
-  const isLt2M = file.size / 1024 / 1024 < 1.5;
+  const isLt2M = file.size / 1024 / 1024 < 1;
 
   if (!isLt2M) {
-    return "Image must smaller than 1.5MB!";
+    return "Image must smaller than 1MB!";
   }
   return true;
 }

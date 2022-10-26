@@ -53,7 +53,7 @@ function ListingsRowSection({ title, listings, listingType }) {
 ListingsRowSection.propTypes = {
   title: PropTypes.string,
   listings: PropTypes.array,
-  listingType: PropTypes.oneOf([SHELTER_TYPE, LOST_DOGS_TYPE]),
+  listingType: PropTypes.oneOf([SHELTER_TYPE, LOST_DOGS_TYPE, FOUND_DOGS_TYPE]),
 };
 
 export default ListingsRowSection;
