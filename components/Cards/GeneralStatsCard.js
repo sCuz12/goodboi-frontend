@@ -9,7 +9,7 @@ function GeneralStatsCard({ title, count }) {
 
         {
           <div className="mt-5 leading-none text-7xl text-primary">
-            <CountUp end={count} />
+            <CountUp duration={2} end={count} />
           </div>
         }
       </>
