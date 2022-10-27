@@ -4,6 +4,7 @@ import LostListingCard from "../../Cards/Listings/Lost/LostListingCard";
 import NavButton from "../../Buttons/NavButton";
 import ShelterCard from "../../Cards/ShelterCard";
 import FoundListingCard from "../../Cards/Listings/Found/FoundListingCard";
+import NoResults from "../../CustomImages/Illustrations/NoResults";
 
 const SHELTER_TYPE = "shelters";
 const LOST_DOGS_TYPE = "lost";
@@ -36,16 +37,24 @@ function ListingsRowSection({ title, listings, listingType, buttonUrl }) {
     <div className="pt-6">
       <h3 className="pb-5 header_titles">{title}</h3>
 
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {listings.map((item) => (
-          <div key={item.id} className="mb-10 overflow-hidden rounded-2xl">
-            {decideComponent(listingType, item)}
+      {listings.length === 0 ? (
+        <div className="flex justify-center w-full pt-20 pb-20">
+          <NoResults />
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {listings.map((item) => (
+              <div key={item.id} className="mb-10 overflow-hidden rounded-2xl">
+                {decideComponent(listingType, item)}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className="flex justify-center mx-auto ">
-        <NavButton title="See more" link={buttonUrl} />
-      </div>
+          <div className="flex justify-center mx-auto ">
+            <NavButton title="See more" link={buttonUrl} />
+          </div>
+        </>
+      )}
     </div>
   );
 }
