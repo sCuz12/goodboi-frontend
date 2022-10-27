@@ -57,7 +57,6 @@ function LostAnimalListingView() {
       let obj = {};
       obj["url"] = image;
       const element = image;
-
       slides.push(obj);
       urls.push(element);
     });
