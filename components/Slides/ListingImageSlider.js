@@ -62,8 +62,11 @@ function ListingImageSlider({ listingImages, listingImagesUrls }) {
               />
             </button>
           </div>
-
-          <FsLightbox toggler={toggler} sources={listingImagesUrls} />
+          <FsLightbox
+            type="image"
+            toggler={toggler}
+            sources={listingImagesUrls}
+          />
           {/**Next photos section */}
           <div></div>
           {/**doTs */}

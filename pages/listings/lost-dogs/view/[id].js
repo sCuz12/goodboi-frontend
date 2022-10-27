@@ -56,11 +56,7 @@ function LostAnimalListingView() {
     listingImages.map((image) => {
       let obj = {};
       obj["url"] = image;
-      const element = (
-        <div style={{ width: "1920px", height: "1080px" }}>
-          <Image src={obj.url} layout="fill" />
-        </div>
-      );
+      const element = image;
 
       slides.push(obj);
       urls.push(element);
