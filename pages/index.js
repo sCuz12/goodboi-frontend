@@ -134,18 +134,21 @@ export default function Home() {
           title="Lost Dogs"
           listings={lostListings}
           listingType="lost"
+          buttonUrl="/listings/lost-dogs"
         />
         {/* Found dogs section*/}
         <ListingsRowSection
           title="Found Dogs"
           listings={foundListings}
           listingType="found"
+          buttonUrl="/listings/found-dogs"
         />
         {/* Shelter section*/}
         <ListingsRowSection
           title="Shelters"
           listings={shelters}
           listingType="shelters"
+          buttonUrl="/listings/shelters"
         />
       </main>
     </>

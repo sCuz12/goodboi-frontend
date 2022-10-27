@@ -9,7 +9,7 @@ const SHELTER_TYPE = "shelters";
 const LOST_DOGS_TYPE = "lost";
 const FOUND_DOGS_TYPE = "found";
 
-function ListingsRowSection({ title, listings, listingType }) {
+function ListingsRowSection({ title, listings, listingType, buttonUrl }) {
   //decide what component should render based on type
 
   function decideComponent(type, item) {
@@ -44,7 +44,7 @@ function ListingsRowSection({ title, listings, listingType }) {
         ))}
       </div>
       <div className="flex justify-center mx-auto ">
-        <NavButton title="See more" link="/listings/shelters" />
+        <NavButton title="See more" link={buttonUrl} />
       </div>
     </div>
   );
