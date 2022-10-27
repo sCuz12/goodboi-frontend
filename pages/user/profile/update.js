@@ -111,115 +111,113 @@ function update() {
   }
 
   return (
-    <NormalUserRoute showSide={true}>
-      <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mt-24">
-        <h3 className="text-center header_titles font-cherryBomb">
-          Update User Profile
-        </h3>
-        <div className="grid grid-cols-1 gap-6">
-          <div className="flex flex-wrap mb-6 -mx-3">
-            {/*First Name */}
-            <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-first-name"
-              >
-                First Name
-              </label>
-              <input
-                name="first_name"
-                onChange={(e) => {
-                  setFirstName(e.target.value);
-                }}
-                defaultValue={currentData.first_name}
-                className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
-                id="grid-user-name"
-                type="text"
-              />
-            </div>
-            {/*Last Name */}
-            <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-first-name"
-              >
-                Last Name
-              </label>
-              <input
-                name="last_name"
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                }}
-                defaultValue={currentData.last_name}
-                className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
-                id="grid-last-name"
-                type="text"
-              />
-            </div>
-          </div>
-          <div className="w-full mb-6 md:w-2/2 md:mb-0">
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mt-24">
+      <h3 className="text-center header_titles font-cherryBomb">
+        Update User Profile
+      </h3>
+      <div className="grid grid-cols-1 gap-6">
+        <div className="flex flex-wrap mb-6 -mx-3">
+          {/*First Name */}
+          <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              htmlFor="grid-email"
+              htmlFor="grid-first-name"
             >
-              Email
+              First Name
             </label>
             <input
-              defaultValue={currentData.email}
+              name="first_name"
               onChange={(e) => {
-                setEmail(e.target.value);
+                setFirstName(e.target.value);
               }}
+              defaultValue={currentData.first_name}
               className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
-              id="grid-user-email"
+              id="grid-user-name"
               type="text"
             />
           </div>
-          {/** Cover Photo */}
-          <div className="w-full md:w-1/2">
+          {/*Last Name */}
+          <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
             <label
               className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-              htmlFor="grid-last-name"
+              htmlFor="grid-first-name"
             >
-              Cover Image
+              Last Name
             </label>
-            <Upload
-              customRequest={dummyRequest}
-              beforeUpload={beforeUploadHandler}
-              onChange={coverImageUploadHandler}
-              name="listing-cover"
-              listType="picture-card"
-              maxCount={1}
-            >
-              <ImageUploadButton />
-            </Upload>
-          </div>
-
-          {/**Mobile Phone */}
-          <div className="w-full mb-6 md:w-1/2 md:mb-0">
-            <label className="form_label_text">Mobile Phone</label>
             <input
-              defaultValue={currentData.phone}
+              name="last_name"
               onChange={(e) => {
-                setPhone(e.target.value);
+                setLastName(e.target.value);
               }}
+              defaultValue={currentData.last_name}
               className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
-              id="grid-user-email"
+              id="grid-last-name"
               type="text"
             />
-          </div>
-
-          <div className="w-1/5">
-            <button
-              className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"
-              type="submit"
-              disabled={disableButton()}
-            >
-              Submit
-            </button>
           </div>
         </div>
-      </form>
-    </NormalUserRoute>
+        <div className="w-full mb-6 md:w-2/2 md:mb-0">
+          <label
+            className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+            htmlFor="grid-email"
+          >
+            Email
+          </label>
+          <input
+            defaultValue={currentData.email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
+            id="grid-user-email"
+            type="text"
+          />
+        </div>
+        {/** Cover Photo */}
+        <div className="w-full md:w-1/2">
+          <label
+            className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
+            htmlFor="grid-last-name"
+          >
+            Cover Image
+          </label>
+          <Upload
+            customRequest={dummyRequest}
+            beforeUpload={beforeUploadHandler}
+            onChange={coverImageUploadHandler}
+            name="listing-cover"
+            listType="picture-card"
+            maxCount={1}
+          >
+            <ImageUploadButton />
+          </Upload>
+        </div>
+
+        {/**Mobile Phone */}
+        <div className="w-full mb-6 md:w-1/2 md:mb-0">
+          <label className="form_label_text">Mobile Phone</label>
+          <input
+            defaultValue={currentData.phone}
+            onChange={(e) => {
+              setPhone(e.target.value);
+            }}
+            className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border rounded appearance-none focus:outline-none focus:bg-white"
+            id="grid-user-email"
+            type="text"
+          />
+        </div>
+
+        <div className="w-1/5">
+          <button
+            className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"
+            type="submit"
+            disabled={disableButton()}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
   );
 }
 
