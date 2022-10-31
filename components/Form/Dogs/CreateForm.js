@@ -283,7 +283,10 @@ function CreateForm({ type }) {
 
             {/* Date  */}
             <div className="px-3 mb-6 md:w-full">
-              <label className="form_label_text">Lost Date </label>
+              <label className="form_label_text">
+                {" "}
+                {type == "lost" ? "Lost Date" : "Found Date"}
+              </label>
               <DatePicker
                 dateFromat="YYYY-MM-dd"
                 onChange={(date, dateString) => {

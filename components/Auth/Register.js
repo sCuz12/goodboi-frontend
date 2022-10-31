@@ -21,7 +21,7 @@ export default function Register({ isShelter }) {
 
   const feMessages = {
     text1: isShelter ? "Create your account" : "Create you account",
-    text2: isShelter ? "Upload your dog" : "Create you account",
+    text2: isShelter ? "Upload your dog" : "Find your new friend",
     text3: isShelter ? "Get Found!" : "Adopt!",
     title: isShelter ? " Sign up and go digital!" : " Sign up and go woof!",
     description: isShelter
@@ -64,7 +64,7 @@ export default function Register({ isShelter }) {
             </h1>
           </div>
 
-          <p className="text-lg">{feMessages.description}</p>
+          <p className="copyright_text">{feMessages.description}</p>
           <SolidPaw />
           {/* Section for the banner that shows the steps*/}
           <div className="flex justify-center w-full pt-20 pb-20 lg:ml-0">

@@ -93,15 +93,12 @@ export default function Login() {
       <section className="flex w-full text-center h-82 lg:px-40">
         <div className="w-full lg:w-3/5">
           <div className="items-center w-full lg:text-left">
-            <h1 className="text-4xl lg:text-6xl font-cherryBomb text-darkPurple">
-              Login and go<p>woof</p>{" "}
+            <h1 className="pt-8 text-4xl lg:text-6xl font-cherryBomb text-darkPurple">
+              <span>
+                Login and go<p>woof !!!</p>{" "}
+              </span>
             </h1>
           </div>
-
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
           <SolidPaw />
         </div>
         <div className="hidden lg:w-3/5 lg:justify-end lg:flex lg:pl-48 sm:flex-col lg:block">

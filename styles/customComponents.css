@@ -128,7 +128,7 @@ Cards
  }
 
  .copyright_text{ 
-  @apply text-lg
+  @apply text-xl text-black font-serif
  }
  .buttons_links_text {
   @apply text-black cursor-pointer lg:text-xl hover:text-white md:inline-flex w-max font-cherryBomb;

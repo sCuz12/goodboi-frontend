@@ -21,8 +21,6 @@ function IndexBanner({ user }) {
               <h1 className="font-cherryBomb text-darkPurple header_titles">
                 Find your new <p>best friend!</p>{" "}
               </h1>
-
-              <SolidPaw height={60} width={60} />
             </div>
 
             <p className="copyright_text">
