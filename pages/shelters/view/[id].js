@@ -116,7 +116,7 @@ function ShelterProfileView() {
                           </div>{" "}
                         </div>
                       </h1>
-                      <p className="items-start flex-grow break-all lg:h-44 sm:h-44 description_text">
+                      <p className="items-start flex-grow break-all animal_description_text">
                         {shelterInfo.description}
                       </p>
                     </div>
