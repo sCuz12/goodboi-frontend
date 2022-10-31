@@ -26,8 +26,8 @@ function IndexBanner({ user }) {
             </div>
 
             <p className="copyright_text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Goodboi connects all the dogs from shelter with you! We are here
+              to help you find your new best friend!
             </p>
 
             <div className="items-center text-center lg:text-left lg:w-full">

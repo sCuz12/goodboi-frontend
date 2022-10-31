@@ -25,8 +25,8 @@ export default function Register({ isShelter }) {
     text3: isShelter ? "Get Found!" : "Adopt!",
     title: isShelter ? " Sign up and go digital!" : " Sign up and go woof!",
     description: isShelter
-      ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-      : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      ? "Start listing your available dogs to be adopted today! By following the three steps below you can make your dogs visible to all the people who are looking for their next best friend.Of course, any help you might need just give us a shout"
+      : "You are one step away of becoming a dog hero ",
   };
 
   /* Handle the submition of Registration*/
@@ -64,7 +64,7 @@ export default function Register({ isShelter }) {
             </h1>
           </div>
 
-          <p>{feMessages.description}</p>
+          <p className="text-lg">{feMessages.description}</p>
           <SolidPaw />
           {/* Section for the banner that shows the steps*/}
           <div className="flex justify-center w-full pt-20 pb-20 lg:ml-0">

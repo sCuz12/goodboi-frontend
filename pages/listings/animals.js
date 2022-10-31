@@ -27,6 +27,9 @@ function animals() {
   const [sortBy, setSortBy] = useState([]);
   const [showpagination, setShowpagination] = useState(true);
 
+  const BANNER_DESCRIPTION =
+    "Have a look at all the available dogs looking to find their next home! Scroll down and we are sure you will find a cute dog waiting for you.";
+
   const router = useRouter();
   console.log(router.query);
 
@@ -207,8 +210,7 @@ function animals() {
       <section>
         <AbovePageSection
           title={"Leave no one behind !"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          description={BANNER_DESCRIPTION}
           image={<PinkCircle />}
         />
       </section>

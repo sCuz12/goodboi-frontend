@@ -14,7 +14,7 @@ export default function Shelters() {
 
   const BANNER_TITLE = "Explore Shelters";
   const BANNER_DESCRIPTION =
-    "lorem lorem lorem lorem lorem lorem lorem lorem lorem lore m lorem lorem lorem lorem lorem lorem lorem lore";
+    "Check out all the available shelters in your area along with all the dogs listing! Start looking for your next best friend today!.";
 
   useEffect(() => {
     getAllShelters();

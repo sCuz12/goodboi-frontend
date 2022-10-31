@@ -71,7 +71,7 @@ function index() {
       <section>
         <AbovePageSection
           title={"Be a dog saver"}
-          description="Contribute to efforts to find lost dogs asdada asdadasdasdasdas asdsadsa"
+          description="Have a look at all the available dogs looking to find their next home! Scroll down and we are sure you will find a cute dog waiting for you."
           image={<PinkCircle />}
         />
       </section>

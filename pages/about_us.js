@@ -10,19 +10,16 @@ function about_us() {
               <h2 className="pt-10 pb-5 text-2xl font-bold text-basicFont font-kdam">
                 About us
               </h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur laoreet non eros a tincidunt. Pellentesque dictum at
-                tellus non fermentum. Ut vitae justo et magna condimentum
-                scelerisque. Pellentesque aliquet tempor odio in auctor. Aenean
-                facilisis lectus ut sagittis porta. Pellentesque placerat justo
-                et vestibulum tempus. Maecenas luctus enim nisi, non egestas
-                neque condimentum congue. Sed posuere est et dictum rhoncus.
-                Vivamus consectetur libero lorem. Cras non scelerisque erat.
-                Phasellus at orci nec urna cursus accumsan in in mauris. Duis
-                quis dolor malesuada dolor tempor consectetur. Pellentesque non
-                luctus ipsum. Cras at lorem ultrices, posuere lorem a, pulvinar
-                ipsum.
+              <p className="text-lg">
+                People who are looking to adapt a dog, had to visit the shelters
+                around just to have a look at the available dogs! Not only that,
+                but many beautiful dogs are sitting around in multiple shelter
+                and a person is very hard to see them all at once. Goodboi wants
+                to connect all the local dog shelters with people looking to
+                adapot a dog! We understand that some people prefer to just buy
+                a dog, but we aim to at least provide the opportunity to the
+                dogs in shelter to be seen! You never know, you might just see
+                your next best friend sit here!
               </p>
             </div>
           </div>

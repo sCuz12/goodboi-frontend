@@ -71,7 +71,7 @@ function index() {
       <section>
         <AbovePageSection
           title={"Be a dog saver"}
-          description="All the dogs found by our heros"
+          description="Some people who the extra mile and rescue dogs that are lost but now found! Check out all the dogs found by our heros!"
           image={<PinkCircle />}
         />
       </section>
