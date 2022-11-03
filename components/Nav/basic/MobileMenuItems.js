@@ -61,11 +61,11 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
       url: "/shelter/mylistings/view",
     },
     {
-      text: "Update Shelter Info",
+      text: "Shelter Profile",
       url: "/shelter/profile/update",
     },
     {
-      text: "Update Shelter User",
+      text: "Account Profile",
       url: "/user/profile/update",
     },
   ];
