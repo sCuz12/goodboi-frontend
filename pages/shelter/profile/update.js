@@ -82,7 +82,12 @@ function updateProfile() {
     formData.append("description", shelterDescription);
     formData.append("city_id", selectedShelterCity);
     formData.append("instagram", instagram);
-    formData.append("facebook", facebook);
+
+    if (facebook == "" || facebook == null) {
+      formData.append("facebook", "");
+    } else {
+      formData.append("facebook", facebook);
+    }
     formData.append("facebook_pagename", facebook_pagename);
 
     axiosInstance
