@@ -160,6 +160,12 @@ function TopNav() {
                               <Link href="/shelter/mylistings/view">
                                 <a className="top_nav_a">My Listings</a>
                               </Link>
+                              <Link href="/shelter/profile/update">
+                                <a className="top_nav_a">Shelter Profile</a>
+                              </Link>
+                              <Link href="/user/profile/update">
+                                <a className="top_nav_a">Account Profile</a>
+                              </Link>
                             </>
                           )}
                           <Link href="">
