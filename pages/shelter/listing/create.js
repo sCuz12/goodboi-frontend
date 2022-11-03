@@ -362,7 +362,7 @@ function create() {
                   className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                   htmlFor="grid-last-name"
                 >
-                  Cover Image
+                  Cover Image (One)
                   <span className="required"></span>
                 </label>
                 <Upload
@@ -386,7 +386,7 @@ function create() {
                   className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
                   htmlFor="grid-last-name"
                 >
-                  Listing Images
+                  Listing Images (UP TO 4)
                   <span className="required"></span>
                 </label>
                 <Upload

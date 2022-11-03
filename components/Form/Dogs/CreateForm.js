@@ -315,7 +315,7 @@ function CreateForm({ type }) {
             {/** Cover Photo */}
             <div className="w-full px-3 md:w-2/2">
               <label className="form_label_text">
-                Cover Image
+                Cover Image (One)
                 <span className="required"></span>
               </label>
               <Upload
@@ -336,7 +336,7 @@ function CreateForm({ type }) {
             {/* Listing Images*/}
             <div className="w-full px-3 md:w-2/2">
               <label className="form_label_text">
-                Listing Images
+                Listing Images (Up to 4)
                 <span className="required"></span>
               </label>
               <Upload
