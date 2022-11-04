@@ -20,7 +20,7 @@ function ShelterSideNav() {
   return (
     <>
       {isSidebarCollapsed ? (
-        <div className="pl-4 pr-4  lg:pr-4 pt-28">
+        <div className="pl-4 pr-4 lg:pr-4 pt-28">
           <BsArrowUpRight onClick={expandSidebarHandler} size={20} />
         </div>
       ) : (
@@ -44,7 +44,7 @@ function ShelterSideNav() {
                 icon={
                   <IoCreateOutline className="block float-left mr-2 text-xl text-black cursor-pointer" />
                 }
-                name="List Dog"
+                name="Add New Dog"
                 url="/shelter/listing/create"
               />
 

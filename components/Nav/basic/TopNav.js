@@ -83,7 +83,7 @@ function TopNav() {
               <div className="hidden lg:flex">
                 {/* Right of footer*/}
 
-                <div className="flex items-center justify-end w-3/4 space-x-4 text-black">
+                <div className="flex items-center justify-end w-3/4 space-x-4">
                   {user === null ? (
                     <>
                       <TopNavButton
@@ -100,11 +100,11 @@ function TopNav() {
                   ) : (
                     <div
                       ref={container}
-                      className="hidden w-12 h-12 lg:flex lg:flex-col"
+                      className="hidden w-16 h-16 lg:flex lg:flex-col"
                     >
                       <button
                         onClick={dropDownOpenHandler}
-                        className="flex block w-10 h-10 overflow-hidden border-gray-500 rounded-full focus:outline-none focus:border-black"
+                        className="flex block w-12 h-12 overflow-hidden border-gray-500 rounded-full focus:outline-none focus:border-black"
                       >
                         <img
                           className="object-cover w-full h-full"
@@ -112,7 +112,12 @@ function TopNav() {
                         />
                       </button>
                       <div className="flex justify-center">
-                        <BiDownArrowAlt />
+                        <p
+                          className="h-1 font-bold hover:cursor-pointer"
+                          onClick={dropDownOpenHandler}
+                        >
+                          Menu
+                        </p>
                       </div>
                       <Transition
                         show={isOpen}
@@ -155,7 +160,7 @@ function TopNav() {
                                 <a className="top_nav_a">Dashboard</a>
                               </Link>
                               <Link href="/shelter/listing/create">
-                                <a className="top_nav_a">List Dog</a>
+                                <a className="top_nav_a">Add New Dog</a>
                               </Link>
                               <Link href="/shelter/mylistings/view">
                                 <a className="top_nav_a">My Listings</a>

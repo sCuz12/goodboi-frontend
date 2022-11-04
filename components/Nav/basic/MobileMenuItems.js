@@ -53,7 +53,7 @@ function MobileMenuItems({ user, logout, closeHamburger }) {
   const SHELTER_URLS = [
     ...BASIC_URLS,
     {
-      text: "List Dog",
+      text: "Add New Dog",
       url: "/shelter/listing/create",
     },
     {
