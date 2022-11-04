@@ -269,7 +269,7 @@ function updateProfile() {
               <CityDropdown
                 data={citiesOptions}
                 handler={citySelectionHandler}
-                defaultValue={currentValues.city_id}
+                defaultValue={currentValues?.city_id || 1}
                 required
               />
 
