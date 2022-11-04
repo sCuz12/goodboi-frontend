@@ -156,7 +156,9 @@ function create() {
       size == "" ||
       dobDate == "" ||
       uploadCoverError != "" ||
-      uploadListingPhotosError != ""
+      uploadListingPhotosError != "" ||
+      coverImageUrl.length == 0 ||
+      listingsImages.length == 0
     );
   }
 
@@ -447,6 +449,7 @@ function create() {
                 <CityDropdown
                   data={citiesOptions}
                   handler={citySelectionHandler}
+                  defaultValue={1}
                 />
               </div>
 
