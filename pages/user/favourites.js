@@ -43,12 +43,7 @@ function favourites() {
                     className="mb-10 overflow-hidden rounded-2xl"
                   >
                     <ListingCard
-                      name={item.name}
-                      image={item.cover_image}
-                      title={item.title}
-                      age={item.age}
-                      city={item.city}
-                      id={item.id}
+                      item={item}
                       token={token}
                       isfavourite={item.is_favourited}
                       totalViews={item.total_views}

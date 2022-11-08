@@ -144,12 +144,7 @@ function ShelterProfileView() {
                                     key={item.id}
                                     className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30"
                                   >
-                                    <ListingCard
-                                      name={item.name}
-                                      image={item.cover_image}
-                                      city={item.city}
-                                      id={item.id}
-                                    />
+                                    <ListingCard item={item} />
                                   </div>
                                 ))}
                               </div>

@@ -7,17 +7,7 @@ import { IoPawOutline, IoPaw } from "react-icons/io5";
 import axiosInstance from "../../helpers/axios";
 import { useRouter } from "next/router";
 import axios from "axios";
-function ListingCard({
-  image,
-  name,
-  title,
-  age,
-  city,
-  id,
-  token,
-  isfavourite,
-  totalViews,
-}) {
+function ListingCard({ item, isfavourite, token }) {
   const router = useRouter();
   const [isFavourite, setIsFavourite] = useState(isfavourite);
   const handleOnFavourite = async () => {
@@ -27,7 +17,8 @@ function ListingCard({
       if (!token) {
         router.push("/login");
       }
-      const { data } = await axiosInstance.post(`/api/favourite/${id}`);
+
+      const { data } = await axiosInstance.post(`/api/favourite/${item.id}`);
     } catch (err) {
       console.log(err);
     }
@@ -36,7 +27,7 @@ function ListingCard({
   const handleUnFavourite = async () => {
     setIsFavourite(false);
     try {
-      const { data } = await axiosInstance.post(`/api/unfavourite/${id}`);
+      const { data } = await axiosInstance.post(`/api/unfavourite/${item.id}`);
       console.log(data);
     } catch (err) {
       console.log(err);
@@ -47,41 +38,40 @@ function ListingCard({
     <div className="bg-roz hover:bg-basicPurple hover:text-white">
       <div className="items-center text-center">
         <div className="p-1.5 transition duration-300 ease-out transform cursor-pointer hover:scale-105">
-          <Link href={`/animals/view/${id}`}>
+          <Link href={`/animals/view/${item.id}`}>
             <div className="relative">
               <Image
                 className="block object-cover shadow-inner rounded-2xl"
-                src={image}
-                alt={name}
+                src={item.cover_image}
+                alt={item.name}
                 width="100%"
                 height="100%"
                 layout="responsive"
               />
-
-              {isFavourite ? (
-                <IoPaw
-                  className="absolute top-0 right-0 z-99"
-                  size={30}
-                  onClick={handleUnFavourite}
-                />
-              ) : (
-                <IoPawOutline
-                  className="absolute top-0 right-0 z-99"
-                  size={30}
-                  onClick={handleOnFavourite}
-                />
-              )}
             </div>
           </Link>
+          {isFavourite ? (
+            <IoPaw
+              className="absolute top-0 right-0 z-99"
+              size={30}
+              onClick={handleUnFavourite}
+            />
+          ) : (
+            <IoPawOutline
+              className="absolute top-0 right-2 z-99"
+              size={30}
+              onClick={handleOnFavourite}
+            />
+          )}
         </div>
       </div>
 
       <div>
         <CardDetails
-          age={age}
-          name={name}
-          city={city}
-          totalViews={totalViews}
+          age={item.age}
+          name={item.name}
+          city={item.city}
+          totalViews={item.total_views}
         />
       </div>
     </div>

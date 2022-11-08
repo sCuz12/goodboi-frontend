@@ -11,7 +11,7 @@ function FoundListingCard({ item }) {
     <div className="h-full bg-roz hover:bg-basicPurple hover:text-white">
       <div className="items-center text-center">
         <div className="p-1.5 transition duration-300 ease-out transform cursor-pointer hover:scale-105">
-          <Link href={`/listings/found-dogs/view/${item.dog_id}`}>
+          <Link href={`/listings/found-dogs/view/${item.id}`}>
             <div className="relative">
               <Image
                 className="block object-cover shadow-inner rounded-2xl"

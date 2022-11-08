@@ -262,13 +262,8 @@ function animals() {
                     className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30"
                   >
                     <ListingCard
+                      item={item}
                       key={item.id}
-                      name={item.name}
-                      image={item.cover_image}
-                      title={item.title}
-                      age={item.age}
-                      city={item.city}
-                      id={item.id}
                       token={token}
                       isfavourite={item.is_favourited}
                       totalViews={item.total_views}
