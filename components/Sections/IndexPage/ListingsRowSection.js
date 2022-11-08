@@ -22,6 +22,7 @@ function ListingsRowSection({ title, listings, listingType, buttonUrl }) {
       case SHELTER_TYPE:
         return (
           <ShelterCard
+            key={item.id}
             id={item.id}
             name={item.shelter_name}
             image={item.cover_image}

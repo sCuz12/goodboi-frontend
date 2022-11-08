@@ -47,8 +47,8 @@ function ListingCard({
     <div className="bg-roz hover:bg-basicPurple hover:text-white">
       <div className="items-center text-center">
         <div className="p-1.5 transition duration-300 ease-out transform cursor-pointer hover:scale-105">
-          <div className="relative">
-            <Link href={`/animals/view/${id}`}>
+          <Link href={`/animals/view/${id}`}>
+            <div className="relative">
               <Image
                 className="block object-cover shadow-inner rounded-2xl"
                 src={image}
@@ -57,22 +57,22 @@ function ListingCard({
                 height="100%"
                 layout="responsive"
               />
-            </Link>
 
-            {isFavourite ? (
-              <IoPaw
-                className="absolute top-0 right-0 z-99"
-                size={30}
-                onClick={handleUnFavourite}
-              />
-            ) : (
-              <IoPawOutline
-                className="absolute top-0 right-0 z-99"
-                size={30}
-                onClick={handleOnFavourite}
-              />
-            )}
-          </div>
+              {isFavourite ? (
+                <IoPaw
+                  className="absolute top-0 right-0 z-99"
+                  size={30}
+                  onClick={handleUnFavourite}
+                />
+              ) : (
+                <IoPawOutline
+                  className="absolute top-0 right-0 z-99"
+                  size={30}
+                  onClick={handleOnFavourite}
+                />
+              )}
+            </div>
+          </Link>
         </div>
       </div>
 

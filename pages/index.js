@@ -89,7 +89,11 @@ export default function Home() {
             <div className="grid gap-5 sm:grid-cols-4">
               {generalStats.length != 0 &&
                 generalStats.map((item) => (
-                  <GeneralStatsCard title={item.name} count={item.count} />
+                  <GeneralStatsCard
+                    key={item.name}
+                    title={item.name}
+                    count={item.count}
+                  />
                 ))}
             </div>
           </div>
@@ -131,6 +135,7 @@ export default function Home() {
 
         {/* Lost dogs section*/}
         <ListingsRowSection
+          key={1}
           title="Lost Dogs"
           listings={lostListings}
           listingType="lost"
@@ -138,6 +143,7 @@ export default function Home() {
         />
         {/* Found dogs section*/}
         <ListingsRowSection
+          key={2}
           title="Found Dogs"
           listings={foundListings}
           listingType="found"
@@ -145,6 +151,7 @@ export default function Home() {
         />
         {/* Shelter section*/}
         <ListingsRowSection
+          key={3}
           title="Shelters"
           listings={shelters}
           listingType="shelters"
