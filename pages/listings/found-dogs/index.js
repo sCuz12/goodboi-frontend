@@ -102,10 +102,10 @@ function index() {
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 ">
                 {foundAnimals.map((item) => (
                   <div
-                    key={item.id}
+                    key={item.dog_id}
                     className="p-0 overflow-hidden rounded-2xl lg:p-0 md:p-0 sm:p-30"
                   >
-                    <FoundListingCard item={item} />
+                    <FoundListingCard key={item.id} item={item} />
                   </div>
                 ))}
               </div>
