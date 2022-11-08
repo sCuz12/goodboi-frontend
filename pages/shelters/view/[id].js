@@ -34,6 +34,8 @@ function ShelterProfileView() {
   const { id } = router.query;
 
   useEffect(() => {
+    if (!router.isReady) return;
+
     if (!user) {
       //pop up login modal
       setTimeout(() => {
@@ -41,7 +43,6 @@ function ShelterProfileView() {
       }, 5000);
     }
 
-    if (!router.isReady) return;
     loadShelterInfo();
     loadShelterListing();
   }, [id]);
