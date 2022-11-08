@@ -14,6 +14,7 @@ import { BiCopy } from "react-icons/bi";
 
 function SocialShare({ currentUrl }) {
   const [copied, setCopied] = useState(false);
+
   function copyUrlToClipboard() {
     const el = document.createElement("input");
     el.value = window.location.href;
@@ -56,7 +57,6 @@ function SocialShare({ currentUrl }) {
           color={copied ? "#e6669a" : null}
           className="cursor-pointer"
           size={32}
-          round
           onClick={copyUrlToClipboard}
         />
       </Tooltip>
