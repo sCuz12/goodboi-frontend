@@ -14,12 +14,112 @@ function TopNav() {
   const { state, dispatch } = useContext(Context);
   const [isOpen, setOpen] = useState(false);
   const [mobMenuOpen, setMobMenuOpen] = useState(false);
+  const [isPageLoading, setIsPageLoading] = useState(true);
 
   const { user } = state;
+
   const router = useRouter();
 
   const container = useRef(null);
 
+  useEffect(() => {
+    setIsPageLoading(false);
+  }, []);
+
+  function renderRightSection() {
+    {
+      {
+        return user === null ? (
+          <>
+            <TopNavButton title="Become Shelter" link="/shelter/register" />
+            <TopNavButton title="Become Hero" link="/register" />
+            <TopNavButton title="Sign In" withBackground={true} link="/login" />
+          </>
+        ) : (
+          <div ref={container} className="hidden w-16 h-16 lg:flex lg:flex-col">
+            <button
+              onClick={dropDownOpenHandler}
+              className="flex block w-12 h-12 overflow-hidden border-gray-500 rounded-full focus:outline-none focus:border-black"
+            >
+              <img
+                className="object-cover w-full h-full"
+                src={user.cover_photo}
+              />
+            </button>
+            <div className="flex justify-center">
+              <p
+                className="h-1 font-bold hover:cursor-pointer"
+                onClick={dropDownOpenHandler}
+              >
+                Menu
+              </p>
+            </div>
+            <Transition
+              show={isOpen}
+              enter=" ease-out duration-100 "
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition ease-in duration-75 "
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="absolute right-0 z-40 w-48 py-2 mt-1 font-medium origin-top-right rounded shadow-md">
+                {/* if user is normal*/}
+                {user.user_type.includes("user") && (
+                  <div className="z-99">
+                    <Link href="/user">
+                      <a className="top_nav_a">Dashboard</a>
+                    </Link>
+                    <Link href="/user/profile/update">
+                      <a className="top_nav_a">Update Profile</a>
+                    </Link>
+                    <Link href="/user/favourites">
+                      <a className="top_nav_a">My Favourites</a>
+                    </Link>
+                    <Link href="/user/lost-dogs/create">
+                      <a className="top_nav_a">Post Lost Dog</a>
+                    </Link>
+                    <Link href="/user/found-dogs/create">
+                      <a className="top_nav_a">Post Found Dog</a>
+                    </Link>
+                    <Link href="/user/mylistings">
+                      <a className="top_nav_a">My Listings</a>
+                    </Link>
+                  </div>
+                )}
+
+                {/* If user is shelter */}
+                {user.user_type.includes("shelter") && (
+                  <>
+                    <Link href="/shelter/">
+                      <a className="top_nav_a">Dashboard</a>
+                    </Link>
+                    <Link href="/shelter/listing/create">
+                      <a className="top_nav_a">Add New Dog</a>
+                    </Link>
+                    <Link href="/shelter/mylistings/view">
+                      <a className="top_nav_a">My Listings</a>
+                    </Link>
+                    <Link href="/shelter/profile/update">
+                      <a className="top_nav_a">Shelter Profile</a>
+                    </Link>
+                    <Link href="/user/profile/update">
+                      <a className="top_nav_a">Account Profile</a>
+                    </Link>
+                  </>
+                )}
+                <Link href="">
+                  <a onClick={logout} className="top_nav_a">
+                    Logout
+                  </a>
+                </Link>
+              </div>
+            </Transition>
+          </div>
+        );
+      }
+    }
+  }
   const dropDownOpenHandler = () => {
     setOpen(true);
   };
@@ -31,6 +131,9 @@ function TopNav() {
     const { data } = await axiosInstance.post("/api/logout");
     router.push("/login");
   };
+  useEffect(() => {
+    console.log("hey");
+  }, []);
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -84,104 +187,7 @@ function TopNav() {
                 {/* Right of footer*/}
 
                 <div className="flex items-center justify-end w-3/4 space-x-4">
-                  {user === null ? (
-                    <>
-                      <TopNavButton
-                        title="Become Shelter"
-                        link="/shelter/register"
-                      />
-                      <TopNavButton title="Become Hero" link="/register" />
-                      <TopNavButton
-                        title="Sign In"
-                        withBackground={true}
-                        link="/login"
-                      />
-                    </>
-                  ) : (
-                    <div
-                      ref={container}
-                      className="hidden w-16 h-16 lg:flex lg:flex-col"
-                    >
-                      <button
-                        onClick={dropDownOpenHandler}
-                        className="flex block w-12 h-12 overflow-hidden border-gray-500 rounded-full focus:outline-none focus:border-black"
-                      >
-                        <img
-                          className="object-cover w-full h-full"
-                          src={user.cover_photo}
-                        />
-                      </button>
-                      <div className="flex justify-center">
-                        <p
-                          className="h-1 font-bold hover:cursor-pointer"
-                          onClick={dropDownOpenHandler}
-                        >
-                          Menu
-                        </p>
-                      </div>
-                      <Transition
-                        show={isOpen}
-                        enter=" ease-out duration-100 "
-                        enterFrom="opacity-0"
-                        enterTo="opacity-100"
-                        leave="transition ease-in duration-75 "
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <div className="absolute right-0 z-40 w-48 py-2 mt-1 font-medium origin-top-right rounded shadow-md">
-                          {/* if user is normal*/}
-                          {user.user_type.includes("user") && (
-                            <div className="z-99">
-                              <Link href="/user">
-                                <a className="top_nav_a">Dashboard</a>
-                              </Link>
-                              <Link href="/user/profile/update">
-                                <a className="top_nav_a">Update Profile</a>
-                              </Link>
-                              <Link href="/user/favourites">
-                                <a className="top_nav_a">My Favourites</a>
-                              </Link>
-                              <Link href="/user/lost-dogs/create">
-                                <a className="top_nav_a">Post Lost Dog</a>
-                              </Link>
-                              <Link href="/user/found-dogs/create">
-                                <a className="top_nav_a">Post Found Dog</a>
-                              </Link>
-                              <Link href="/user/mylistings">
-                                <a className="top_nav_a">My Listings</a>
-                              </Link>
-                            </div>
-                          )}
-
-                          {/* If user is shelter */}
-                          {user.user_type.includes("shelter") && (
-                            <>
-                              <Link href="/shelter/">
-                                <a className="top_nav_a">Dashboard</a>
-                              </Link>
-                              <Link href="/shelter/listing/create">
-                                <a className="top_nav_a">Add New Dog</a>
-                              </Link>
-                              <Link href="/shelter/mylistings/view">
-                                <a className="top_nav_a">My Listings</a>
-                              </Link>
-                              <Link href="/shelter/profile/update">
-                                <a className="top_nav_a">Shelter Profile</a>
-                              </Link>
-                              <Link href="/user/profile/update">
-                                <a className="top_nav_a">Account Profile</a>
-                              </Link>
-                            </>
-                          )}
-                          <Link href="">
-                            <a onClick={logout} className="top_nav_a">
-                              Logout
-                            </a>
-                          </Link>
-                        </div>
-                      </Transition>
-                    </div>
-                  )}
+                  {!isPageLoading ? renderRightSection() : ""}
                 </div>
               </div>
             </div>
