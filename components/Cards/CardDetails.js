@@ -19,7 +19,7 @@ function CardDetails({ name, age, city, totalViews, shelter }) {
         </div>
       </div>
 
-      <div className="container flex flex-col justify-center pb-3 mx-auto space-x-4">
+      <div className="container flex flex-col justify-start pb-3 mx-auto space -x-4 ">
         <div className="flex">
           <span className="font-thin">Age:</span>
           <span className="pl-1 font-medium font-bold">{age} years old</span>
