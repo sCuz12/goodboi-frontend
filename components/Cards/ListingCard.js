@@ -72,6 +72,7 @@ function ListingCard({ item, isfavourite, token }) {
           name={item.name}
           city={item.city}
           totalViews={item.total_views}
+          shelter={item.shelter}
         />
       </div>
     </div>
