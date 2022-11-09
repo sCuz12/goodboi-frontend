@@ -26,6 +26,10 @@ function TopNav() {
     setIsPageLoading(false);
   }, []);
 
+  /*renders the header image for logged in user and
+   * and the CTA buttons for logout users
+   */
+
   function renderRightSection() {
     {
       {
