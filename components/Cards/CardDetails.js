@@ -19,7 +19,7 @@ function CardDetails({ name, age, city, totalViews, shelter }) {
         </div>
       </div>
 
-      <div className="container flex flex-row justify-center pb-3 mx-auto space-x-4">
+      <div className="container flex flex-col justify-center pb-3 mx-auto space-x-4">
         <div className="flex">
           <span className="font-thin">Age:</span>
           <span className="pl-1 font-medium font-bold">{age} years old</span>
@@ -34,14 +34,18 @@ function CardDetails({ name, age, city, totalViews, shelter }) {
               height={14}
               width={14}
             />
-            <span className="pl-1 font-medium font-bold">{shelter}</span>
+            <span className="pl-1 font-medium font-bold lg:inline-block">
+              {shelter}
+            </span>
           </span>
         </div>
         <div className="flex">
-          <span className="pr-2">
+          <span>
             <GoLocation />
           </span>
-          <span>{city}</span>
+          <span className="pl-1 font-medium font-bold lg:inline-block">
+            {city}
+          </span>
         </div>
       </div>
     </div>

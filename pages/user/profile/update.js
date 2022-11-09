@@ -1,5 +1,5 @@
 import React from "react";
-import { Upload } from "antd";
+import { Spin, Upload } from "antd";
 import ImageUploadButton from "../../../components/Buttons/ImageUploadButton";
 import { useEffect, useState, useContext } from "react";
 import { Context } from "../../../context";
@@ -15,6 +15,7 @@ function update() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [coverimage, setCoverimage] = useState([]);
+  const [buttonLoading, setButtonLoading] = useState(false);
   const { state, dispatch } = useContext(Context);
 
   const router = useRouter();
@@ -22,6 +23,7 @@ function update() {
   /* Handles the submition of the form*/
   const handleSubmit = (e) => {
     e.preventDefault();
+    setButtonLoading(true);
     let formData = new FormData();
     if (coverimage != "") {
       formData.append("cover_photo", coverimage.fileList[0].originFileObj);
@@ -39,6 +41,7 @@ function update() {
         },
       })
       .then((res) => {
+        setButtonLoading(false);
         toast.success("Profile Updated succesfully");
         //update context
         dispatch({
@@ -212,9 +215,9 @@ function update() {
           <button
             className="px-4 py-2 font-bold text-white rounded-full bg-basicPurple disabled:opacity-25 disabled:cursor-not-allowed hover:bg-orange-200"
             type="submit"
-            disabled={disableButton()}
+            disabled={disableButton() || buttonLoading}
           >
-            Submit
+            {buttonLoading ? <Spin /> : "Submit"}
           </button>
         </div>
       </div>
