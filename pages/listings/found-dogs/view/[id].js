@@ -105,9 +105,11 @@ function FoundAnimalListingView() {
                         </div>
                       </div>
                     </h1>
-                    <p className="animal_description_text">
-                      {animal.description}
-                    </p>
+                    <div className="p-5 lg:p-0">
+                      <p className="animal_description_text">
+                        {animal.description}
+                      </p>
+                    </div>
                     <div className="flex-col justify-center w-5/5 lg:w-full">
                       {!isMobile ? (
                         <div className="flex flex-col items-start w-full">
