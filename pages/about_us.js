@@ -11,7 +11,7 @@ function about_us() {
                 About us
               </h2>
               <p className="text-lg">
-                People who are looking to adapt a dog, had to visit the shelters
+                People who are looking to adopt a dog, had to visit the shelters
                 around just to have a look at the available dogs! Not only that,
                 but many beautiful dogs are sitting around in multiple shelter
                 and a person is very hard to see them all at once. Goodboi wants
