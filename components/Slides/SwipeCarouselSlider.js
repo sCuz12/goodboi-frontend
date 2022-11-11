@@ -34,15 +34,19 @@ export default class SwipeCarouselSlider extends Component {
     // Set preferred slidesToShow
     const totalListings = listings.length;
     let showDots = true;
+    let slidesToShow = 4;
+
     if (totalListings > 10) {
       showDots = false;
+    } else {
+      slidesToShow = totalListings;
     }
 
     const settings = {
       className: "center pl-8",
       infinite: true,
       centerPadding: "40px",
-      slidesToShow: 4,
+      slidesToShow: slidesToShow,
       dots: showDots,
       prevArrow: <CustomPrevArrow />,
       nextArrow: <CustomNextArrow />,
