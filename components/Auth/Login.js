@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import { Context } from "../../context";
@@ -19,8 +19,15 @@ export default function Login() {
   const [openforgotPasswordModal, setOpenForgotPasswordModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const inputReference = useRef(null);
+
   const { user } = state;
   const router = useRouter();
+
+  useEffect(() => {
+    //focus on form on initial render
+    inputReference.current.focus();
+  }, []);
 
   useEffect(() => {
     if (user !== null) router.push("/");
@@ -120,6 +127,7 @@ export default function Login() {
                 <div className="textfield_input_container">
                   <FaRegEnvelope className="m-2 text-gray-400" />
                   <input
+                    ref={inputReference}
                     type="email"
                     name="email"
                     onChange={(e) => setEmail(e.target.value)}
