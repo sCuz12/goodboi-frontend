@@ -2,6 +2,9 @@ import React from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { GoLocation } from "react-icons/go";
 import { BsTelephone } from "react-icons/bs";
+import { FaPaw } from "react-icons/fa";
+import SolidPaw from "../Icons/SolidPaw";
+import Heart from "../Icons/Heart";
 
 function Telephone({ phone, email, onclose, address }) {
   return (
@@ -11,8 +14,10 @@ function Telephone({ phone, email, onclose, address }) {
           {/*content*/}
           <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
             {/*header*/}
-            <div className="flex items-center justify-center p-5 border-b border-solid rounded-t border-slate-200">
+            <div className="flex items-center justify-center p-5 border-b border-solid rounded-t border-slate-200 bg-roz">
               <h3 className="text-3xl font-semibold">Contact</h3>
+
+              <Heart />
             </div>
             {/*body*/}
             <div className="relative flex-auto p-6">
