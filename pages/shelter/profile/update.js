@@ -16,7 +16,7 @@ function updateProfile() {
   const [shelterAddress, setShelterAddress] = useState("");
   const [shelterDescription, setShelterDescription] = useState("");
   const [shelterPhone, setShelterPhone] = useState("");
-  const [selectedShelterCity, setSelectedShelterCity] = useState([]);
+  const [selectedShelterCity, setSelectedShelterCity] = useState("");
   const [citiesOptions, setCitiesOptions] = useState([]);
   const [currentValues, setCurrentValues] = useState([]);
   const [instagram, setInstagram] = useState("");
@@ -33,7 +33,6 @@ function updateProfile() {
     fetchCitiesById(1); //default retrieve Cyprus countries
 
     loadCurrentShelterDetails();
-    console.log(currentValues);
   }, []);
 
   //*Fetching methods start **//
@@ -55,12 +54,14 @@ function updateProfile() {
       setFacebook(data.shelter.facebook);
       setInstagram(data.shelter.instagram);
     }
+    console.log(selectedShelterCity);
   };
 
   //*Handlers Start **//
   const citySelectionHandler = (value) => {
     const id = value;
     setSelectedShelterCity(id);
+    console.log(selectedShelterCity);
   };
 
   const handleSubmit = (e) => {
@@ -173,7 +174,7 @@ function updateProfile() {
   };
 
   const isSubmitDisabled = () => {
-    return loading || facebookError != "";
+    return loading || facebookError != "" || selectedShelterCity == null;
   };
 
   return (
@@ -269,7 +270,7 @@ function updateProfile() {
               <CityDropdown
                 data={citiesOptions}
                 handler={citySelectionHandler}
-                defaultValue={currentValues?.city_id || 1}
+                defaultValue={currentValues?.city_id ?? ""}
                 required
               />
 
