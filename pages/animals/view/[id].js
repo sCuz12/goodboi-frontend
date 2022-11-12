@@ -149,10 +149,10 @@ const AnimalListingView = () => {
                 </div>
               </div>
               <div className="grid w-full pt-12 lg:w-3/5">
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center lg:items-start">
                   {/*Upper info */}
                   <h1 className="text-4xl font-semibold font-cherryBomb lg:w-full">
-                    <div className="flex items-center text-center">
+                    <div className="flex items-start text-center">
                       This is {animal.name}
                       <div className="">
                         <Heart />
@@ -160,7 +160,7 @@ const AnimalListingView = () => {
                     </div>
                   </h1>
                   {/** Description */}
-                  <div className="p-5 lg:p-0">
+                  <div className="p-5 md:lg-0 lg:p-0">
                     <p className="animal_description_text">
                       {animal.description}
                     </p>
