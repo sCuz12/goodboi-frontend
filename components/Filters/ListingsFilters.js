@@ -33,7 +33,7 @@ function ListingsFilters({
         isCollapse ? "-translate-x-full" : "translate-x-0"
       } `}
     >
-      <div className="flex flex-col w-full pl-3 border rounded-xl">
+      <div className="flex flex-col w-full pl-3 border h-100 rounded-xl">
         <div className="flex w-full ">
           <h2 className="w-4/5 text-xl font-bold">Filters</h2>
           <div className="flex items-end justify-end w-1/5">
@@ -87,7 +87,6 @@ function ListingsFilters({
             <>
               <h2 className="w-4/5 text-xl">Age</h2>
               <div className="flex flex-col">
-                {" "}
                 <Slider
                   range
                   defaultValue={[0, 20]}

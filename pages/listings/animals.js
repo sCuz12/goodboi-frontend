@@ -63,7 +63,9 @@ function animals() {
   }, [checkedCity]);
 
   useEffect(() => {
-    sortListingsBy();
+    if (sortBy.length > 0) {
+      sortListingsBy();
+    }
   }, [sortBy]);
 
   useEffect(() => {
@@ -74,17 +76,15 @@ function animals() {
 
   useEffect(() => {
     if (url) {
-      console.log(url);
       const fetchData = async (pageNumber = 1) => {
         console.log(`/api/animals/dogs?` + url + `page=${pageNumber}`);
         try {
           const { data } = await axiosInstance.get(`/api/animals/dogs?` + url);
-          console.log(data);
           setAnimalLIstings(data.data);
           setTotalListings(data.meta.total);
           setActivePage(data.meta.current_page);
           setPerPage(data.meta.per_page);
-          setShowpagination(false);
+          setShowpagination(true);
         } catch (err) {
           console.log(err);
         }
@@ -106,6 +106,7 @@ function animals() {
     const { data } = await axiosInstance.get(
       `/api/animals/dogs?page=${pageNumber}`
     );
+
     setAnimalLIstings(data.data);
     setTotalListings(data.meta.total);
     setActivePage(data.meta.current_page);
@@ -274,6 +275,7 @@ function animals() {
             )}
 
             {/* Pagination */}
+
             {totalListings > 10 && showpagination && (
               <div className="flex flex-row justify-center w-full pt-10">
                 <div className="w-2/4 ">
