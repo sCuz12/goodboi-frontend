@@ -63,12 +63,6 @@ function animals() {
   }, [checkedCity]);
 
   useEffect(() => {
-    if (sortBy.length > 0) {
-      sortListingsBy();
-    }
-  }, [sortBy]);
-
-  useEffect(() => {
     if (checkedCity.length == 0) {
       router.push("/listings/animals");
     }
@@ -77,7 +71,7 @@ function animals() {
   useEffect(() => {
     if (url) {
       const fetchData = async (pageNumber = 1) => {
-        console.log(`/api/animals/dogs?` + url + `page=${pageNumber}`);
+        console.log(`/api/animals/dogs?` + url + `&page=${pageNumber}`);
         try {
           const { data } = await axiosInstance.get(`/api/animals/dogs?` + url);
           setAnimalLIstings(data.data);
@@ -113,16 +107,6 @@ function animals() {
     setPerPage(data.meta.per_page);
   };
 
-  //sends add sort fields and send request
-  const sortListingsBy = async () => {
-    let formData = new FormData();
-    formData.append("sort", sortBy[0]);
-    formData.append("sortValue", sortBy[1]);
-    const { data } = await axiosInstance.post("/api/animals/dogs", formData);
-    setAnimalLIstings(data.data);
-    setTotalListings(data.data.total);
-  };
-
   const handleToggle = (id) => {
     const currentIndex = checkedCity.indexOf(id);
     const newChecked = [...checkedCity];
@@ -144,25 +128,36 @@ function animals() {
 
   //Handles the sort click of item
   const MenuClickHandler = (e) => {
+    let sortByField = "";
+    let sortByValue = "";
     switch (e.key) {
       case "name":
-        setSortBy([e.key, "asc"]);
+        sortByField = e.key;
+        sortByValue = "asc";
         break;
       case "nameDesc":
-        setSortBy(["name", "desc"]);
+        sortByField = "name";
+        sortByValue = "asc";
         break;
       case "created_at":
-        setSortBy([e.key, "asc"]);
+        sortByField = e.key;
+        sortByValue = "asc";
         break;
       case "created_at_desc":
-        setSortBy(["created_at", "desc"]);
+        sortByField = "created_at";
+        sortByValue = "desc";
         break;
       case "total_views":
-        setSortBy([e.key, "desc"]);
+        sortByField = e.key;
+        sortByValue = "desc";
         break;
       default:
-        setSortBy(["name", "asc"]);
+        sortByField = "name";
+        sortByValue = "desc";
     }
+    router.query.sortField = sortByField;
+    router.query.sortValue = sortByValue;
+    router.push(router);
   };
 
   /* Handles the change of gender in filters*/
