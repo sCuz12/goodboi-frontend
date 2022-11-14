@@ -137,7 +137,7 @@ function animals() {
         break;
       case "nameDesc":
         sortByField = "name";
-        sortByValue = "asc";
+        sortByValue = "desc";
         break;
       case "created_at":
         sortByField = e.key;
