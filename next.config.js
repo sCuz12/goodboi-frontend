@@ -7,6 +7,7 @@ const nextConfig = {
       "localhost",
       "api.goodboi.com.cy",
       "backend.goodboi.com.cy",
+      "graph.facebook.com",
     ],
   },
 };
